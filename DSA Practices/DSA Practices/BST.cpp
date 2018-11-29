@@ -16,79 +16,122 @@ struct Tree
     int value;
     Tree* left;
     Tree* right;
+    
+    Tree(int nValue, Tree* nLeft = nullptr, Tree* nRight = nullptr) :
+        value(nValue),
+        left(nLeft),
+        right(nRight)
+    {}
 };
 
-void insert(Tree& root, int element)
+void addElement(Tree* &ptr, int element)
 {
-    if(element < root.value)
-    {
-        if(root.left == nullptr)
-        {
-            try {
-                root.left = new Tree;
-            } catch (const std::bad_alloc& ba) {
-                std::cerr << "Cannot allocate memory for a new tree\n";
-                throw;
-            }
-            root.left->value = element;
-            return;
-        }
-        insert(*root.left, element);
-    }
-    else
-    {
-        if(root.right == nullptr)
-        {
-            try {
-                root.right = new Tree;
-            } catch (const std::bad_alloc& ba) {
-                std::cerr << "Cannot allocate memory for a new tree\n";
-                throw;
-            }
-            root.right->value = element;
-            return;
-        }
-        insert(*root.right, element);
+    try {
+        ptr = new Tree(element);
+    } catch (const std::bad_alloc& ba) {
+        std::cerr << "Cannot allocate memory for a new tree\n";
+        throw;
     }
 }
 
-//void printAsc(Tree& root)
-//{
-//    if(root.left == nullptr)
-//    {
-//
-//    }
-//}
+void insert(Tree* &root, int element)
+{
+    if(root->value == element)
+    {
+        throw std::logic_error("This element is already inserted");
+    }
+     else if(element < root->value)
+    {
+        if(!root->left)
+        {
+            addElement(root->left, element);
+            return;
+        }
+        insert(root->left, element);
+    }
+    else
+    {
+        if(!root->right)
+        {
+            addElement(root->right, element);
+            return;
+        }
+        insert(root->right, element);
+    }
+}
+
+void printAsc(Tree* root)
+{
+    if(root->left)
+    {
+        printAsc(root->left);
+    }
+    std::cout << root->value << ' ';
+    if(root->right)
+    {
+        printAsc(root->right);
+    }
+}
+
+void printDesc(Tree* root)
+{
+    if(root->right)
+    {
+        printDesc(root->right);
+    }
+    std::cout << root->value << ' ';
+    if(root->left)
+    {
+        printDesc(root->left);
+    }
+}
+
+void cleanTree(Tree* root)
+{
+    if(root->left)
+    {
+        cleanTree(root->left);
+    }
+    if(root->right)
+    {
+        cleanTree(root->right);
+    }
+    delete root;
+}
 
 int main()
 {
-    char* fileName;
+    std::string fileName;
+    std::cout << "Enter absolute path to file: ";
+    std::cin >> fileName;
+    std::cout << std::endl;
+    
     std::ifstream stream;
     stream.open(fileName, std::ios::in);
     if(!stream)
-    {
-        std::cerr << "Cannot open file for reading\n";
-    }
-    stream.seekg(std::ios::ate);
-    long long size = stream.tellg();
-    stream.seekg(0, std::ios::beg);
+        return -1;
     
-    Tree* root;
-    try {
-        root = new Tree;
-        root->left = nullptr;
-        root->right = nullptr;
-    } catch (const std::bad_alloc& ba) {
-        std::cerr << "Cannot allocate a new tree\n";
-        throw;
-    }
+    int element;
+    stream >> element;
     
-    stream >> root->value;
+    Tree* root = new Tree(element);
+    if(!root)
+        return -1;
+
+        while(!stream.eof())
+        {
+            stream >> element;
+            insert(root, element);
+        }
     
-    for(long long i = 0; i < size; ++i)
-    {
-        int element;
-        stream >> element;
-        insert(*root, element);
-    }
+    std::cout << "Numbers ascending: ";
+    printAsc(root);
+    std::cout << '\n';
+    std::cout << "Numbers descending: ";
+    printDesc(root);
+    std::cout << '\n';
+    cleanTree(root);
+    
+    
+    return 0;
 }

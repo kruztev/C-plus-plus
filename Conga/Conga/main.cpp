@@ -117,7 +117,7 @@ int main()
 {
     const char* dictionary[] = {"append", "removeLast", "removeFirst", "remove", "merge", "print", "quit"}; // Dictionary with commands.
     bool programRuns = true; // This flag controls when the program ends.
-    bool cycleHasStarted = false; // This flag indicates wether the while cycle has started so the conga of Integralcho have to be added. If it is true, the conga has been already added.
+    bool cycleHasStarted = false; // This flag indicates whether the while cycle has started so the conga of Integralcho has to be added. If it is true, the conga has been already added.
     
     Vector vector;
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0041D59E21C2B1430090D392 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0041D59D21C2B1430090D392 /* Graph.cpp */; };
 		00A4D9F221AC9D180035F10F /* BST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9DE21AC9D170035F10F /* BST.cpp */; };
 		00A4D9F321AC9D180035F10F /* Stack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9DF21AC9D170035F10F /* Stack.cpp */; };
 		00A4D9F421AC9D180035F10F /* SimulatedQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9E221AC9D170035F10F /* SimulatedQueue.cpp */; };
@@ -33,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0041D59D21C2B1430090D392 /* Graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
 		00A4D9D421AC9CFE0035F10F /* DSA Practices */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "DSA Practices"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A4D9DE21AC9D170035F10F /* BST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BST.cpp; sourceTree = "<group>"; };
 		00A4D9DF21AC9D170035F10F /* Stack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stack.cpp; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				00A4D9E721AC9D170035F10F /* Browser.cpp */,
 				00A4D9EE21AC9D180035F10F /* Browser.hpp */,
 				00A4D9DE21AC9D170035F10F /* BST.cpp */,
+				0041D59D21C2B1430090D392 /* Graph.cpp */,
 				00A4D9EB21AC9D180035F10F /* Date.cpp */,
 				00A4D9EC21AC9D180035F10F /* Date.hpp */,
 				00A4D9ED21AC9D180035F10F /* LinkedList.hpp */,
@@ -170,6 +173,7 @@
 				00A4D9FA21AC9D180035F10F /* Date.cpp in Sources */,
 				00A4D9F721AC9D180035F10F /* Browser.cpp in Sources */,
 				00A4D9FC21AC9D180035F10F /* Tab.cpp in Sources */,
+				0041D59E21C2B1430090D392 /* Graph.cpp in Sources */,
 				00A4D9F821AC9D180035F10F /* Vector.cpp in Sources */,
 				00A4D9F421AC9D180035F10F /* SimulatedQueue.cpp in Sources */,
 				00A4D9F921AC9D180035F10F /* Student.cpp in Sources */,

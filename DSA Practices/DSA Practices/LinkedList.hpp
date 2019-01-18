@@ -3,8 +3,7 @@
 //  SDP Practs
 //
 
-#ifndef LinkedList_hpp
-#define LinkedList_hpp
+#pragma once
 
 template <typename T>
 class LinkedList
@@ -63,7 +62,7 @@ public:
         T& operator*();
         const T& operator*() const;
         T& operator->();
-        bool operator!=(const Iterator&);
+        bool operator!=(const Node&);
         
     private:
         Node* ptr;
@@ -341,21 +340,22 @@ T& LinkedList<T>::Iterator::operator->()
 }
 
 template <typename T>
-bool LinkedList<T>::Iterator::operator!=(const Iterator& nPtr)
+bool LinkedList<T>::Iterator::operator!=(const Node& rhs)
 {
-    return !(ptr == nPtr);
+    return !(rhs == *this);
 }
 
 template <typename T>
 typename LinkedList<T>::Iterator& LinkedList<T>::Iterator::operator++()
 {
-    return ptr = ptr->next;
+    ptr = ptr->next;
+    return *this;
 }
 
 template <typename T>
 typename LinkedList<T>::Iterator LinkedList<T>::begin()
 {
-    return Iterator(frontElement());
+    return Iterator(frontPtr);
 }
 
 template <typename T>
@@ -363,7 +363,3 @@ typename LinkedList<T>::Iterator LinkedList<T>::end()
 {
     return Iterator(backPtr);
 }
-
-
-
-#endif

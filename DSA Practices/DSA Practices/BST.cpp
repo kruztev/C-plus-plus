@@ -99,39 +99,39 @@ void cleanTree(Tree* root)
     delete root;
 }
 
-int main()
-{
-    std::string fileName;
-    std::cout << "Enter absolute path to file: ";
-    std::cin >> fileName;
-    std::cout << std::endl;
-    
-    std::ifstream stream;
-    stream.open(fileName, std::ios::in);
-    if(!stream)
-        return -1;
-    
-    int element;
-    stream >> element;
-    
-    Tree* root = new Tree(element);
-    if(!root)
-        return -1;
-
-        while(!stream.eof())
-        {
-            stream >> element;
-            insert(root, element);
-        }
-    
-    std::cout << "Numbers ascending: ";
-    printAsc(root);
-    std::cout << '\n';
-    std::cout << "Numbers descending: ";
-    printDesc(root);
-    std::cout << '\n';
-    cleanTree(root);
-    
-    
-    return 0;
-}
+//int main()
+//{
+//    std::string fileName;
+//    std::cout << "Enter absolute path to file: ";
+//    std::cin >> fileName;
+//    std::cout << std::endl;
+//    
+//    std::ifstream stream;
+//    stream.open(fileName, std::ios::in);
+//    if(!stream)
+//        return -1;
+//    
+//    int element;
+//    stream >> element;
+//    
+//    Tree* root = new Tree(element);
+//    if(!root)
+//        return -1;
+//
+//        while(!stream.eof())
+//        {
+//            stream >> element;
+//            insert(root, element);
+//        }
+//    
+//    std::cout << "Numbers ascending: ";
+//    printAsc(root);
+//    std::cout << '\n';
+//    std::cout << "Numbers descending: ";
+//    printDesc(root);
+//    std::cout << '\n';
+//    cleanTree(root);
+//    
+//    
+//    return 0;
+//}

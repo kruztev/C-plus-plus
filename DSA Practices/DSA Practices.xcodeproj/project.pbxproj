@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0041D59E21C2B1430090D392 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0041D59D21C2B1430090D392 /* Graph.cpp */; };
+		0013A62921F3655000D1CCA5 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0013A62821F3655000D1CCA5 /* Graph.cpp */; };
+		0029E57D21FDAF3F00F9662A /* zad1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0029E57C21FDAF3F00F9662A /* zad1.cpp */; };
 		00A4D9F221AC9D180035F10F /* BST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9DE21AC9D170035F10F /* BST.cpp */; };
 		00A4D9F321AC9D180035F10F /* Stack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9DF21AC9D170035F10F /* Stack.cpp */; };
 		00A4D9F421AC9D180035F10F /* SimulatedQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9E221AC9D170035F10F /* SimulatedQueue.cpp */; };
 		00A4D9F521AC9D180035F10F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9E421AC9D170035F10F /* main.cpp */; };
 		00A4D9F621AC9D180035F10F /* StudentsTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9E621AC9D170035F10F /* StudentsTable.cpp */; };
 		00A4D9F721AC9D180035F10F /* Browser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9E721AC9D170035F10F /* Browser.cpp */; };
-		00A4D9F821AC9D180035F10F /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9E821AC9D170035F10F /* Vector.cpp */; };
 		00A4D9F921AC9D180035F10F /* Student.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9EA21AC9D180035F10F /* Student.cpp */; };
 		00A4D9FA21AC9D180035F10F /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9EB21AC9D180035F10F /* Date.cpp */; };
 		00A4D9FB21AC9D180035F10F /* LinkedList.imp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A4D9F021AC9D180035F10F /* LinkedList.imp.cpp */; };
@@ -34,7 +34,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0041D59D21C2B1430090D392 /* Graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
+		0013A62821F3655000D1CCA5 /* Graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
+		0029E57C21FDAF3F00F9662A /* zad1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = zad1.cpp; sourceTree = "<group>"; };
 		00A4D9D421AC9CFE0035F10F /* DSA Practices */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "DSA Practices"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A4D9DE21AC9D170035F10F /* BST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BST.cpp; sourceTree = "<group>"; };
 		00A4D9DF21AC9D170035F10F /* Stack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stack.cpp; sourceTree = "<group>"; };
@@ -46,7 +47,6 @@
 		00A4D9E521AC9D170035F10F /* Stack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stack.hpp; sourceTree = "<group>"; };
 		00A4D9E621AC9D170035F10F /* StudentsTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StudentsTable.cpp; sourceTree = "<group>"; };
 		00A4D9E721AC9D170035F10F /* Browser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Browser.cpp; sourceTree = "<group>"; };
-		00A4D9E821AC9D170035F10F /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
 		00A4D9E921AC9D170035F10F /* SimulatedQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimulatedQueue.hpp; sourceTree = "<group>"; };
 		00A4D9EA21AC9D180035F10F /* Student.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Student.cpp; sourceTree = "<group>"; };
 		00A4D9EB21AC9D180035F10F /* Date.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Date.cpp; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 				00A4D9E721AC9D170035F10F /* Browser.cpp */,
 				00A4D9EE21AC9D180035F10F /* Browser.hpp */,
 				00A4D9DE21AC9D170035F10F /* BST.cpp */,
-				0041D59D21C2B1430090D392 /* Graph.cpp */,
+				0013A62821F3655000D1CCA5 /* Graph.cpp */,
 				00A4D9EB21AC9D180035F10F /* Date.cpp */,
 				00A4D9EC21AC9D180035F10F /* Date.hpp */,
 				00A4D9ED21AC9D180035F10F /* LinkedList.hpp */,
@@ -107,8 +107,8 @@
 				00A4D9EF21AC9D180035F10F /* StudentsTable.hpp */,
 				00A4D9F121AC9D180035F10F /* Tab.cpp */,
 				00A4D9E321AC9D170035F10F /* Tab.hpp */,
-				00A4D9E821AC9D170035F10F /* Vector.cpp */,
 				00A4D9E121AC9D170035F10F /* Vector.hpp */,
+				0029E57C21FDAF3F00F9662A /* zad1.cpp */,
 			);
 			path = "DSA Practices";
 			sourceTree = "<group>";
@@ -173,8 +173,8 @@
 				00A4D9FA21AC9D180035F10F /* Date.cpp in Sources */,
 				00A4D9F721AC9D180035F10F /* Browser.cpp in Sources */,
 				00A4D9FC21AC9D180035F10F /* Tab.cpp in Sources */,
-				0041D59E21C2B1430090D392 /* Graph.cpp in Sources */,
-				00A4D9F821AC9D180035F10F /* Vector.cpp in Sources */,
+				0013A62921F3655000D1CCA5 /* Graph.cpp in Sources */,
+				0029E57D21FDAF3F00F9662A /* zad1.cpp in Sources */,
 				00A4D9F421AC9D180035F10F /* SimulatedQueue.cpp in Sources */,
 				00A4D9F921AC9D180035F10F /* Student.cpp in Sources */,
 				00A4D9F621AC9D180035F10F /* StudentsTable.cpp in Sources */,

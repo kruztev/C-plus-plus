@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00F17A4B2226C84F00C5301B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00F17A4A2226C84F00C5301B /* main.cpp */; };
+		002D266B22523B96001BBF26 /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 002D266922523B96001BBF26 /* Date.cpp */; };
+		0078DF4A22300202004A141E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0078DF4922300202004A141E /* main.cpp */; };
+		009F2BE722393C9400C0C236 /* Files.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 009F2BE522393C9400C0C236 /* Files.cpp */; };
+		00D59E0D224BB214005EB1EE /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00D59E0B224BB214005EB1EE /* Clock.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		002D266922523B96001BBF26 /* Date.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Date.cpp; sourceTree = "<group>"; };
+		002D266A22523B96001BBF26 /* Date.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Date.h; sourceTree = "<group>"; };
+		0078DF4922300202004A141E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		009F2BE522393C9400C0C236 /* Files.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Files.cpp; sourceTree = "<group>"; };
+		00D59E0B224BB214005EB1EE /* Clock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
+		00D59E0C224BB214005EB1EE /* Clock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
 		00F17A472226C84F00C5301B /* OOP Practices */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OOP Practices"; sourceTree = BUILT_PRODUCTS_DIR; };
-		00F17A4A2226C84F00C5301B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +65,12 @@
 		00F17A492226C84F00C5301B /* OOP Practices */ = {
 			isa = PBXGroup;
 			children = (
-				00F17A4A2226C84F00C5301B /* main.cpp */,
+				0078DF4922300202004A141E /* main.cpp */,
+				00D59E0B224BB214005EB1EE /* Clock.cpp */,
+				00D59E0C224BB214005EB1EE /* Clock.h */,
+				009F2BE522393C9400C0C236 /* Files.cpp */,
+				002D266922523B96001BBF26 /* Date.cpp */,
+				002D266A22523B96001BBF26 /* Date.h */,
 			);
 			path = "OOP Practices";
 			sourceTree = "<group>";
@@ -102,6 +115,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 00F17A3E2226C84F00C5301B;
 			productRefGroup = 00F17A482226C84F00C5301B /* Products */;
@@ -118,7 +132,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00F17A4B2226C84F00C5301B /* main.cpp in Sources */,
+				0078DF4A22300202004A141E /* main.cpp in Sources */,
+				00D59E0D224BB214005EB1EE /* Clock.cpp in Sources */,
+				009F2BE722393C9400C0C236 /* Files.cpp in Sources */,
+				002D266B22523B96001BBF26 /* Date.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

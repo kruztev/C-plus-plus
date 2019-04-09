@@ -12,6 +12,7 @@ public:
     Clock(const unsigned, const unsigned, const unsigned);
     Clock(const Clock&);
     Clock& operator=(const Clock&);
+    Clock operator+(const Clock&);
     ~Clock();
     
 public:

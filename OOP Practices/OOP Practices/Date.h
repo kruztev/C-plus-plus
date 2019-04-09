@@ -2,13 +2,34 @@
 //  Date.hpp
 //  OOP Practices
 //
-//  Created by Alexander Kruztev on 1.04.19.
-//  Copyright © 2019 Alexander Kruztev. All rights reserved.
-//
 
-#ifndef Date_hpp
-#define Date_hpp
 
-#include <stdio.h>
+#ifndef Date_h
+#define Date_h
 
-#endif /* Date_hpp */
+class Date
+{
+public:
+    Date();
+    Date(unsigned int, unsigned int, unsigned int);
+    
+public:
+    void addDays(unsigned int);
+    void subtractDays(unsigned int);
+    bool isLeap() const;
+    unsigned int daysToChristmas() const;
+    bool isLaterThan(const Date&) const;
+    
+private: // Helper functions
+    bool isValidDate(unsigned int, unsigned int, unsigned int) const;
+    unsigned int calculateMonths(unsigned int, unsigned int) const;
+    
+private:
+    unsigned int day;
+    unsigned int month;
+    unsigned int year;
+};
+
+Date& getDifference(const Date&, const Date&);
+
+#endif

@@ -2,13 +2,39 @@
 //  Student.hpp
 //  OOP Practices
 //
-//  Created by Alexander Kruztev on 13.03.19.
-//  Copyright © 2019 Alexander Kruztev. All rights reserved.
-//
 
-#ifndef Student_hpp
-#define Student_hpp
+#ifndef Student_h
+#define Student_h
 
-#include <stdio.h>
+#include <iostream>
 
-#endif /* Student_hpp */
+struct Student
+{
+public:
+    Student(size_t, size_t);
+    Student();
+    Student(const Student&);
+    Student& operator=(const Student&);
+    ~Student();
+    
+public:
+    void setFacultyNumber(size_t);
+    void setCountOfMarks(size_t);
+    void setMarks();
+    
+    const size_t getFacultyNumber() const;
+    const size_t getCountOfMArks() const;
+    void getMarks() const;
+    
+private:
+    void copyMarks(const Student&);
+    
+private:
+    size_t facultyNumber;
+    size_t countOfMarks;
+    size_t* marks;
+    
+};
+
+
+#endif

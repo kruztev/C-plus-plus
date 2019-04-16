@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 
-// Problem solving test - work with files.
+// Problem solving test - work with binary files.
 
 const unsigned short MAX_NAME_LENGTH = 256;
 

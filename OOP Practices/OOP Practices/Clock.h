@@ -1,9 +1,10 @@
 //
-//  Clock.hpp
+//  Clock.h
 //  OOP Practices
 //
 
-#pragma once
+#ifndef Clock_h
+#define Clock_h
 
 class Clock
 {
@@ -31,3 +32,5 @@ private:
     unsigned minutes;
     unsigned seconds;
 };
+
+#endif

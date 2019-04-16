@@ -1,14 +1,37 @@
 //
-//  Dynamic Array.hpp
+//  Dynamic Array.h
 //  OOP Practices
-//
-//  Created by Alexander Kruztev on 10.04.19.
-//  Copyright © 2019 Alexander Kruztev. All rights reserved.
 //
 
 #ifndef Dynamic_Array_hpp
 #define Dynamic_Array_hpp
 
-#include <stdio.h>
+#include <iostream>
+#include "Clock.h"
 
-#endif /* Dynamic_Array_hpp */
+class DynamicArray
+{
+public:
+    DynamicArray();
+    DynamicArray(const DynamicArray&);
+    DynamicArray& operator=(const DynamicArray&);
+    ~DynamicArray();
+    
+public:
+    void addClock(const Clock&);
+    void removeClock();
+    
+private: // Help functions
+    void copy(const DynamicArray&);
+    void clear();
+    void resize();
+    
+    
+private:
+    Clock* arr;
+    size_t size;
+    size_t capacity;
+};
+
+
+#endif

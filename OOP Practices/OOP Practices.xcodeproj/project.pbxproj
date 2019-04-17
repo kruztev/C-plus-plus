@@ -11,7 +11,9 @@
 		0007184A225E42DB00C43694 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00071849225E42DB00C43694 /* Point.cpp */; };
 		002D266B22523B96001BBF26 /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 002D266922523B96001BBF26 /* Date.cpp */; };
 		00401B7B2265ECBD001A2439 /* Text_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00401B7A2265ECBD001A2439 /* Text_file.cpp */; };
-		0078DF4A22300202004A141E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0078DF4922300202004A141E /* main.cpp */; };
+		00401B7E22675312001A2439 /* FilmStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00401B7C22675312001A2439 /* FilmStar.cpp */; };
+		00401B8022675678001A2439 /* FilmStar_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00401B7F22675678001A2439 /* FilmStar_demo.cpp */; };
+		00401B8222678F4A001A2439 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00401B8122678F4A001A2439 /* main.cpp */; };
 		00A002B6225E772C00D4239E /* Student_struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A002B5225E772C00D4239E /* Student_struct.cpp */; };
 		00D59E0D224BB214005EB1EE /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00D59E0B224BB214005EB1EE /* Clock.cpp */; };
 /* End PBXBuildFile section */
@@ -35,7 +37,10 @@
 		002D266922523B96001BBF26 /* Date.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Date.cpp; sourceTree = "<group>"; };
 		002D266A22523B96001BBF26 /* Date.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Date.h; sourceTree = "<group>"; };
 		00401B7A2265ECBD001A2439 /* Text_file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Text_file.cpp; sourceTree = "<group>"; };
-		0078DF4922300202004A141E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		00401B7C22675312001A2439 /* FilmStar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FilmStar.cpp; sourceTree = "<group>"; };
+		00401B7D22675312001A2439 /* FilmStar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmStar.h; sourceTree = "<group>"; };
+		00401B7F22675678001A2439 /* FilmStar_demo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FilmStar_demo.cpp; sourceTree = "<group>"; };
+		00401B8122678F4A001A2439 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		00A002B5225E772C00D4239E /* Student_struct.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Student_struct.cpp; sourceTree = "<group>"; };
 		00D59E0B224BB214005EB1EE /* Clock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
 		00D59E0C224BB214005EB1EE /* Clock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
@@ -72,7 +77,10 @@
 		00F17A492226C84F00C5301B /* OOP Practices */ = {
 			isa = PBXGroup;
 			children = (
-				0078DF4922300202004A141E /* main.cpp */,
+				00401B8122678F4A001A2439 /* main.cpp */,
+				00401B7F22675678001A2439 /* FilmStar_demo.cpp */,
+				00401B7C22675312001A2439 /* FilmStar.cpp */,
+				00401B7D22675312001A2439 /* FilmStar.h */,
 				00401B7A2265ECBD001A2439 /* Text_file.cpp */,
 				00D59E0B224BB214005EB1EE /* Clock.cpp */,
 				00D59E0C224BB214005EB1EE /* Clock.h */,
@@ -143,13 +151,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00401B8222678F4A001A2439 /* main.cpp in Sources */,
 				0007184A225E42DB00C43694 /* Point.cpp in Sources */,
 				00A002B6225E772C00D4239E /* Student_struct.cpp in Sources */,
-				0078DF4A22300202004A141E /* main.cpp in Sources */,
+				00401B8022675678001A2439 /* FilmStar_demo.cpp in Sources */,
 				00401B7B2265ECBD001A2439 /* Text_file.cpp in Sources */,
 				00D59E0D224BB214005EB1EE /* Clock.cpp in Sources */,
 				002D266B22523B96001BBF26 /* Date.cpp in Sources */,
 				00071848225E1C7300C43694 /* Dynamic Array.cpp in Sources */,
+				00401B7E22675312001A2439 /* FilmStar.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -68,26 +68,25 @@ void sequentialSearch()
 
 int main()
 {
-    const char* dictionary[] = {"create", "sequentialSearch", "exit"};
-    char buffer[1024];
-    while(true)
-    {
-        std::cin >> buffer;
-        if (!strcmp(buffer, dictionary[0]))
+        const char* dictionary[] = {"create", "sequentialSearch", "exit"};
+        char buffer[1024];
+        while(true)
         {
-            create();
-            continue;
+            std::cin >> buffer;
+            if (!strcmp(buffer, dictionary[0]))
+            {
+                create();
+                continue;
+            }
+            if(!strcmp(buffer, dictionary[1]))
+            {
+                sequentialSearch();
+                continue;
+            }
+            if(!strcmp(buffer, dictionary[2]))
+            {
+                break;
+            }
         }
-        if(!strcmp(buffer, dictionary[1]))
-        {
-            sequentialSearch();
-            continue;
-        }
-        if(!strcmp(buffer, dictionary[2]))
-        {
-            break;
-        }
-    }
-    
     return 0;
 }

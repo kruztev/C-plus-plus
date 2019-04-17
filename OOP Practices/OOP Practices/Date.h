@@ -23,6 +23,9 @@ public:
 private: // Helper functions
     bool isValidDate(unsigned int, unsigned int, unsigned int) const;
     unsigned int calculateMonths(unsigned int, unsigned int) const;
+    unsigned int calculateDaysIfLeap() const;
+    void handleFebruary(unsigned int);
+    void handleDayAddition(unsigned int, unsigned short);
     
 private:
     unsigned int day;

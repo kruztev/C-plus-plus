@@ -3,6 +3,7 @@
 //  OOP Practices
 //
 
+#include <iostream>
 #include "Date.h"
 
 const unsigned short DEFAULT_DAY = 1;
@@ -11,6 +12,7 @@ const unsigned short DEFAULT_YEAR = 2000;
 const unsigned short DAYS_COUNT = 31;
 const unsigned short MONTHS_COUNT = 12;
 const unsigned short DAYS_COUNT_FEB = 28;
+const unsigned short JANUARY = 1;
 const unsigned short FEBRUARY = 2;
 const unsigned short APRIL = 4;
 const unsigned short JUNE = 6;
@@ -73,30 +75,51 @@ bool Date::isValidDate(unsigned int day, unsigned int month, unsigned int year) 
     
 }
 
-void Date::addDays(unsigned int countOfDays)
-{
-    unsigned int newDaysValue = day + countOfDays;
-    if (month == FEBRUARY)
-    {
-        if (isLeap() && newDaysValue > DAYS_COUNT_FEB + 1)
-        {
-            if (day + newDaysValue > DAYS_COUNT_FEB + 1)
-            {
-                unsigned int temp = calculateMonths(newDaysValue, DAYS_COUNT_FEB + 1);
-                day = newDaysValue % DAYS_COUNT_FEB + 1;
-                if (month + temp > MONTHS_COUNT)
-                {
-                   // ???
-                }
-            }
-            else
-            {
-                day += newDaysValue;
-            }
-            
-        }
-    }
-}
+//void Date::addDays(unsigned int countOfDays)
+//{
+//    unsigned int newDaysValue = day + countOfDays;
+//    if (month == FEBRUARY)
+//    {
+//        if (isLeap() && newDaysValue > DAYS_COUNT_FEB + 1)
+//        {
+//            unsigned int newMonthsValue = calculateMonths(newDaysValue, DAYS_COUNT_FEB + 1);
+//            day = newDaysValue % DAYS_COUNT_FEB + 1;
+//            if (month + newMonthsValue > MONTHS_COUNT)
+//            {
+//                year += newMonthsValue / MONTHS_COUNT;
+//                month = newMonthsValue % MONTHS_COUNT;
+//            }
+//            else
+//            {
+//                month = newMonthsValue;
+//            }
+//        }
+//        else
+//        {
+//            day += newDaysValue;
+//        }
+//    }
+//    else
+//    {
+//        if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER)
+//        {
+//            if (day + newDaysValue > DAYS_COUNT - 1)
+//            {
+//                unsigned int newMonthsValue = calculateMonths(newDaysValue, DAYS_COUNT_FEB + 1);
+//                day = newDaysValue % DAYS_COUNT_FEB + 1;
+//                if (month + newMonthsValue > MONTHS_COUNT)
+//                {
+//                    year += newMonthsValue / MONTHS_COUNT;
+//                    month = newMonthsValue % MONTHS_COUNT;
+//                }
+//            }
+//            else
+//            {
+//                day += newDaysValue;
+//            }
+//        }
+//    }
+//}
 
 unsigned int Date::calculateMonths(unsigned int days, unsigned int countOfDaysInMonth) const
 {
@@ -109,3 +132,80 @@ unsigned int Date::calculateMonths(unsigned int days, unsigned int countOfDaysIn
     return monthsToAdd;
 }
 
+//unsigned int Date::calculateDaysIfLeap() const
+//{
+//    // if()
+//}
+
+void Date::addDays(unsigned int countOfDays)
+{
+    for (int i = countOfDays; i > 0; --i)
+    {
+        unsigned int newValue = day + 1;
+        if (month == FEBRUARY)
+        {
+            handleFebruary(newValue);
+        }
+        else if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER)
+        {
+            
+        }
+        else
+        {
+            
+        }
+    }
+}
+
+void Date::handleFebruary(unsigned int newValue) // newValue = day + 1
+{
+    if (isLeap() && newValue > DAYS_COUNT_FEB + 1)
+    {
+        if (month == MONTHS_COUNT)
+        {
+            day = newValue % DAYS_COUNT_FEB + 1;
+            year++;
+            month = JANUARY;
+            return;
+        }
+        
+        day = newValue % DAYS_COUNT_FEB + 1;
+        month++;
+    }
+    else if (newValue > DAYS_COUNT_FEB)
+    {
+        if (month == MONTHS_COUNT)
+        {
+            day = newValue % DAYS_COUNT_FEB;
+            year++;
+            month = JANUARY;
+            return;
+        }
+        
+        day = newValue % DAYS_COUNT_FEB;
+        month++;
+    }
+    else
+    {
+        day = newValue;
+    }
+    return;
+}
+
+void Date::handleDayAddition(unsigned int newValue, unsigned short daysInMonth)
+{
+    if (newValue > daysInMonth)
+    {
+        day = newValue % daysInMonth;
+        if (month == MONTHS_COUNT)
+        {
+            month = JANUARY;
+            year++;
+            return;
+        }
+        month++;
+        return;
+    }
+    day = newValue;
+    return;
+}

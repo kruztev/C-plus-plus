@@ -24,6 +24,7 @@ private: // Helper functions
     bool isValidDate(unsigned int, unsigned int, unsigned int) const;
     void handleFebruary(unsigned int);
     void handleDayAddition(unsigned int, unsigned short);
+    void handleDaySubtraction(unsigned int, unsigned short);
     
 private:
     unsigned int day;

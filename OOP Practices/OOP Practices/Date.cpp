@@ -14,6 +14,7 @@ const unsigned short MONTHS_COUNT = 12;
 const unsigned short DAYS_COUNT_FEB = 28;
 const unsigned short JANUARY = 1;
 const unsigned short FEBRUARY = 2;
+const unsigned short MARCH = 3;
 const unsigned short APRIL = 4;
 const unsigned short JUNE = 6;
 const unsigned short SEPTEMBER = 9;
@@ -184,19 +185,49 @@ unsigned int Date::daysToChristmas() const
     return daysLeft;
 }
 
+void Date::subtractDays(unsigned int countOfDays)
+{
+    for (int i = countOfDays; i > 0; --i)
+    {
+        unsigned int newValue = day - 1;
+        if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER)
+        {
+            handleDayAddition(newValue, DAYS_COUNT - 1);
+        }
+        else
+        {
+            handleDayAddition(newValue, DAYS_COUNT);
+        }
+    }
+}
 
-//unsigned int daysLeft = 0;
-//if (month < DECEMBER)
-//{
-//
-//}
-//else
-//{
-//    if (day < CHRSITMAS_DAY)
-//        daysLeft = CHRSITMAS_DAY - day;
-//        else
-//        {
-//
-//        }
-//}
-//return daysLeft;
+void Date::handleDaySubtraction(unsigned int newValue, unsigned short daysInMonth)
+{
+    if (newValue == 0)
+    {
+        if (month == MARCH && isLeap())
+        {
+            day = DAYS_COUNT_FEB + 1;
+            month--;
+        }
+        else if (month == MARCH && !isLeap())
+        {
+            day = DAYS_COUNT_FEB;
+            month--;
+        }
+        else
+        {
+            day = daysInMonth;
+            if (month == 0)
+            {
+                month = DECEMBER;
+                year--;
+                return;
+            }
+            month--;
+            return;
+        }
+    }
+    day = newValue;
+    return;
+}

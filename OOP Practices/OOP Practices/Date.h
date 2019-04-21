@@ -14,6 +14,7 @@ public:
     Date(unsigned int, unsigned int, unsigned int);
     
 public:
+    void testPrint() const;
     void addDays(unsigned int);
     void subtractDays(unsigned int);
     bool isLeap() const;

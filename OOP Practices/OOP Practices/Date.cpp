@@ -147,7 +147,12 @@ unsigned int Date::daysToChristmas() const
 {
     unsigned int daysLeft = 0;
     Date temp = *this;
-    while (temp.day != CHRSITMAS_DAY && temp.month != DECEMBER)
+    while (temp.month != DECEMBER)
+    {
+        temp.addDays(1);
+        daysLeft++;
+    }
+    while (temp.day < CHRSITMAS_DAY)
     {
         temp.addDays(1);
         daysLeft++;
@@ -267,4 +272,10 @@ Date getDifference(const Date& date1, const Date& date2)
     newDate.setMonth(std::abs(newMonth));
     newDate.setYear(std::abs(newYear));
     return newDate;
+}
+
+void Date::testPrint() const
+{
+    std::cout << day << '.' << month << '.' << year << '\n';
+    return;
 }

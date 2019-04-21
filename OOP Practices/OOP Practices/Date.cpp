@@ -18,6 +18,8 @@ const unsigned short APRIL = 4;
 const unsigned short JUNE = 6;
 const unsigned short SEPTEMBER = 9;
 const unsigned short NOVEMBER = 11;
+const unsigned short DECEMBER = 12;
+const unsigned short CHRSITMAS_DAY = 25;
 
 Date::Date() : day(DEFAULT_DAY), month(DEFAULT_MONTH),
 year(DEFAULT_YEAR)
@@ -169,3 +171,32 @@ bool Date::isLaterThan(const Date& rhs) const
     else
         return false;
 }
+
+unsigned int Date::daysToChristmas() const
+{
+    unsigned int daysLeft = 0;
+    Date temp = *this;
+    while (temp.day != CHRSITMAS_DAY && temp.month != DECEMBER)
+    {
+        temp.addDays(1);
+        daysLeft++;
+    }
+    return daysLeft;
+}
+
+
+//unsigned int daysLeft = 0;
+//if (month < DECEMBER)
+//{
+//
+//}
+//else
+//{
+//    if (day < CHRSITMAS_DAY)
+//        daysLeft = CHRSITMAS_DAY - day;
+//        else
+//        {
+//
+//        }
+//}
+//return daysLeft;

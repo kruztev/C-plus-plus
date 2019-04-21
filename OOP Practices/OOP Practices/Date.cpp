@@ -147,3 +147,25 @@ void Date::handleDayAddition(unsigned int newValue, unsigned short daysInMonth)
     day = newValue;
     return;
 }
+
+bool Date::isLaterThan(const Date& rhs) const
+{
+    if (year > rhs.year)
+        return true;
+    else if (year == rhs.year)
+    {
+        if (month > rhs.month)
+            return true;
+        else if (month == rhs.month)
+        {
+            if (day > rhs.day)
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+    else
+        return false;
+}

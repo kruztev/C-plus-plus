@@ -75,68 +75,6 @@ bool Date::isValidDate(unsigned int day, unsigned int month, unsigned int year) 
     
 }
 
-//void Date::addDays(unsigned int countOfDays)
-//{
-//    unsigned int newDaysValue = day + countOfDays;
-//    if (month == FEBRUARY)
-//    {
-//        if (isLeap() && newDaysValue > DAYS_COUNT_FEB + 1)
-//        {
-//            unsigned int newMonthsValue = calculateMonths(newDaysValue, DAYS_COUNT_FEB + 1);
-//            day = newDaysValue % DAYS_COUNT_FEB + 1;
-//            if (month + newMonthsValue > MONTHS_COUNT)
-//            {
-//                year += newMonthsValue / MONTHS_COUNT;
-//                month = newMonthsValue % MONTHS_COUNT;
-//            }
-//            else
-//            {
-//                month = newMonthsValue;
-//            }
-//        }
-//        else
-//        {
-//            day += newDaysValue;
-//        }
-//    }
-//    else
-//    {
-//        if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER)
-//        {
-//            if (day + newDaysValue > DAYS_COUNT - 1)
-//            {
-//                unsigned int newMonthsValue = calculateMonths(newDaysValue, DAYS_COUNT_FEB + 1);
-//                day = newDaysValue % DAYS_COUNT_FEB + 1;
-//                if (month + newMonthsValue > MONTHS_COUNT)
-//                {
-//                    year += newMonthsValue / MONTHS_COUNT;
-//                    month = newMonthsValue % MONTHS_COUNT;
-//                }
-//            }
-//            else
-//            {
-//                day += newDaysValue;
-//            }
-//        }
-//    }
-//}
-
-unsigned int Date::calculateMonths(unsigned int days, unsigned int countOfDaysInMonth) const
-{
-    unsigned int monthsToAdd = 0;
-    while (days != 0)
-    {
-        days /= countOfDaysInMonth;
-        monthsToAdd++;
-    }
-    return monthsToAdd;
-}
-
-//unsigned int Date::calculateDaysIfLeap() const
-//{
-//    // if()
-//}
-
 void Date::addDays(unsigned int countOfDays)
 {
     for (int i = countOfDays; i > 0; --i)
@@ -148,11 +86,11 @@ void Date::addDays(unsigned int countOfDays)
         }
         else if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER)
         {
-            
+            handleDayAddition(newValue, DAYS_COUNT - 1);
         }
         else
         {
-            
+            handleDayAddition(newValue, DAYS_COUNT);
         }
     }
 }

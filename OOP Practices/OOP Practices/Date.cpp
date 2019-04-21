@@ -4,6 +4,7 @@
 //
 
 #include <iostream>
+#include <cmath>
 #include "Date.h"
 
 const unsigned short DEFAULT_DAY = 1;
@@ -230,4 +231,71 @@ void Date::handleDaySubtraction(unsigned int newValue, unsigned short daysInMont
     }
     day = newValue;
     return;
+}
+
+void Date::setDay(unsigned int day)
+{
+    if (month == FEBRUARY)
+    {
+       if (isLeap() && day > DAYS_COUNT_FEB + 1)
+           this->day = DAYS_COUNT_FEB + 1;
+        else if (day > DAYS_COUNT_FEB + 1)
+            this->day = DAYS_COUNT_FEB;
+        else
+            this->day = day;
+    }
+    else if ((month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER) && day > DAYS_COUNT - 1)
+    {
+        this->day = DAYS_COUNT - 1;
+    }
+    else if (day > DAYS_COUNT)
+    {
+        this->day = DAYS_COUNT;
+    }
+    else
+    {
+        this->day = day;
+    }
+    return;
+}
+
+void Date::setMonth(unsigned int month)
+{
+    if (month > MONTHS_COUNT)
+        this->month = MONTHS_COUNT;
+    else
+        this->month = month;
+    return;
+}
+
+void Date::setYear(unsigned int year)
+{
+    this->year = year;
+}
+
+unsigned int Date::getDay() const
+{
+    return day;
+}
+
+unsigned int Date::getMonth() const
+{
+    return month;
+}
+
+unsigned int Date::getYear() const
+{
+    return year;
+}
+
+Date getDifference(const Date& date1, const Date& date2)
+{
+    Date newDate;
+    int newDay = date1.getDay() - date2.getDay();
+    int newMonth = date1.getMonth() - date2.getMonth();
+    int newYear = date1.getYear() - date2.getYear();
+    newDate.setDay(std::abs(newDay));
+    newDate.setMonth(std::abs(newMonth));
+    newDate.setYear(std::abs(newYear));
+    return newDate;
 }

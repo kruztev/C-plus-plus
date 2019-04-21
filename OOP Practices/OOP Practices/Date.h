@@ -20,6 +20,15 @@ public:
     unsigned int daysToChristmas() const;
     bool isLaterThan(const Date&) const;
     
+    void setDay(unsigned int);
+    void setMonth(unsigned int);
+    void setYear(unsigned int);
+    
+    unsigned int getDay() const;
+    unsigned int getMonth() const;
+    unsigned int getYear() const;
+    
+    
 private: // Helper functions
     bool isValidDate(unsigned int, unsigned int, unsigned int) const;
     void handleFebruary(unsigned int);
@@ -32,6 +41,6 @@ private:
     unsigned int year;
 };
 
-Date& getDifference(const Date&, const Date&);
+Date getDifference(const Date&, const Date&);
 
 #endif

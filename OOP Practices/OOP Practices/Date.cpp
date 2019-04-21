@@ -86,7 +86,10 @@ void Date::addDays(unsigned int countOfDays)
         unsigned int newValue = day + 1;
         if (month == FEBRUARY)
         {
-            handleFebruary(newValue);
+            if (isLeap())
+                handleDayAddition(newValue, DAYS_COUNT_FEB + 1);
+            else
+                handleDayAddition(newValue, DAYS_COUNT);
         }
         else if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER)
         {
@@ -96,40 +99,6 @@ void Date::addDays(unsigned int countOfDays)
         {
             handleDayAddition(newValue, DAYS_COUNT);
         }
-    }
-}
-
-void Date::handleFebruary(unsigned int newValue) // newValue = day + 1
-{
-    if (isLeap() && newValue > DAYS_COUNT_FEB + 1)
-    {
-        if (month == MONTHS_COUNT)
-        {
-            day = newValue % DAYS_COUNT_FEB + 1;
-            year++;
-            month = JANUARY;
-            return;
-        }
-        
-        day = newValue % DAYS_COUNT_FEB + 1;
-        month++;
-    }
-    else if (newValue > DAYS_COUNT_FEB)
-    {
-        if (month == MONTHS_COUNT)
-        {
-            day = newValue % DAYS_COUNT_FEB;
-            year++;
-            month = JANUARY;
-            return;
-        }
-        
-        day = newValue % DAYS_COUNT_FEB;
-        month++;
-    }
-    else
-    {
-        day = newValue;
     }
     return;
 }

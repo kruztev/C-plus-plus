@@ -3,6 +3,7 @@
 //  OOP Practices
 //
 
+
 #include <iostream>
 #include <cmath>
 #include "Date.h"
@@ -272,10 +273,4 @@ Date getDifference(const Date& date1, const Date& date2)
     newDate.setMonth(std::abs(newMonth));
     newDate.setYear(std::abs(newYear));
     return newDate;
-}
-
-void Date::testPrint() const
-{
-    std::cout << day << '.' << month << '.' << year << '\n';
-    return;
 }

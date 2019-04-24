@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		00071848225E1C7300C43694 /* Dynamic Array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00071846225E1C7300C43694 /* Dynamic Array.cpp */; };
 		0007184A225E42DB00C43694 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00071849225E42DB00C43694 /* Point.cpp */; };
+		001E958F226EF8C7006729C8 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 001E958D226EF8C7006729C8 /* Deck.cpp */; };
+		001E95922270933A006729C8 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 001E95902270933A006729C8 /* Plane.cpp */; };
 		002D266B22523B96001BBF26 /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 002D266922523B96001BBF26 /* Date.cpp */; };
 		00401B7B2265ECBD001A2439 /* Text_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00401B7A2265ECBD001A2439 /* Text_file.cpp */; };
 		00401B7E22675312001A2439 /* FilmStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00401B7C22675312001A2439 /* FilmStar.cpp */; };
 		00401B8022675678001A2439 /* FilmStar_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00401B7F22675678001A2439 /* FilmStar_demo.cpp */; };
 		00401B8222678F4A001A2439 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00401B8122678F4A001A2439 /* main.cpp */; };
 		00A002B6225E772C00D4239E /* Student_struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A002B5225E772C00D4239E /* Student_struct.cpp */; };
+		00B24C9B226D053500F8B422 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00B24C99226D053500F8B422 /* Card.cpp */; };
 		00D59E0D224BB214005EB1EE /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00D59E0B224BB214005EB1EE /* Clock.cpp */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +37,10 @@
 		00071846225E1C7300C43694 /* Dynamic Array.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "Dynamic Array.cpp"; sourceTree = "<group>"; };
 		00071847225E1C7300C43694 /* Dynamic Array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dynamic Array.h"; sourceTree = "<group>"; };
 		00071849225E42DB00C43694 /* Point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		001E958D226EF8C7006729C8 /* Deck.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Deck.cpp; sourceTree = "<group>"; };
+		001E958E226EF8C7006729C8 /* Deck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		001E95902270933A006729C8 /* Plane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
+		001E95912270933A006729C8 /* Plane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
 		002D266922523B96001BBF26 /* Date.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Date.cpp; sourceTree = "<group>"; };
 		002D266A22523B96001BBF26 /* Date.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Date.h; sourceTree = "<group>"; };
 		00401B7A2265ECBD001A2439 /* Text_file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Text_file.cpp; sourceTree = "<group>"; };
@@ -42,6 +49,8 @@
 		00401B7F22675678001A2439 /* FilmStar_demo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FilmStar_demo.cpp; sourceTree = "<group>"; };
 		00401B8122678F4A001A2439 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		00A002B5225E772C00D4239E /* Student_struct.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Student_struct.cpp; sourceTree = "<group>"; };
+		00B24C99226D053500F8B422 /* Card.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Card.cpp; sourceTree = "<group>"; };
+		00B24C9A226D053500F8B422 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		00D59E0B224BB214005EB1EE /* Clock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
 		00D59E0C224BB214005EB1EE /* Clock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
 		00F17A472226C84F00C5301B /* OOP Practices */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OOP Practices"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +86,8 @@
 		00F17A492226C84F00C5301B /* OOP Practices */ = {
 			isa = PBXGroup;
 			children = (
+				001E95902270933A006729C8 /* Plane.cpp */,
+				001E95912270933A006729C8 /* Plane.h */,
 				00401B8122678F4A001A2439 /* main.cpp */,
 				00401B7F22675678001A2439 /* FilmStar_demo.cpp */,
 				00401B7C22675312001A2439 /* FilmStar.cpp */,
@@ -90,6 +101,10 @@
 				00071847225E1C7300C43694 /* Dynamic Array.h */,
 				00071849225E42DB00C43694 /* Point.cpp */,
 				00A002B5225E772C00D4239E /* Student_struct.cpp */,
+				00B24C99226D053500F8B422 /* Card.cpp */,
+				00B24C9A226D053500F8B422 /* Card.h */,
+				001E958D226EF8C7006729C8 /* Deck.cpp */,
+				001E958E226EF8C7006729C8 /* Deck.h */,
 			);
 			path = "OOP Practices";
 			sourceTree = "<group>";
@@ -157,9 +172,12 @@
 				00401B8022675678001A2439 /* FilmStar_demo.cpp in Sources */,
 				00401B7B2265ECBD001A2439 /* Text_file.cpp in Sources */,
 				00D59E0D224BB214005EB1EE /* Clock.cpp in Sources */,
+				001E95922270933A006729C8 /* Plane.cpp in Sources */,
+				001E958F226EF8C7006729C8 /* Deck.cpp in Sources */,
 				002D266B22523B96001BBF26 /* Date.cpp in Sources */,
 				00071848225E1C7300C43694 /* Dynamic Array.cpp in Sources */,
 				00401B7E22675312001A2439 /* FilmStar.cpp in Sources */,
+				00B24C9B226D053500F8B422 /* Card.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

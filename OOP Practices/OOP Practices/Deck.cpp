@@ -111,3 +111,17 @@ unsigned short Deck::getMonsterCardsCount() const
 {
     return CARDS_COUNT - getMagicCardsCount();
 }
+
+void Deck::saveToFile(const char* fileName) const
+{
+    std::ofstream stream(fileName, std::ios::binary);
+    if (!stream)
+    {
+        std::cerr << "Cannot open file\n";
+        return;
+    }
+    
+    stream.write((const char*)this, sizeof(Deck));
+    stream.close();
+    return;
+}

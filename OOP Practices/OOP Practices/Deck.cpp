@@ -60,13 +60,12 @@ Deck::Deck(const char fileName[])
 
 void Deck::changeCard(size_t index, const char name[], unsigned int attackPoints = 0, unsigned int defencePoints = 0)
 {
+    arr[index].setName(name);
     if (attackPoints == 0 && defencePoints == 0)
     {
-        arr[index].setType(false);
-        arr[index].setName(name);
+        arr[index].setType(false); // Indicates that the card is not a monster.
         return;
     }
-    arr[index].setName(name);
     arr[index].setAttackPoints(attackPoints);
     arr[index].setDefencePoints(defencePoints);
     return;
@@ -94,3 +93,4 @@ void Deck::free()
 {
     delete[] arr;
 }
+

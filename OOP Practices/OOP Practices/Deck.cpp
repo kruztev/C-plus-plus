@@ -94,3 +94,20 @@ void Deck::free()
     delete[] arr;
 }
 
+unsigned short Deck::getMagicCardsCount() const
+{
+    unsigned short countOfMagicCards = 0;
+    for (size_t i = 0; i < CARDS_COUNT; ++i)
+    {
+        if (arr[i].getType() == 0)
+        {
+            countOfMagicCards++;
+        }
+    }
+    return countOfMagicCards;
+}
+
+unsigned short Deck::getMonsterCardsCount() const
+{
+    return CARDS_COUNT - getMagicCardsCount();
+}

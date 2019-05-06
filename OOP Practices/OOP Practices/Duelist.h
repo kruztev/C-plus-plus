@@ -10,7 +10,7 @@
 class Duelist
 {
 public:
-    Duelist(char*);
+    Duelist(const char*);
     Duelist(const Duelist&);
     Duelist& operator=(const Duelist&);
     ~Duelist();
@@ -20,7 +20,7 @@ public:
     void saveToFile(const char*) const;
     
 private: // Helper functions
-    void copy();
+    void copy(const Duelist&);
     void free();
     
 private:

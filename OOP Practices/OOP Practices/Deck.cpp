@@ -39,23 +39,28 @@ Deck::~Deck()
 
 Deck::Deck(const char fileName[])
 {
-    std::ifstream streamIn(fileName);
+    try {
+        arr = new Card[CARDS_COUNT];
+    } catch (const std::bad_alloc& ba) {
+        std::cerr << "Cannot allocate memory for a new deck\n";
+        throw;
+    }
+    Deck d;
+    std::ifstream streamIn(fileName, std::ios::binary);
     if (!streamIn)
     {
-        Deck();
+         arr = d.arr;
     }
     else
     {
-        Deck();
-        size_t count = 0;
         while (!streamIn.eof())
         {
-            streamIn.read((char*)&arr[count], sizeof(Card));
+            streamIn.read((char*)this, sizeof(Deck));
             if (streamIn.eof())
                 break;
-            count++;
         }
     }
+    streamIn.close();
 }
 
 void Deck::changeCard(size_t index, const char name[], unsigned int attackPoints = 0, unsigned int defencePoints = 0)
@@ -125,3 +130,4 @@ void Deck::saveToFile(const char* fileName) const
     stream.close();
     return;
 }
+

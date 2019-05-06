@@ -45,6 +45,7 @@ Deck::Deck(const char fileName[])
         std::cerr << "Cannot allocate memory for a new deck\n";
         throw;
     }
+    
     std::ifstream streamIn(fileName, std::ios::binary);
     if (streamIn)
     {

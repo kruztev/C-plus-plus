@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00071848225E1C7300C43694 /* Dynamic Array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00071846225E1C7300C43694 /* Dynamic Array.cpp */; };
 		0007184A225E42DB00C43694 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00071849225E42DB00C43694 /* Point.cpp */; };
+		000723152280AA3800BBCA0F /* Duelist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 000723132280AA3800BBCA0F /* Duelist.cpp */; };
 		001E958F226EF8C7006729C8 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 001E958D226EF8C7006729C8 /* Deck.cpp */; };
 		001E95922270933A006729C8 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 001E95902270933A006729C8 /* Plane.cpp */; };
 		002D266B22523B96001BBF26 /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 002D266922523B96001BBF26 /* Date.cpp */; };
@@ -37,6 +38,8 @@
 		00071846225E1C7300C43694 /* Dynamic Array.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "Dynamic Array.cpp"; sourceTree = "<group>"; };
 		00071847225E1C7300C43694 /* Dynamic Array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dynamic Array.h"; sourceTree = "<group>"; };
 		00071849225E42DB00C43694 /* Point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		000723132280AA3800BBCA0F /* Duelist.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Duelist.cpp; sourceTree = "<group>"; };
+		000723142280AA3800BBCA0F /* Duelist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Duelist.h; sourceTree = "<group>"; };
 		001E958D226EF8C7006729C8 /* Deck.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Deck.cpp; sourceTree = "<group>"; };
 		001E958E226EF8C7006729C8 /* Deck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		001E95902270933A006729C8 /* Plane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				00B24C9A226D053500F8B422 /* Card.h */,
 				001E958D226EF8C7006729C8 /* Deck.cpp */,
 				001E958E226EF8C7006729C8 /* Deck.h */,
+				000723132280AA3800BBCA0F /* Duelist.cpp */,
+				000723142280AA3800BBCA0F /* Duelist.h */,
 			);
 			path = "OOP Practices";
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				002D266B22523B96001BBF26 /* Date.cpp in Sources */,
 				00071848225E1C7300C43694 /* Dynamic Array.cpp in Sources */,
 				00401B7E22675312001A2439 /* FilmStar.cpp in Sources */,
+				000723152280AA3800BBCA0F /* Duelist.cpp in Sources */,
 				00B24C9B226D053500F8B422 /* Card.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

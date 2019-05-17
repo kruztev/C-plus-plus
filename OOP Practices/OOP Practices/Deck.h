@@ -20,7 +20,7 @@ public:
     ~Deck();
     Deck(const char[]);
     
-    void changeCard(size_t, const char[], unsigned int, unsigned int);
+    void changeCard(size_t, const char[], unsigned int = 0, unsigned int = 0);
     unsigned short getMagicCardsCount() const;
     unsigned short getMonsterCardsCount() const;
     void saveToFile(const char*) const;

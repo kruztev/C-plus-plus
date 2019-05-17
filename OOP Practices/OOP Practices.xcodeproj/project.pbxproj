@@ -20,6 +20,7 @@
 		00A002B6225E772C00D4239E /* Student_struct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00A002B5225E772C00D4239E /* Student_struct.cpp */; };
 		00B24C9B226D053500F8B422 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00B24C99226D053500F8B422 /* Card.cpp */; };
 		00D59E0D224BB214005EB1EE /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00D59E0B224BB214005EB1EE /* Clock.cpp */; };
+		00F0345522857F9B00A778E2 /* ProblemSolvingTest-workWithFiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00F0345422857F9B00A778E2 /* ProblemSolvingTest-workWithFiles.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +57,7 @@
 		00B24C9A226D053500F8B422 /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		00D59E0B224BB214005EB1EE /* Clock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
 		00D59E0C224BB214005EB1EE /* Clock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Clock.h; sourceTree = "<group>"; };
+		00F0345422857F9B00A778E2 /* ProblemSolvingTest-workWithFiles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "ProblemSolvingTest-workWithFiles.cpp"; sourceTree = "<group>"; };
 		00F17A472226C84F00C5301B /* OOP Practices */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OOP Practices"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -92,6 +94,7 @@
 				001E95902270933A006729C8 /* Plane.cpp */,
 				001E95912270933A006729C8 /* Plane.h */,
 				00401B8122678F4A001A2439 /* main.cpp */,
+				00F0345422857F9B00A778E2 /* ProblemSolvingTest-workWithFiles.cpp */,
 				00401B7F22675678001A2439 /* FilmStar_demo.cpp */,
 				00401B7C22675312001A2439 /* FilmStar.cpp */,
 				00401B7D22675312001A2439 /* FilmStar.h */,
@@ -184,6 +187,7 @@
 				00401B7E22675312001A2439 /* FilmStar.cpp in Sources */,
 				000723152280AA3800BBCA0F /* Duelist.cpp in Sources */,
 				00B24C9B226D053500F8B422 /* Card.cpp in Sources */,
+				00F0345522857F9B00A778E2 /* ProblemSolvingTest-workWithFiles.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

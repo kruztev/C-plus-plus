@@ -51,7 +51,7 @@ Deck::Deck(const char fileName[])
     {
         while (!streamIn.eof())
         {
-            streamIn.read((char*)this, sizeof(Deck));
+            streamIn.read((char*)arr, sizeof(Deck));
             if (streamIn.eof())
                 break;
         }
@@ -59,7 +59,7 @@ Deck::Deck(const char fileName[])
     streamIn.close();
 }
 
-void Deck::changeCard(size_t index, const char name[], unsigned int attackPoints = 0, unsigned int defencePoints = 0)
+void Deck::changeCard(size_t index, const char name[], unsigned int attackPoints, unsigned int defencePoints)
 {
     arr[index].setName(name);
     if (attackPoints == 0 && defencePoints == 0)
@@ -74,25 +74,22 @@ void Deck::changeCard(size_t index, const char name[], unsigned int attackPoints
 
 void Deck::copy(const Deck& rhs)
 {
-    Card* temp = nullptr;
     try {
-        temp = new Card[CARDS_COUNT];
+        arr = new Card[CARDS_COUNT];
     } catch (const std::bad_alloc& ba) {
         std::cerr << "Cannot allocate memory\n";
         throw;
     }
     for(size_t i = 0; i < CARDS_COUNT; ++i)
     {
-        temp[i] = arr[i];
+        arr[i] = rhs.arr[i];
     }
-    free();
-    arr = temp;
-    return;
 }
 
 void Deck::free()
 {
     delete[] arr;
+    arr = nullptr;
 }
 
 unsigned short Deck::getMagicCardsCount() const

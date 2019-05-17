@@ -14,6 +14,8 @@ public:
     Duelist(const Duelist&);
     Duelist& operator=(const Duelist&);
     ~Duelist();
+    Duelist(const char* duelistName, const char* fileName);
+    
     void changeCard(size_t, const char[], unsigned int, unsigned int);
     unsigned short getMagicCardsCount() const;
     unsigned short getMonsterCardsCount() const;

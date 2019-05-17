@@ -19,7 +19,6 @@ class Card
 {
 public:
     Card();
-   // Card(char name[NAME_MAX_LENGTH]);
     
     void setName(const char[]);
     void setType(bool);

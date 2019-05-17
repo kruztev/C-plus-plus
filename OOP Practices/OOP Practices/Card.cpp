@@ -18,7 +18,6 @@ void Card::setName(const char name[])
         return;
     }
     strcpy(this->name, name);
-    return;
 }
 
 void Card::setType(bool value)
@@ -34,7 +33,6 @@ void Card::setDefencePoints(unsigned int points)
         return;
     }
     defencePoints = DEFENCE_POINTS_MAX;
-    return;
 }
 
 void Card::setAttackPoints(unsigned int points)
@@ -45,7 +43,6 @@ void Card::setAttackPoints(unsigned int points)
         return;
     }
     attackPoints = points;
-    return;
 }
 
 unsigned int Card::getAttackPoints() const

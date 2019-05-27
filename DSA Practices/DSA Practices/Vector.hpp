@@ -128,13 +128,22 @@ void Vector<T>::free()
 template <typename T>
 void Vector<T>::copy(const Vector<T>& obj)
 {
-    for(unsigned i = 0; i < size; ++i)
-    {
-        vector[i] = obj.vector[i];
+    T* temp = nullptr;
+    try {
+        temp = new T[obj.capacity];
+    } catch (const std::bad_alloc& ba) {
+        std::cerr << "Bad alloc caught: " << ba.what() << '\n';
+        throw;
     }
+    
+    for (size_t i = 0; i < size; ++i)
+    {
+        temp[i] = obj.vector[i];
+    }
+    
+    vector = temp;
     capacity = obj.capacity;
     size = obj.size;
-
 }
 
 template <typename T>

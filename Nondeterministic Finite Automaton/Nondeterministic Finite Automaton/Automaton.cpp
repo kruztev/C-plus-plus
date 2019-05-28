@@ -11,7 +11,7 @@ Automaton& Automaton::unionOf2(const Automaton& automata1, const Automaton& auto
 {
     Automaton* result = nullptr;
     try {
-        Automaton* result = new Automaton(automata1);
+        result = new Automaton(automata1);
     } catch (const std::bad_alloc& ba) {
         std::cerr << "Bad alloc caught: " << ba.what() << '\n';
         throw;

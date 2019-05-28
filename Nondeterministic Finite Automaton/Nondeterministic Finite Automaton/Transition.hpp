@@ -10,13 +10,20 @@ class Transition
 {
 public:
     Transition() = default;
+    Transition(unsigned, char);
     Transition(const Transition&) = default;
     Transition& operator=(const Transition&) = default;
     ~Transition() = default;
     
-private:
-    unsigned vertex;
+public:
+    unsigned toVertex;
     char letter;
 };
+
+Transition::Transition(unsigned toVertex, char letter)
+{
+    this->toVertex = toVertex;
+    this->letter = letter;
+}
 
 #endif

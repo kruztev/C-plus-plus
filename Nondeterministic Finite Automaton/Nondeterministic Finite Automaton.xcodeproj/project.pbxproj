@@ -30,7 +30,7 @@
 		0040F15122998F26005730CB /* Transition.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Transition.hpp; sourceTree = "<group>"; };
 		0040F15622999502005730CB /* TemplateDynamicArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TemplateDynamicArray.hpp; sourceTree = "<group>"; };
 		0040F1572299D3F1005730CB /* Automaton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Automaton.cpp; sourceTree = "<group>"; };
-		0040F1582299D3F1005730CB /* Automaton.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Automaton.hpp; sourceTree = "<group>"; };
+		0040F1582299D3F1005730CB /* Automaton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Automaton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 				0040F15122998F26005730CB /* Transition.hpp */,
 				0040F15622999502005730CB /* TemplateDynamicArray.hpp */,
 				0040F1572299D3F1005730CB /* Automaton.cpp */,
-				0040F1582299D3F1005730CB /* Automaton.hpp */,
+				0040F1582299D3F1005730CB /* Automaton.h */,
 				00141B06229BD7AF003B37D7 /* myString.hpp */,
 			);
 			path = "Nondeterministic Finite Automaton";

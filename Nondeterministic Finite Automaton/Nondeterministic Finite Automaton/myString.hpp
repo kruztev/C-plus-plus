@@ -7,7 +7,6 @@
 #ifndef myString_hpp
 #define myString_hpp
 #include <iostream>
-#include <exception>
 
 const unsigned short STARTING_LEN = 1;
 

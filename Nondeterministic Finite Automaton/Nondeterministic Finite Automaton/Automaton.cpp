@@ -7,7 +7,7 @@
 
 const unsigned short STARTING_VERTEX = 0;
 
-Automaton& Automaton::unionOf2(const Automaton& automaton2)
+Automaton& Automaton::unionOf2(const Automaton& automaton2) const
 {
     Automaton* result = nullptr;
     try {
@@ -66,7 +66,7 @@ void Automaton::copyTransitionsForUnion(const Automaton& automaton1, const Autom
     }
 }
 
-Automaton& Automaton::concatenationOf2(const Automaton& automaton2)
+Automaton& Automaton::concatenationOf2(const Automaton& automaton2) const
 {
     Automaton* result = nullptr;
     try {
@@ -120,4 +120,36 @@ void Automaton::copyTransitionsForConcatenation(const Automaton& automaton1, con
 void Automaton::determine()
 {
     
+}
+
+Automaton& Automaton::kleeneStar() const
+{
+    Automaton* result = nullptr;
+    try {
+        result = new Automaton(*this);
+    } catch (const std::bad_alloc& ba) {
+        std::cerr << "Bad alloc caught: " << ba.what() << '\n';
+        throw;
+    }
+    // Copy transitions to the new automaton and incrementing vertex indexes by one because a new starting vertex will be added.
+    for (unsigned i = 0; i < this->automaton.getSize(); ++i)
+    {
+        for (unsigned j = 0; j < this->automaton[i].getSize(); ++j)
+        {
+            result->addTransition(i+1, this->automaton[i][j].getToVertex() + 1, this->automaton[i][j].getLetter());
+        }
+    }
+    // Copy transitions from the original starting vertex to the new starting vertex.
+    for (unsigned i = 0; i < this->automaton[STARTING_VERTEX].getSize(); ++i)
+    {
+        result->addTransition(STARTING_VERTEX, this->automaton[STARTING_VERTEX][i].getToVertex() + 1, this->automaton[STARTING_VERTEX][i].getLetter());
+    }
+    // Add transitions from all final states to all post-start vertices
+    for (unsigned i = 0; i < this->finalStates.getSize(); ++i)
+    {
+        result->addTransition(this->finalStates[i], this->automaton[STARTING_VERTEX][i].getToVertex() + 1, this->automaton[STARTING_VERTEX][i].getLetter());
+    }
+    result->finalStates = this->finalStates;
+    result->finalStates.addElement(STARTING_VERTEX);
+    return *result;
 }

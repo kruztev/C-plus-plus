@@ -14,9 +14,10 @@ class Automaton
 {
 public:
     Automaton();
-    Automaton& unionOf2(const Automaton&);
-    Automaton& concatenationOf2(const Automaton&);
+    Automaton& unionOf2(const Automaton&) const;
+    Automaton& concatenationOf2(const Automaton&) const;
     void determine();
+    Automaton& kleeneStar() const;
     
 private:
     void addTransition(unsigned fromVertex, unsigned toVertex, char letter);

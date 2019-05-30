@@ -16,8 +16,10 @@ public:
     Automaton();
     Automaton& unionOf2(const Automaton&) const;
     Automaton& concatenationOf2(const Automaton&) const;
-    void determine();
     Automaton& kleeneStar() const;
+    void determine();
+    void totalize();
+    
     
 private:
     void addTransition(unsigned fromVertex, unsigned toVertex, char letter);

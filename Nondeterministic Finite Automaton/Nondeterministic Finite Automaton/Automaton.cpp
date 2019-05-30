@@ -117,11 +117,6 @@ void Automaton::copyTransitionsForConcatenation(const Automaton& automaton1, con
     
 }
 
-void Automaton::determine()
-{
-    
-}
-
 Automaton& Automaton::kleeneStar() const
 {
     Automaton* result = nullptr;
@@ -152,4 +147,69 @@ Automaton& Automaton::kleeneStar() const
     result->finalStates = this->finalStates;
     result->finalStates.addElement(STARTING_VERTEX);
     return *result;
+}
+
+void Automaton::determine()
+{
+    
+}
+
+void Automaton::totalize()
+{
+    unsigned errorState = automaton.getSize();
+    // Add transitions with digits to the error state
+    for (size_t i = 0; i < 10; ++i)
+    {
+        this->addTransition(errorState, errorState, char(i));
+    }
+    // Add transitions with letters to the error state
+    for (char i = 'a'; i <= 'z'; ++i)
+    {
+        this->addTransition(errorState, errorState, i);
+    }
+    // Add transitions with letters from all states to the error state
+    for (unsigned i = 0; i < automaton.getSize(); ++i)
+    {
+        for (char h = 'a'; h <= 'z'; ++h)
+        {
+            bool transitionExist = false;
+            unsigned indexOfTransition = 0;
+            for (unsigned j = 0; j < automaton[i].getSize(); ++j)
+            {
+                if (automaton[i][j].getLetter() == h)
+                {
+                    transitionExist = true;
+                    indexOfTransition = j;
+                    break;
+                }
+            }
+            if (!transitionExist)
+            {
+                this->addTransition(indexOfTransition, errorState, h);
+            }
+        }
+    }
+    // Add transitions with digits from all states to the error state
+    for (unsigned i = 0; i < automaton.getSize(); ++i)
+    {
+        for (unsigned short h = 1; h < 10; ++h)
+        {
+            bool transitionExist = false;
+            unsigned indexOfTransition = 0;
+            for (unsigned j = 0; j < automaton[i].getSize(); ++j)
+            {
+                if (automaton[i][j].getLetter() == h)
+                {
+                    transitionExist = true;
+                    indexOfTransition = j;
+                    break;
+                }
+            }
+            if (!transitionExist)
+            {
+                 this->addTransition(indexOfTransition, errorState, char(h));
+            }
+        }
+    }
+    
 }

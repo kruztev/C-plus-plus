@@ -25,6 +25,8 @@ private:
     void addTransition(unsigned fromVertex, unsigned toVertex, char letter);
     void copyTransitionsForUnion(const Automaton&, const Automaton&);
     void copyTransitionsForConcatenation(const Automaton&, const Automaton&);
+    void copyTransitionsForDetermination(const DynamicArray<DynamicArray<unsigned int>>& verticesThatWillBeCombined, Automaton& result, unsigned newVertexIndex, char letter);
+    void checkForFinalDestinations(const Automaton& originalAutomaton, const DynamicArray<DynamicArray<unsigned int>>& verticesThatWillBeCombined, unsigned currentVertex);
     
 private:
    DynamicArray<DynamicArray<Transition>>  automaton;

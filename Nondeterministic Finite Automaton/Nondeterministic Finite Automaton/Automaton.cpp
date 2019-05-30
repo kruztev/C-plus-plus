@@ -6,6 +6,7 @@
 #include "Automaton.h"
 
 const unsigned short STARTING_VERTEX = 0;
+const unsigned short FIRST_ELEMENT = 0;
 
 Automaton& Automaton::unionOf2(const Automaton& automaton2) const
 {
@@ -139,7 +140,7 @@ Automaton& Automaton::kleeneStar() const
     {
         result->addTransition(STARTING_VERTEX, this->automaton[STARTING_VERTEX][i].getToVertex() + 1, this->automaton[STARTING_VERTEX][i].getLetter());
     }
-    // Add transitions from all final states to all post-start vertices
+    // Add transitions from all final states to all post-start vertices.
     for (unsigned i = 0; i < this->finalStates.getSize(); ++i)
     {
         result->addTransition(this->finalStates[i], this->automaton[STARTING_VERTEX][i].getToVertex() + 1, this->automaton[STARTING_VERTEX][i].getLetter());
@@ -149,25 +150,76 @@ Automaton& Automaton::kleeneStar() const
     return *result;
 }
 
+void Automaton::copyTransitionsForDetermination(const DynamicArray<DynamicArray<unsigned int>>& verticesThatWillBeCombined, Automaton& result, unsigned newVertexIndex, char letter)
+{
+    for (unsigned i = 0; i < verticesThatWillBeCombined[FIRST_ELEMENT].getSize(); ++i)
+    {
+        for (unsigned j = 0; j < this->automaton[i].getSize(); ++i)
+        {
+            result.addTransition(newVertexIndex, this->automaton[i][j].getToVertex(), letter);
+        }
+    }
+}
+
+void Automaton::checkForFinalDestinations(const Automaton& originalAutomaton, const DynamicArray<DynamicArray<unsigned int>>& verticesThatWillBeCombined, unsigned currentVertex)
+{
+    for (unsigned i = 0; i < verticesThatWillBeCombined.getSize(); ++i)
+    {
+        for (unsigned j = 0; j < originalAutomaton.finalStates.getSize(); ++j)
+        {
+            if (verticesThatWillBeCombined[currentVertex][i] == originalAutomaton.finalStates[j])
+            {
+                this->finalStates.addElement(originalAutomaton.finalStates[j]);
+            }
+        }
+    }
+}
+
 void Automaton::determine()
 {
-    
+    Automaton result(*this);
+    // Using verticesThatWillBeCombined as a queue.
+    DynamicArray<DynamicArray<unsigned>> verticesThatWillBeCombined;
+        do
+        {
+            // Traversing all vertices.
+            unsigned vertexIndex = STARTING_VERTEX;
+            for (unsigned j = 0; j < automaton[vertexIndex].getSize(); ++j)
+            {
+                char letter = automaton[vertexIndex][j].getLetter();
+                verticesThatWillBeCombined[j].addElement(automaton[vertexIndex][j].getToVertex());
+                for (unsigned k = j + 1; k < automaton[vertexIndex].getSize(); ++k)
+                {
+                    if (letter == automaton[vertexIndex][k].getLetter())
+                    {
+                        verticesThatWillBeCombined[j].addElement(this->automaton[j][k].getToVertex());
+                    }
+                }
+                result.copyTransitionsForDetermination(verticesThatWillBeCombined, result, j, letter);
+                result.checkForFinalDestinations(*this, verticesThatWillBeCombined, j);
+                // Remove first element of the queue.
+                verticesThatWillBeCombined.removeElement(verticesThatWillBeCombined[FIRST_ELEMENT]);
+            }
+            
+            vertexIndex++;
+        } while (verticesThatWillBeCombined.getSize());
+    *this = result;
 }
 
 void Automaton::totalize()
 {
     unsigned errorState = automaton.getSize();
-    // Add transitions with digits to the error state
+    // Add transitions with digits to the error state.
     for (size_t i = 0; i < 10; ++i)
     {
         this->addTransition(errorState, errorState, char(i));
     }
-    // Add transitions with letters to the error state
+    // Add transitions with letters to the error state.
     for (char i = 'a'; i <= 'z'; ++i)
     {
         this->addTransition(errorState, errorState, i);
     }
-    // Add transitions with letters from all states to the error state
+    // Add transitions with letters from all states to the error state.
     for (unsigned i = 0; i < automaton.getSize(); ++i)
     {
         for (char h = 'a'; h <= 'z'; ++h)
@@ -189,7 +241,7 @@ void Automaton::totalize()
             }
         }
     }
-    // Add transitions with digits from all states to the error state
+    // Add transitions with digits from all states to the error state.
     for (unsigned i = 0; i < automaton.getSize(); ++i)
     {
         for (unsigned short h = 1; h < 10; ++h)

@@ -113,6 +113,6 @@ int main()
     std::cout << "The automaton totalized looks like this:\n";
     e.totalize();
     std::cout << e << '\n';
-    
+
     return 0;
 }

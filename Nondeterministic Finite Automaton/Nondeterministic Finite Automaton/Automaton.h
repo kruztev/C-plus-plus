@@ -21,9 +21,7 @@ public:
     Automaton& operator=(const Automaton&) = default;
     ~Automaton() = default;
     friend std::ostream& operator<<(std::ostream&, const Automaton&);
-    
-    
-    
+
 public:
     Automaton& unionOf2(const Automaton&) const;
     Automaton concatenationOf2(const Automaton&) const;

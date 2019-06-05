@@ -73,7 +73,7 @@ void Automaton::copyTransitionsForUnion(const Automaton& automaton1, const Autom
 
 Automaton Automaton::concatenationOf2(const Automaton& automaton2) const
 {
-    Automaton result = *this;
+    Automaton result(*this);
 //    try {
 //        result = new Automaton(*this);
 //    } catch (const std::bad_alloc& ba) {

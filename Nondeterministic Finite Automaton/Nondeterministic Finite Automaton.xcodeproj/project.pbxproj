@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0040F14722995C50005730CB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0040F14622995C50005730CB /* main.cpp */; };
 		0040F1592299D3F1005730CB /* Automaton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0040F1572299D3F1005730CB /* Automaton.cpp */; };
+		006ADCDA22A68FDF00FB6A72 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006ADCD922A68FDF00FB6A72 /* main.cpp */; };
+		006ADCE022A692F200FB6A72 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006ADCDE22A692F200FB6A72 /* String.cpp */; };
+		006ADCE322A6937E00FB6A72 /* Transition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006ADCE122A6937E00FB6A72 /* Transition.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,13 +26,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00141B06229BD7AF003B37D7 /* myString.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = myString.hpp; sourceTree = "<group>"; };
 		0040F14322995C50005730CB /* Nondeterministic Finite Automaton */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Nondeterministic Finite Automaton"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0040F14622995C50005730CB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		0040F15122998F26005730CB /* Transition.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Transition.hpp; sourceTree = "<group>"; };
 		0040F15622999502005730CB /* TemplateDynamicArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TemplateDynamicArray.hpp; sourceTree = "<group>"; };
 		0040F1572299D3F1005730CB /* Automaton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Automaton.cpp; sourceTree = "<group>"; };
 		0040F1582299D3F1005730CB /* Automaton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Automaton.h; sourceTree = "<group>"; };
+		006ADCD922A68FDF00FB6A72 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		006ADCDE22A692F200FB6A72 /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
+		006ADCDF22A692F200FB6A72 /* String.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = String.h; sourceTree = "<group>"; };
+		006ADCE122A6937E00FB6A72 /* Transition.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Transition.cpp; sourceTree = "<group>"; };
+		006ADCE222A6937E00FB6A72 /* Transition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transition.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +67,14 @@
 		0040F14522995C50005730CB /* Nondeterministic Finite Automaton */ = {
 			isa = PBXGroup;
 			children = (
-				0040F14622995C50005730CB /* main.cpp */,
-				0040F15122998F26005730CB /* Transition.hpp */,
-				0040F15622999502005730CB /* TemplateDynamicArray.hpp */,
-				0040F1572299D3F1005730CB /* Automaton.cpp */,
+				006ADCD922A68FDF00FB6A72 /* main.cpp */,
 				0040F1582299D3F1005730CB /* Automaton.h */,
-				00141B06229BD7AF003B37D7 /* myString.hpp */,
+				0040F1572299D3F1005730CB /* Automaton.cpp */,
+				0040F15622999502005730CB /* TemplateDynamicArray.hpp */,
+				006ADCE222A6937E00FB6A72 /* Transition.h */,
+				006ADCE122A6937E00FB6A72 /* Transition.cpp */,
+				006ADCDF22A692F200FB6A72 /* String.h */,
+				006ADCDE22A692F200FB6A72 /* String.cpp */,
 			);
 			path = "Nondeterministic Finite Automaton";
 			sourceTree = "<group>";
@@ -129,8 +135,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006ADCE022A692F200FB6A72 /* String.cpp in Sources */,
+				006ADCDA22A68FDF00FB6A72 /* main.cpp in Sources */,
+				006ADCE322A6937E00FB6A72 /* Transition.cpp in Sources */,
 				0040F1592299D3F1005730CB /* Automaton.cpp in Sources */,
-				0040F14722995C50005730CB /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

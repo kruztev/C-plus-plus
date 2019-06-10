@@ -180,11 +180,6 @@ void Automaton::kleeneStar()
 
 void Automaton::determine()
 {
-    
-}
-
-//void Automaton::determine()
-//{
 //    std::queue<DynamicArray<ElementsOfNewVertices>> verticesSets;
 //    Automaton* tempCopyOfThis = new Automaton(*this);
 //    Automaton* result = new Automaton();
@@ -214,7 +209,7 @@ void Automaton::determine()
 //            }
 //            temp.elements = elementsOfNewVertex;
 //            verticesSets.front().addElement(temp);
-////            result->copyNewVerticesAndTransitions(verticesSets, result, STARTING_VERTEX, letter);
+//            //result->copyNewVerticesAndTransitions(verticesSets, result, STARTING_VERTEX, letter);
 //
 //        }
 //    //while(!verticesSets.empty());
@@ -222,7 +217,7 @@ void Automaton::determine()
 //    //free();
 //    //delete tempCopyOfThis;
 //    //this->automaton = result;
-//}
+}
 
 void Automaton::totalize()
 {

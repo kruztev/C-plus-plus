@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/TemplateDynamicArray.hpp"
+            timestampString = "581424901.181863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "addElement(const T&amp; element)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;Transition&gt;::addElement(Transition const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.8925231"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;unsigned int&gt;::addElement(unsigned int const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.893972"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt;::addElement(DynamicArray&lt;Transition&gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.895638"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/TemplateDynamicArray.hpp"
+            timestampString = "581424901.182216"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "resize()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;Transition&gt;::resize()"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581386016.08287"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;unsigned int&gt;::resize()"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581386016.0855531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt;::resize()"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581386016.087301"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/TemplateDynamicArray.hpp"
+            timestampString = "581424901.182444"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "operator[](unsigned index)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt;::operator[](unsigned int)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581385340.926851"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;Transition&gt;::operator[](unsigned int)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581385340.928563"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;unsigned int&gt;::operator[](unsigned int)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581385340.930614"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/TemplateDynamicArray.hpp"
+            timestampString = "581424901.182656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "operator[](unsigned index)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;unsigned int&gt;::operator[](unsigned int) const"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581344807.815542"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt;::operator[](unsigned int) const"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581344807.818071"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;Transition&gt;::operator[](unsigned int) const"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581344807.82116"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/Automaton.cpp"
+            timestampString = "581448031.1483231"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "operator&lt;&lt;(std::ostream&amp; stream, const Automaton&amp; rhs)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/main.cpp"
+            timestampString = "581448031.148414"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "constructAutomaton1(Automaton&amp; a)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/TemplateDynamicArray.hpp"
+            timestampString = "581424901.182948"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "copy(const DynamicArray&lt;T&gt;&amp; rhs)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;Transition&gt;::copy(DynamicArray&lt;Transition&gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.901742"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt;::copy(DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.9039201"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;unsigned int&gt;::copy(DynamicArray&lt;unsigned int&gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.905513"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/Automaton.cpp"
+            timestampString = "581448031.148814"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "Automaton::totalize()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/Automaton.cpp"
+            timestampString = "581448031.148875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "Automaton::totalize()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/Automaton.cpp"
+            timestampString = "581448031.1489331"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "Automaton::kleeneStar()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/Automaton.cpp"
+            timestampString = "581448031.1489871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "Automaton::unionOf2(const Automaton&amp; automaton2)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/Automaton.cpp"
+            timestampString = "581448031.1490459"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "Automaton::copyTransitionsForUnion(const Automaton&amp; automaton1, const Automaton&amp; automaton2)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/TemplateDynamicArray.hpp"
+            timestampString = "581424901.183352"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "operator=(const DynamicArray&lt;T&gt;&amp; newdynamicArray)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;unsigned int&gt;::operator=(DynamicArray&lt;unsigned int&gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.918216"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;Transition&gt;::operator=(DynamicArray&lt;Transition&gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.919708"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt;::operator=(DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.9211659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/TemplateDynamicArray.hpp"
+            timestampString = "581424901.183557"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "free()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt;::free()"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.926793"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;unsigned int&gt;::free()"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.928275"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;Transition&gt;::free()"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581424890.92974"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/Automaton.cpp"
+            timestampString = "581448031.149129"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "Automaton::copyTransitionsForConcatenation(const Automaton&amp; automaton1, const Automaton&amp; automaton2)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/main.cpp"
+            timestampString = "581448031.149184"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "main()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/Automaton.cpp"
+            timestampString = "581448031.1495"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "Automaton::concatenationOf2(const Automaton&amp; automaton2)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nondeterministic Finite Automaton/TemplateDynamicArray.hpp"
+            timestampString = "581424901.18388"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "DynamicArray(const DynamicArray&lt;T&gt;&amp; newdynamicArray)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;Transition&gt;::DynamicArray(DynamicArray&lt;Transition&gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581405840.948915"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt;::DynamicArray(DynamicArray&lt;DynamicArray&lt;Transition&gt; &gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581405840.9514509"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DynamicArray&lt;unsigned int&gt;::DynamicArray(DynamicArray&lt;unsigned int&gt; const&amp;)"
+                  moduleName = "Nondeterministic Finite Automaton"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkruztev/Documents/Programming%20projects/C-plus-plus/Nondeterministic%20Finite%20Automaton/Nondeterministic%20Finite%20Automaton/TemplateDynamicArray.hpp"
+                  timestampString = "581405840.953189"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

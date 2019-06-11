@@ -11,6 +11,7 @@
 		0031BCDA22AE53400049359C /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0031BCD922AE53400049359C /* String.cpp */; };
 		0063D19822AE536200C1DE61 /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0063D19622AE536200C1DE61 /* User.cpp */; };
 		0063D19B22AE81A300C1DE61 /* Club.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0063D19922AE81A300C1DE61 /* Club.cpp */; };
+		00E8DFE822AFAE4800603355 /* Clubs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00E8DFE622AFAE4800603355 /* Clubs.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,9 @@
 		0063D19722AE536200C1DE61 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		0063D19922AE81A300C1DE61 /* Club.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Club.cpp; sourceTree = "<group>"; };
 		0063D19A22AE81A300C1DE61 /* Club.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Club.h; sourceTree = "<group>"; };
+		00E8DFE522AF92AA00603355 /* TemplateDynamicArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TemplateDynamicArray.hpp; sourceTree = "<group>"; };
+		00E8DFE622AFAE4800603355 /* Clubs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Clubs.cpp; sourceTree = "<group>"; };
+		00E8DFE722AFAE4800603355 /* Clubs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Clubs.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +72,14 @@
 			children = (
 				0031BCD122AE52E60049359C /* main.cpp */,
 				0063D19622AE536200C1DE61 /* User.cpp */,
+				00E8DFE622AFAE4800603355 /* Clubs.cpp */,
+				00E8DFE722AFAE4800603355 /* Clubs.h */,
 				0063D19722AE536200C1DE61 /* User.h */,
 				0063D19922AE81A300C1DE61 /* Club.cpp */,
 				0063D19A22AE81A300C1DE61 /* Club.h */,
 				0031BCD922AE53400049359C /* String.cpp */,
 				0031BCD822AE53400049359C /* String.h */,
+				00E8DFE522AF92AA00603355 /* TemplateDynamicArray.hpp */,
 			);
 			path = DrinkBook;
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E8DFE822AFAE4800603355 /* Clubs.cpp in Sources */,
 				0063D19822AE536200C1DE61 /* User.cpp in Sources */,
 				0031BCDA22AE53400049359C /* String.cpp in Sources */,
 				0031BCD222AE52E60049359C /* main.cpp in Sources */,

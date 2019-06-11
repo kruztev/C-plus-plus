@@ -12,6 +12,16 @@ const unsigned short MAX_WHISKEYS_VALUE = 20;
 
 const char* musicDictionary[] = {"folk", "house", "rock"};
 
+User::User() // This ctor is needed for the initialization of the dynamic array.
+{
+    name = "";
+    age = 0;
+    cash = 0;
+    vodkas = 0;
+    whiskeys = 0;
+    music = ALL;
+}
+
 User::User(const String& nName, unsigned nAge, unsigned nCash, unsigned nVodkas, unsigned nWhiskeys, const char* music)
 {
     setName(nName);
@@ -68,6 +78,7 @@ void User::setCash(unsigned nCash)
 {
     if (nCash > MAX_CASH_VALUE)
         throw "Invalid cash value\n";
+    cash = nCash;
 }
 
 void User::setVodkas(unsigned nVodkas)

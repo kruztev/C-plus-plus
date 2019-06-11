@@ -7,15 +7,22 @@
 #define Club_h
 #include "String.h"
 #include "User.h"
+#include "TemplateDynamicArray.hpp"
 
 const unsigned short FOLK_CAPACITY = 70;
 const unsigned short ROCK_CAPACITY = 30;
+
 const unsigned short VODKA_LOW_LIMIT_FOLK = 20;
-const unsigned short WHISKEY_LOW_LIMIT_FOLK = 35;
+const unsigned short WHISKEY_LOW_LIMIT_FOLK = 35
+;
 const unsigned short VODKA_LOW_LIMIT_HOUSE = 30;
 const unsigned short WHISKEY_LOW_LIMIT_HOUSE = 40;
+
 const unsigned short VODKA_LOW_LIMIT_ROCK = 40;
 const unsigned short WHISKEY_LOW_LIMIT_ROCK = 30;
+
+const unsigned short MIN_AGE = 18;
+const unsigned short CHARGE_FORGOTTEN_ID = 20;
 
 
 class Club
@@ -29,16 +36,17 @@ public:
     void setName(const char*);
     virtual void setVodkaPrice(unsigned) = 0;
     virtual void setWhiskeyPrice(unsigned) = 0;
+    virtual bool addUser(User&) = 0;
+    void removeUser(const char* name);
     
     const String& getName() const;
     const unsigned getVodkaPrice() const;
     const unsigned getWhiskeyPrice() const;
-    const MusicType getGenre() const;
     
 protected:
     unsigned vodkaPrice;
     unsigned whiskeyPrice;
-    MusicType genre;
+    DynamicArray<User> users;
     
 private:
     String name;
@@ -54,12 +62,12 @@ public:
     
     void setVodkaPrice(unsigned);
     void setWhiskeyPrice(unsigned);
+    bool addUser(User&);
     void setArtist(const char*);
     const String& getArtist() const;
     
 private:
     unsigned capacity;
-    unsigned size;
     String artist;
 };
 
@@ -70,6 +78,7 @@ public:
     
     void setVodkaPrice(unsigned);
     void setWhiskeyPrice(unsigned);
+    bool addUser(User&);
     void setDjs(unsigned);
     unsigned getDjs() const;
     
@@ -87,10 +96,10 @@ public:
     
     void setVodkaPrice(unsigned);
     void setWhiskeyPrice(unsigned);
+    bool addUser(User&);
     
     
 private:
     unsigned capacity;
-    unsigned size;
 };
 #endif

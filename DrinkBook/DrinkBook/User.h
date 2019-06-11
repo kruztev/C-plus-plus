@@ -18,6 +18,7 @@ enum MusicType
 class User
 {
 public:
+    User();
     User(const String& nName, unsigned nAge, unsigned nCash, unsigned nVodkas, unsigned nWhiskeys, const char* music);
     User(const User&) = default;
     User& operator=(const User&) = default;

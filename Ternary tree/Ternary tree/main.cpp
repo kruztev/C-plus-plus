@@ -18,15 +18,6 @@ struct Node {
     Node* right;
 };
 
-//void countChildren(Node* vertex, unsigned& count) {
-//    if (vertex->left)
-//        count++;
-//    if (vertex->mid)
-//        count++;
-//    if (vertex->right)
-//        count++;
-//}
-
 void printLevel(std::queue<Node*>& currLevel, std::queue<Node*>& nextLevel, bool* visited)
 {
     while (!currLevel.empty()) {
@@ -52,7 +43,9 @@ void printLevel(std::queue<Node*>& currLevel, std::queue<Node*>& nextLevel, bool
     std::cout << '\n';
 }
 
-void BFS(Node* root, unsigned verticesCount) {
+void BFS(Node*& root, unsigned verticesCount) {
+//    if (verticesCount > 0)
+//        return;
     bool* visited = new bool[verticesCount]; // Exception thrown by new?
     for (size_t i = 0; i < verticesCount; ++i) {
         visited[i] = false;
@@ -67,54 +60,71 @@ void BFS(Node* root, unsigned verticesCount) {
         printLevel(verticesCurrLevel, verticesNextLevel, visited);
         printLevel(verticesNextLevel, verticesCurrLevel, visited);
     }
+    
+    delete [] visited;
 }
 
-void readTree(Node*& root, std::ifstream& stream)
+void handleNewSymbol(std::stack<unsigned short>& countOfChildren, std::stack<Node*>& treeTracing, unsigned& vertexCounter, char symbol) {
+    
+    if (countOfChildren.top() == 0) {
+            treeTracing.top()->left = new Node(vertexCounter, symbol);
+            treeTracing.push(treeTracing.top()->left);
+    }
+    if (countOfChildren.top() == 1) {
+            treeTracing.top()->mid = new Node(vertexCounter, symbol);
+            treeTracing.push(treeTracing.top()->mid);
+    }
+    if (countOfChildren.top() == 2) {
+            treeTracing.top()->right = new Node(vertexCounter, symbol);
+        treeTracing.push(treeTracing.top()->right);
+    }
+    
+    ++countOfChildren.top();
+    countOfChildren.push(0);
+    ++vertexCounter;
+}
+
+void readTree(Node*& root, std::ifstream& stream, unsigned& vertexCounter)
 {
-    unsigned vertexCounter = 0;
-    unsigned bracketCount = 0;
     std::stack<Node*> treeTracing;
-    char symbol;
+    std::stack<unsigned short> countOfChildren;
+    char symbol = '\0';
+    
+    stream >> symbol;
+    stream >> symbol;
+    
+    if (stream.eof())
+        return;
+    
+    root = new Node(vertexCounter++, symbol);
+    treeTracing.push(root);
+    countOfChildren.push(0);
+    
     while(stream.good())
     {
         stream >> symbol;
+        if (stream.eof())
+            return;
         
         if (symbol >= 'a' && symbol <= 'z') {
-            treeTracing.top() = new Node(vertexCounter, symbol);
-            vertexCounter ++;
-            continue;
+            handleNewSymbol(countOfChildren, treeTracing, vertexCounter, symbol);
         }
         if (symbol == '(') {
-            switch (bracketCount) {
-                case 0:
-                    treeTracing.push(root);
-                    bracketCount++;
-                    continue;
-                case 1:
-                    treeTracing.push(treeTracing.top()->left);
-                    bracketCount++;
-                    continue;
-                case 2:
-                    treeTracing.push(treeTracing.top()->mid);
-                    bracketCount++;
-                    continue;
-                case 3:
-                    treeTracing.push(treeTracing.top()->right);
-                    bracketCount++;
-                    continue;
-            }
-        }
-        if (symbol == '*')
             continue;
-        if (symbol == ')') {
+        }
+        if (symbol == '*') {
+            ++countOfChildren.top();
+            continue;
+        }
+        if (symbol == ')' && !stream.eof()) {
             treeTracing.pop();
-            bracketCount--;
+            countOfChildren.pop();
             continue;
         }
     }
 }
 
-void loadTreeFromFile(Node* root)
+void loadTreeFromFile(Node*& root, unsigned& vertexCounter)
 {
     std::ifstream stream("ternary_tree.txt");
     if (!stream) {
@@ -122,37 +132,28 @@ void loadTreeFromFile(Node* root)
         return;
     }
     
-    readTree(root, stream);
+    readTree(root, stream, vertexCounter);
     
     stream.close();
 }
 
+void deleteTree(Node* root) {
+    if (root != nullptr) {
+        deleteTree(root->left);
+        deleteTree(root->mid);
+        deleteTree(root->right);
+        delete root;
+    }
+}
+
 int main() {
-//    Node root(0, 'b');
-//    Node r1(1, 'x');
-//    Node r2(2, 'p');
-//    Node r3(3, 'q');
-//    Node r4(4, 'r');
-//    Node r5(5, 'c');
-//    Node r6(6, 'a');
-//    Node r7(7, 'y');
-//    Node r8(8, 's');
-//    Node r9(9, 't');
-//
-//    root.left = &r1;
-//    root.mid = &r7;
-//    r1.left = &r2;
-//    r1.mid = &r3;
-//    r1.right = &r4;
-//    r4.left = &r5;
-//    r4.right = &r6;
-//    r7.right = &r8;
-//    r8.mid = &r9;
-    
-//    BFS(&root, 10);
     
     Node* root = nullptr;
-    loadTreeFromFile(root);
+    unsigned vertexCounter = 0;
+    loadTreeFromFile(root, vertexCounter);
+    BFS(root, vertexCounter);
+    deleteTree(root);
+    
     
     return 0;
 }

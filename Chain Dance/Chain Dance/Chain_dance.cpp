@@ -15,30 +15,24 @@ HashTable::HashTable() :
 chainDance(STARTING_SIZE)
 {}
 
-unsigned HashTable::hashFunction(const std::string& key, unsigned int size)
-{
-    unsigned result = key.size();
-    unsigned limit = result;
-    for(unsigned i = 0; i < limit; ++i)
-    {
+unsigned HashTable::hashFunction(const std::string& key, unsigned int size) {
+    unsigned long result = key.size();
+    unsigned long limit = result;
+    for (unsigned i = 0; i < limit; ++i) {
         result += (unsigned)key[i];
     }
     return result % size;
 }
 
-void HashTable::insertElement(const std::string& name)
-{
+void HashTable::insertElement(const std::string& name) {
     unsigned index = hashFunction(name, chainDance.size());
-    for(iterator t = chainDance[index].begin(); t != chainDance[index].end(); ++t)
-    {
-        if(t.operator*().name == name)
-        {
+    for (iterator t = chainDance[index].begin(); t != chainDance[index].end(); ++t) {
+        if (t.operator*().name == name) {
             std::cout << "This person has already been added to the chain dance.\n";
             return;
         }
     }
-    if(chainDance[index].size() >= MAX_CHAIN_SIZE)
-    {
+    if (chainDance[index].size() >= MAX_CHAIN_SIZE) {
         rehash();
         index = hashFunction(name, chainDance.size());
     }
@@ -46,15 +40,11 @@ void HashTable::insertElement(const std::string& name)
     chainDance[index].push_front(data);
 }
 
-void HashTable::rehash()
-{
+void HashTable::rehash() {
     table temp(chainDance.capacity()*2);
-    for(unsigned index = 0; index < chainDance.size(); ++index)
-    {
-        if(!chainDance[index].empty())
-        {
-            for(iterator t = chainDance[index].begin(); t != chainDance[index].end(); ++t)
-            {
+    for (unsigned index = 0; index < chainDance.size(); ++index) {
+        if (!chainDance[index].empty()) {
+            for (iterator t = chainDance[index].begin(); t != chainDance[index].end(); ++t) {
                 unsigned newIndex = hashFunction((*t).name, temp.size());
                 temp[newIndex].push_front(*t);
             }
@@ -63,23 +53,17 @@ void HashTable::rehash()
     chainDance = temp;
 }
 
-HashTable::Data& HashTable::getElement(const std::string& name)
-{
+HashTable::Data& HashTable::getElement(const std::string& name) {
     unsigned index = hashFunction(name, chainDance.size());
-    if(chainDance[index].empty())
-    {
+    if (chainDance[index].empty()) {
         throw std::logic_error("No person named like that.\n");
     }
-    else if(name == chainDance[index].front().name)
-    {
+    else if (name == chainDance[index].front().name) {
         return chainDance[index].front();
     }
-    else
-    {
-        for(iterator t = ++chainDance[index].begin(); t != chainDance[index].end(); ++t)
-        {
-            if(name == (*t).name)
-            {
+    else {
+        for (iterator t = ++chainDance[index].begin(); t != chainDance[index].end(); ++t) {
+            if (name == (*t).name) {
                 return *t;
             }
         }
@@ -87,30 +71,25 @@ HashTable::Data& HashTable::getElement(const std::string& name)
     throw std::logic_error("No person named like that.\n");
 }
 
-void HashTable::removeElement(const std::string& name)
-{
+void HashTable::removeElement(const std::string& name) {
      unsigned index = hashFunction(name, chainDance.size());
     chainDance[index].remove(getElement(name));
 }
 
-void HashTable::print(std::string leader)
-{
+void HashTable::print(std::string leader) {
     std::cout << leader << '\n';
     std::string temp = getElement(leader).leftNeighbour;
-    while (temp != leader)
-    {
+    while (temp != leader) {
         std::cout << temp << '\n';
         temp = getElement(temp).leftNeighbour;
     }
 }
 
-bool HashTable::Data::operator==(const Data& nData) const
-{
+bool HashTable::Data::operator==(const Data& nData) const {
    return (this->name == nData.name) ? true : false;
 }
 
-void HashTable::release(const std::string name, unsigned parameter)
-{
+void HashTable::release(const std::string name, unsigned parameter) {
 // Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
     switch (parameter) {
         case 0:
@@ -126,8 +105,7 @@ void HashTable::release(const std::string name, unsigned parameter)
     }
 }
 
-void HashTable::grab(const std::string name, unsigned parameter)
-{
+void HashTable::grab(const std::string name, unsigned parameter) {
     // Using 0 to grab both neighbours, 1 to grab the left neighbour and 2 to grab the right neighbour.
     switch (parameter) {
         case 0:
@@ -143,17 +121,16 @@ void HashTable::grab(const std::string name, unsigned parameter)
     }
 }
 
-void HashTable::info(std::string name)
-{
+void HashTable::info(std::string name) {
     Data temp = getElement(name);
     
     std::cout << temp.leftNeighbour << ' ';
     // Checking leftNeighbour data.
     Data left = getElement(temp.leftNeighbour);
     char relationLeft[4] = {'-','-','-','-'};
-    if(temp.grabbedLeft)
+    if (temp.grabbedLeft)
         relationLeft[0] = '<';
-    if(left.grabbedRight)
+    if (left.grabbedRight)
         relationLeft[3] = '>';
     std::cout << relationLeft << ' ';
     
@@ -162,20 +139,18 @@ void HashTable::info(std::string name)
     // Checking rightNeighbour data.
     Data right = getElement(temp.rightNeighbour);
     char relationRight[4] = {'-','-','-','-'};
-    if(right.grabbedLeft)
+    if (right.grabbedLeft)
         relationRight[0] = '<';
-    if(temp.grabbedRight)
+    if (temp.grabbedRight)
         relationRight[3] = '>';
     std::cout << relationRight << ' ';
     std::cout << temp.rightNeighbour;
 }
 
-void HashTable::add(const std::string& name, const std::string& leftPerson, const std::string& rightPerson, unsigned countOfDancers)
-{
+void HashTable::add(const std::string& name, const std::string& leftPerson, const std::string& rightPerson, unsigned countOfDancers) {
     Data left = getElement(leftPerson);
     // Checking if leftPerson and rightPerson are neighbours.
-    if(left.rightNeighbour == rightPerson)
-    {
+    if (left.rightNeighbour == rightPerson) {
     // Data temp = Data(name, leftPerson, rightPerson);
         insertElement(name);
         // Editing newDancer's data
@@ -190,22 +165,18 @@ void HashTable::add(const std::string& name, const std::string& leftPerson, cons
         
         countOfDancers++;
     }
-    else
-    {
+    else {
         std::cout << leftPerson << " and " << rightPerson << " are not neighbours.\n";
     }
 }
 
-void HashTable::remove(const std::string& name, unsigned countOfDancers, std::string& leader)
-{
+void HashTable::remove(const std::string& name, unsigned countOfDancers, std::string& leader) {
     Data temp = getElement(name);
     Data left = getElement(temp.leftNeighbour);
     Data right = getElement(temp.rightNeighbour);
-    if(temp.grabbedLeft == 0 && temp.grabbedRight == 0 && left.grabbedRight == 0 && right.grabbedRight == 0)
-    {
+    if (temp.grabbedLeft == 0 && temp.grabbedRight == 0 && left.grabbedRight == 0 && right.grabbedRight == 0) {
         // Updating the leader of the dance if necessary.
-        if(temp.name == leader)
-        {
+        if (temp.name == leader) {
             leader = temp.leftNeighbour;
         }
         // Updating leaving person's neighbour's data.
@@ -213,8 +184,7 @@ void HashTable::remove(const std::string& name, unsigned countOfDancers, std::st
         right.leftNeighbour = left.name;
         std::cout << "Free at last!\n";
         countOfDancers--;
-        if(countOfDancers <= 2)
-        {
+        if (countOfDancers <= 2) {
             std::cout << "...and the music stops!\n";
             return;
         }
@@ -223,16 +193,13 @@ void HashTable::remove(const std::string& name, unsigned countOfDancers, std::st
     std::cout << "This won't be so easy!\n";
 }
 
-void HashTable::swap(const std::string& name1, const std::string& name2)
-{
+void HashTable::swap(const std::string& name1, const std::string& name2) {
     Data person1 = getElement(name1);
     Data person2 = getElement(name2);
-    if(person1.rightNeighbour == name2)
-    {
+    if (person1.rightNeighbour == name2) {
         Data person3Left = getElement(person1.leftNeighbour);
         Data person4Right = getElement(person2.rightNeighbour);
-        if(!person1.grabbedLeft && !person2.grabbedRight && !person3Left.grabbedRight && !person4Right.grabbedLeft)
-        {
+        if (!person1.grabbedLeft && !person2.grabbedRight && !person3Left.grabbedRight && !person4Right.grabbedLeft) {
             // Update Person1's data
             Data temp1 = person1;
             person1.leftNeighbour = name2;
@@ -247,12 +214,10 @@ void HashTable::swap(const std::string& name1, const std::string& name2)
             person2.grabbedLeft = false;
         }
     }
-    else if(person1.leftNeighbour == name2)
-    {
+    else if (person1.leftNeighbour == name2) {
         Data person3Left = getElement(person2.leftNeighbour);
         Data person4Right = getElement(person1.rightNeighbour);
-        if(!person1.grabbedRight && !person2.grabbedLeft && !person4Right.grabbedLeft && !person3Left.grabbedRight)
-        {
+        if (!person1.grabbedRight && !person2.grabbedLeft && !person4Right.grabbedLeft && !person3Left.grabbedRight) {
             // Update Person1's data
             Data temp1 = person1;
             person1.leftNeighbour = person2.leftNeighbour;
@@ -269,8 +234,7 @@ void HashTable::swap(const std::string& name1, const std::string& name2)
     }
 }
 
-void HashTable::addFromFile(const std::string& name, const std::string& leftPerson, const std::string& rightPerson, unsigned countOfDancers)
-{
+void HashTable::addFromFile(const std::string& name, const std::string& leftPerson, const std::string& rightPerson, unsigned countOfDancers) {
     insertElement(name);
     // Editing newDancer's data
     getElement(name).leftNeighbour = leftPerson;

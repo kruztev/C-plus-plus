@@ -12,8 +12,7 @@
 
 const unsigned short MAX_NAME_SIZE = 30;
 
-enum Commands
-{
+enum Commands {
     INVALID_COMMAND = -1,
     
     RELEASE,
@@ -28,8 +27,7 @@ enum Commands
     COMMANDS_COUNT
 };
 
-enum Parameters
-{
+enum Parameters {
     INVALID_PARAMETER = -1,
     
     BOTH,
@@ -39,8 +37,8 @@ enum Parameters
     PARAMETERS_COUNT
 };
 
-short action(std::string dictionary[], std::string buffer) // Checking the input.
-{
+// Checking the input.
+short action(std::string dictionary[], std::string buffer) {
     for(unsigned i = 0; i < COMMANDS_COUNT; ++i)
     {
         if(!strcasecmp(dictionary[i].c_str(), buffer.c_str()))
@@ -51,10 +49,9 @@ short action(std::string dictionary[], std::string buffer) // Checking the input
     return INVALID_COMMAND;
 }
 
-bool checkInput() // Check wether the command requires arguments.
-{
-    if((char)std::cin.peek() == '\n')
-    {
+// Check wether the command requires arguments.
+bool checkInput() {
+    if ((char)std::cin.peek() == '\n') {
         std::cerr << "This command requiers arguments. Try again.\n";
         std::cin.clear();
         std::cin.ignore(UINT32_MAX, '\n');
@@ -63,26 +60,22 @@ bool checkInput() // Check wether the command requires arguments.
     return 1;
 }
 
-void getName(std::string& name)
-{
+void getName(std::string& name) {
     char buffer[MAX_NAME_SIZE + 1];
-    if(std::cin.get() == '"')
-    {
+    if (std::cin.get() == '"') {
         std::cin.getline(buffer, MAX_NAME_SIZE, '"');
     }
     name = buffer;
 }
 
-void release(HashTable chainDance)
-{
+void release(HashTable chainDance) {
     std::string dancer;
     getName(dancer);
     std::string parameter;
     std::cin >> parameter;
     std::string dictionary[] = {"both", "left", "right"};
     // Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
-    switch (action(dictionary, parameter))
-    {
+    switch (action(dictionary, parameter)) {
         case 0:
             chainDance.release(dancer, 0);
             break;
@@ -96,15 +89,13 @@ void release(HashTable chainDance)
     
 }
 
-void info(HashTable chainDance)
-{
+void info(HashTable chainDance) {
     std::string dancer;
     getName(dancer);
     chainDance.info(dancer);
 }
 
-void add(HashTable chainDance, unsigned countOfDancers)
-{
+void add(HashTable chainDance, unsigned countOfDancers) {
     std::string dancer;
     getName(dancer);
     std::string leftNeighbour;
@@ -114,16 +105,14 @@ void add(HashTable chainDance, unsigned countOfDancers)
     chainDance.add(dancer, leftNeighbour, rightNeighbour, countOfDancers);
 }
 
-void grab(HashTable chainDance)
-{
+void grab(HashTable chainDance) {
     std::string dancer;
     std::cin >> dancer;
     std::string parameter;
     std::cin >> parameter;
     std::string dictionary[] = {"both", "left", "right"};
     // Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
-    switch (action(dictionary, parameter))
-    {
+    switch (action(dictionary, parameter)) {
         case 0:
             chainDance.grab(dancer, 0);
             break;
@@ -136,15 +125,13 @@ void grab(HashTable chainDance)
     }
 }
 
-void remove(HashTable chainDance, unsigned countOfDancers, std::string& leader)
-{
+void remove(HashTable chainDance, unsigned countOfDancers, std::string& leader) {
     std::string dancer;
     getName(dancer);
     chainDance.remove(dancer, countOfDancers, leader);
 }
 
-void swap(HashTable chainDance)
-{
+void swap(HashTable chainDance) {
     std::string dancer1;
     getName(dancer1);
     std::string dancer2;
@@ -164,13 +151,11 @@ int main(int argc, const char* argv[]) {
     std::ifstream stream;
     //stream.open(argv[1], std::ios::in);
     stream.open("test.txt", std::ios::in);
-    if(!stream)
-    {
+    if (!stream) {
         std::cerr << "Cannot open file for reading.\n";
         return -1;
     }
-    if(!stream.eof())
-    {
+    if (!stream.eof()) {
         char buffer[MAX_NAME_SIZE+1];
         stream.getline(buffer, MAX_NAME_SIZE);
         leader = buffer;
@@ -188,8 +173,7 @@ int main(int argc, const char* argv[]) {
     chainDance.addFromFile(bufferCurrent, bufferPrevious, bufferNext, countOfDancers);
     strcpy(bufferCurrent, bufferNext);
     
-    while(!stream.eof())
-    {
+    while(!stream.eof()) {
         //stream.getline(bufferCurrent, MAX_NAME_SIZE);
         stream.getline(bufferNext, MAX_NAME_SIZE);
         if(stream.eof())
@@ -203,12 +187,10 @@ int main(int argc, const char* argv[]) {
     
     stream.close();
     
-    while (programRuns)
-    {
+    while (programRuns) {
         std::string commandBuffer;
         std::cin >> commandBuffer;
-        switch (action(dictionary, commandBuffer))
-        {
+        switch (action(dictionary, commandBuffer)) {
             case 0:
                 if(!checkInput())
                     break;

@@ -13,12 +13,10 @@
 #include <list>
 
 // Ivan Filipov's hash table example used
-class HashTable
-{
+class HashTable {
 
 private:
-    struct Data
-    {
+    struct Data {
         std::string name;
         std::string leftNeighbour;
         std::string rightNeighbour;

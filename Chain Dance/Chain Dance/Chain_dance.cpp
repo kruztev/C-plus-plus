@@ -15,7 +15,7 @@ HashTable::HashTable() :
 chainDance(STARTING_SIZE)
 {}
 
-unsigned HashTable::hashFunction(const std::string& key, unsigned int size) {
+unsigned long HashTable::hashFunction(const std::string& key, unsigned long size) const {
     unsigned long result = key.size();
     unsigned long limit = result;
     for (unsigned i = 0; i < limit; ++i) {
@@ -71,13 +71,31 @@ HashTable::Dancer& HashTable::getDancer(const std::string& name) {
     throw std::logic_error("No person named like that.\n");
 }
 
+const HashTable::Dancer& HashTable::getDancer(const std::string& name) const {
+    unsigned long index = hashFunction(name, chainDance.size());
+    if (chainDance[index].empty()) {
+        throw std::logic_error("No person named like that.\n");
+    }
+    else if (name == chainDance[index].front().name) {
+        return chainDance[index].front();
+    }
+    else {
+        for (std::list<Dancer>::const_iterator t = ++chainDance[index].begin(); t != chainDance[index].end(); ++t) {
+            if (name == (*t).name) {
+                return *t;
+            }
+        }
+    }
+    throw std::logic_error("No person named like that.\n");
+}
+
 void HashTable::removeDancer(const std::string& name) {
     // Check if element exist?
      unsigned long index = hashFunction(name, chainDance.size());
     chainDance[index].remove(getDancer(name));
 }
 
-void HashTable::print(std::string leader) {
+void HashTable::print(const std::string& leader) const {
     std::cout << leader << '\n';
     std::string temp = getDancer(leader).leftNeighbour;
     while (temp != leader) {
@@ -90,7 +108,7 @@ bool HashTable::Dancer::operator==(const Dancer& nDancer) const {
    return (this->name == nDancer.name) ? true : false;
 }
 
-void HashTable::release(const std::string name, unsigned parameter) {
+void HashTable::release(const std::string& name, unsigned parameter) {
 // Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
     switch (parameter) {
         case 0:
@@ -106,7 +124,7 @@ void HashTable::release(const std::string name, unsigned parameter) {
     }
 }
 
-void HashTable::grab(const std::string name, unsigned parameter) {
+void HashTable::grab(const std::string& name, unsigned parameter) {
     // Using 0 to grab both neighbours, 1 to grab the left neighbour and 2 to grab the right neighbour.
     switch (parameter) {
         case 0:
@@ -122,7 +140,7 @@ void HashTable::grab(const std::string name, unsigned parameter) {
     }
 }
 
-void HashTable::info(std::string name) {
+void HashTable::info(const std::string& name) const {
     Dancer temp = getDancer(name);
     
     std::cout << temp.leftNeighbour << ' ';

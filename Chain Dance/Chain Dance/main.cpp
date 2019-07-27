@@ -89,13 +89,13 @@ void release(HashTable chainDance) {
     
 }
 
-void info(HashTable chainDance) {
+void info(HashTable& chainDance) {
     std::string dancer;
     getName(dancer);
     chainDance.info(dancer);
 }
 
-void add(HashTable chainDance, unsigned countOfDancers) {
+void add(HashTable& chainDance, unsigned countOfDancers) {
     std::string dancer;
     getName(dancer);
     std::string leftNeighbour;
@@ -105,7 +105,7 @@ void add(HashTable chainDance, unsigned countOfDancers) {
     chainDance.add(dancer, leftNeighbour, rightNeighbour, countOfDancers);
 }
 
-void grab(HashTable chainDance) {
+void grab(HashTable& chainDance) {
     std::string dancer;
     std::cin >> dancer;
     std::string parameter;
@@ -125,13 +125,13 @@ void grab(HashTable chainDance) {
     }
 }
 
-void remove(HashTable chainDance, unsigned countOfDancers, std::string& leader) {
+void remove(HashTable& chainDance, unsigned countOfDancers, std::string& leader) {
     std::string dancer;
     getName(dancer);
     chainDance.remove(dancer, countOfDancers, leader);
 }
 
-void swap(HashTable chainDance) {
+void swap(HashTable& chainDance) {
     std::string dancer1;
     getName(dancer1);
     std::string dancer2;
@@ -181,16 +181,10 @@ void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned
     stream.close();
 }
 
-int main(int argc, const char* argv[]) {
+void handleCommands(HashTable& chainDance, std::string& leader, unsigned& countOfDancers) {
     std::string dictionary[] = {"release", "grab", "info", "add", "remove", "swap", "print", "quit"};
-    bool programRuns = true;
     
-    HashTable chainDance;
-    unsigned countOfDancers = 0;
-    std::string leader;
-    loadChainDanceFromFile(chainDance, leader, countOfDancers);
-    
-    while (programRuns) {
+    while (true) {
         std::string commandBuffer;
         std::cin >> commandBuffer;
         switch (action(dictionary, commandBuffer)) {
@@ -218,10 +212,18 @@ int main(int argc, const char* argv[]) {
                 chainDance.print(leader);
                 break;
             case 7:
-                programRuns = false;
-                break;
+                return;
         }
     }
+}
+
+int main(int argc, const char* argv[]) {
+    
+    HashTable chainDance;
+    unsigned countOfDancers = 0;
+    std::string leader;
+    loadChainDanceFromFile(chainDance, leader, countOfDancers);
+    handleCommands(chainDance, leader, countOfDancers);
     
     return 0;
 }

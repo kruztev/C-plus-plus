@@ -43,19 +43,20 @@ public:
     
 public:
     void insertDancer(const std::string&);
+    const Dancer& getDancer(const std::string&) const;
     Dancer& getDancer(const std::string&);
     void removeDancer(const std::string&);
-    void print(std::string);
+    void print(const std::string&) const;
     void addFromFile(const std::string&, const std::string&, const std::string&, unsigned);
     
 private:
-    unsigned hashFunction (const std::string&, unsigned);
+    unsigned long hashFunction (const std::string&, unsigned long) const;
     void rehash();
     
 public:
-    void release(const std::string, unsigned);
-    void grab(const std::string, unsigned);
-    void info(const std::string);
+    void release(const std::string&, unsigned);
+    void grab(const std::string&, unsigned);
+    void info(const std::string&) const;
     void add(const std::string&, const std::string&, const std::string&, unsigned);
     void remove(const std::string&, unsigned, std::string&);
     void swap(const std::string&, const std::string&);

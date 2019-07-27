@@ -150,10 +150,10 @@ int main(int argc, const char* argv[]) {
     std::string leader;
     std::ifstream stream;
     //stream.open(argv[1], std::ios::in);
-    stream.open("test.txt", std::ios::in);
+    stream.open("dancers.txt", std::ios::in);
     if (!stream) {
         std::cerr << "Cannot open file for reading.\n";
-        return -1;
+        return 1;
     }
     if (!stream.eof()) {
         char buffer[MAX_NAME_SIZE+1];
@@ -183,7 +183,7 @@ int main(int argc, const char* argv[]) {
         strcpy(bufferCurrent, bufferNext);
     }
     chainDance.addFromFile(bufferNext, bufferCurrent, leader, countOfDancers);
-    chainDance.getElement(leader).leftNeighbour = bufferNext;
+    chainDance.getDancer(leader).leftNeighbour = bufferNext;
     
     stream.close();
     

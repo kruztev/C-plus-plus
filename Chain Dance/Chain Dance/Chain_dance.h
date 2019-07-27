@@ -16,36 +16,35 @@
 class HashTable {
 
 private:
-    struct Data {
-        std::string name;
-        std::string leftNeighbour;
-        std::string rightNeighbour;
-        bool grabbedLeft = false;
-        bool grabbedRight = false;
-        
-        Data(std::string nName = "", std::string nameOfLeftNeighbour = "", std::string nameOfRightNeighbour = "") :
+    struct Dancer {
+        Dancer(std::string nName = "", std::string nameOfLeftNeighbour = "", std::string nameOfRightNeighbour = "") :
             name(nName),
             leftNeighbour(nameOfLeftNeighbour),
             rightNeighbour(nameOfRightNeighbour),
             grabbedLeft(true),
             grabbedRight(true)
         {}
+        bool operator==(const Dancer&) const;
         
-        bool operator==(const Data&) const;
+        std::string name;
+        std::string leftNeighbour;
+        std::string rightNeighbour;
+        bool grabbedLeft = false;
+        bool grabbedRight = false;
     };
 private:
-    typedef std::vector<std::list<Data>> table;
+    typedef std::vector<std::list<Dancer>> table;
     table chainDance;
-    typedef std::list<Data>::iterator iterator;
+    typedef std::list<Dancer>::iterator iterator;
     
 public:
     HashTable();
     
     
 public:
-    void insertElement(const std::string&);
-    Data& getElement(const std::string&);
-    void removeElement(const std::string&);
+    void insertDancer(const std::string&);
+    Dancer& getDancer(const std::string&);
+    void removeDancer(const std::string&);
     void print(std::string);
     void addFromFile(const std::string&, const std::string&, const std::string&, unsigned);
     

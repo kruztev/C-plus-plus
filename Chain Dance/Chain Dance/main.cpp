@@ -140,6 +140,46 @@ void swap(HashTable chainDance) {
     
 }
 
+void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned& countOfDancers) {
+    std::ifstream stream("dancers.txt", std::ios::in);
+    //stream.open(argv[1], std::ios::in);
+    if (!stream) {
+        std::cerr << "Cannot open file for reading.\n";
+        return;
+    }
+    
+    char buffer[MAX_NAME_SIZE + 1];
+    stream.getline(buffer, MAX_NAME_SIZE);
+    if (stream.eof()) {
+        std::cerr << "The file has no content\n";
+        return;
+    }
+    leader = buffer;
+    
+    char bufferPrevious[MAX_NAME_SIZE+1];
+    
+    char bufferCurrent[MAX_NAME_SIZE+1];
+    strcpy(bufferCurrent, leader.c_str());
+    
+    char bufferNext[MAX_NAME_SIZE+1];
+    stream.getline(bufferNext, MAX_NAME_SIZE);
+    
+    chainDance.addFromFile(bufferCurrent, bufferNext, "\0", countOfDancers);
+    strcpy(bufferPrevious, leader.c_str());
+    strcpy(bufferCurrent, bufferNext);
+    
+    while(!stream.eof()) {
+        //stream.getline(bufferCurrent, MAX_NAME_SIZE);
+        stream.getline(bufferNext, MAX_NAME_SIZE);
+        chainDance.addFromFile(bufferCurrent, bufferNext, bufferPrevious, countOfDancers);
+        strcpy(bufferPrevious, bufferCurrent);
+        strcpy(bufferCurrent, bufferNext);
+    }
+    chainDance.addFromFile(bufferNext, leader, bufferPrevious, countOfDancers);
+    chainDance.getDancer(leader).rightNeighbour = bufferNext;
+    
+    stream.close();
+}
 
 int main(int argc, const char* argv[]) {
     std::string dictionary[] = {"release", "grab", "info", "add", "remove", "swap", "print", "quit"};
@@ -148,44 +188,7 @@ int main(int argc, const char* argv[]) {
     HashTable chainDance;
     unsigned countOfDancers = 0;
     std::string leader;
-    std::ifstream stream;
-    //stream.open(argv[1], std::ios::in);
-    stream.open("dancers.txt", std::ios::in);
-    if (!stream) {
-        std::cerr << "Cannot open file for reading.\n";
-        return 1;
-    }
-    if (!stream.eof()) {
-        char buffer[MAX_NAME_SIZE+1];
-        stream.getline(buffer, MAX_NAME_SIZE);
-        leader = buffer;
-    }
-    
-    char bufferPrevious[MAX_NAME_SIZE+1];
-    strcpy(bufferPrevious, leader.c_str());
-
-    char bufferCurrent[MAX_NAME_SIZE+1];
-    strcpy(bufferCurrent, leader.c_str());
-
-    char bufferNext[MAX_NAME_SIZE+1];
-    stream.getline(bufferNext, MAX_NAME_SIZE);
-
-    chainDance.addFromFile(bufferCurrent, bufferPrevious, bufferNext, countOfDancers);
-    strcpy(bufferCurrent, bufferNext);
-    
-    while(!stream.eof()) {
-        //stream.getline(bufferCurrent, MAX_NAME_SIZE);
-        stream.getline(bufferNext, MAX_NAME_SIZE);
-        if(stream.eof())
-            break;
-        chainDance.addFromFile(bufferCurrent, bufferPrevious, bufferNext, countOfDancers);
-        strcpy(bufferPrevious, bufferCurrent);
-        strcpy(bufferCurrent, bufferNext);
-    }
-    chainDance.addFromFile(bufferNext, bufferCurrent, leader, countOfDancers);
-    chainDance.getDancer(leader).leftNeighbour = bufferNext;
-    
-    stream.close();
+    loadChainDanceFromFile(chainDance, leader, countOfDancers);
     
     while (programRuns) {
         std::string commandBuffer;

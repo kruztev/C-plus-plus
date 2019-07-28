@@ -62,9 +62,10 @@ bool checkInput() {
 
 void getName(std::string& name) {
     char buffer[MAX_NAME_SIZE + 1];
-    if (std::cin.get() == '"') {
-        std::cin.getline(buffer, MAX_NAME_SIZE, '"');
-    }
+//    if (std::cin.get() == '"') {
+    std::cin.ignore();
+        std::cin.getline(buffer, MAX_NAME_SIZE);
+//    }
     name = buffer;
 }
 

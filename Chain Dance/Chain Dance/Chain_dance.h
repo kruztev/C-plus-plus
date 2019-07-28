@@ -40,7 +40,6 @@ private:
 public:
     HashTable();
     
-    
 public:
     void insertDancer(const std::string&);
     const Dancer& getDancer(const std::string&) const;

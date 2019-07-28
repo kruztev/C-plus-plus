@@ -146,24 +146,26 @@ void HashTable::info(const std::string& name) const {
     std::cout << temp.leftNeighbour << ' ';
     // Checking leftNeighbour data.
     Dancer left = getDancer(temp.leftNeighbour);
-    char relationLeft[4] = {'-','-','-','-'};
+    char relationLeft[5] = {'-','-','-','-'};
     if (temp.grabbedLeft)
         relationLeft[0] = '<';
     if (left.grabbedRight)
         relationLeft[3] = '>';
+    relationLeft[4] = '\0';
     std::cout << relationLeft << ' ';
     
     std::cout << name << ' ';
     
     // Checking rightNeighbour data.
     Dancer right = getDancer(temp.rightNeighbour);
-    char relationRight[4] = {'-','-','-','-'};
+    char relationRight[5] = {'-','-','-','-'};
     if (right.grabbedLeft)
         relationRight[0] = '<';
     if (temp.grabbedRight)
         relationRight[3] = '>';
+    relationRight[4] = '\0';
     std::cout << relationRight << ' ';
-    std::cout << temp.rightNeighbour;
+    std::cout << temp.rightNeighbour << '\n';
 }
 
 void HashTable::add(const std::string& name, const std::string& leftPerson, const std::string& rightPerson, unsigned countOfDancers) {

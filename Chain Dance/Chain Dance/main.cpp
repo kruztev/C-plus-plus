@@ -11,6 +11,7 @@
 #include "Chain_dance.h"
 
 const unsigned short MAX_NAME_SIZE = 30;
+const unsigned short LENGTH_OF_LONGEST_PARAMETER = 5;
 
 enum Commands {
     INVALID_COMMAND = -1,
@@ -39,10 +40,8 @@ enum Parameters {
 
 // Checking the input.
 short action(std::string dictionary[], std::string buffer) {
-    for(unsigned i = 0; i < COMMANDS_COUNT; ++i)
-    {
-        if(!strcasecmp(dictionary[i].c_str(), buffer.c_str()))
-        {
+    for (unsigned i = 0; i < COMMANDS_COUNT; ++i) {
+        if (!strcasecmp(dictionary[i].c_str(), buffer.c_str())) {
             return i;
         }
     }
@@ -62,18 +61,40 @@ bool checkInput() {
 
 void getName(std::string& name) {
     char buffer[MAX_NAME_SIZE + 1];
-//    if (std::cin.get() == '"') {
-    std::cin.ignore();
-        std::cin.getline(buffer, MAX_NAME_SIZE);
-//    }
+    std::cin.getline(buffer, MAX_NAME_SIZE);
     name = buffer;
 }
 
-void release(HashTable chainDance) {
+void getNameBeforeParameter(std::string& name) {
+    char buffer[MAX_NAME_SIZE + 1];
+    std::cin.ignore();
+//    std::cin.getline(buffer, MAX_NAME_SIZE);
+    unsigned short pos = 0; // It is necessary to extract the characters one by one in order to avoid the bracket of the parameter. Variable pos controls the position the next character will be written.
+    for (unsigned short i = 0; i < MAX_NAME_SIZE; ++i) {
+        char c = std::cin.get();
+        if (std::cin.peek() == '[')
+            break;
+        buffer[pos++] = c;
+    }
+    buffer[pos] = '\0';
+    name = buffer;
+}
+
+void extractParameter(std::string& parameter) {
+    std::cin.ignore(); // Ignoring the parameter bracket.
+    for (size_t i = 0; i < LENGTH_OF_LONGEST_PARAMETER; ++i) {
+        char c = std::cin.get();
+        if (c == ']')
+            break;
+        parameter.push_back(c);
+    }
+}
+
+void release(HashTable& chainDance) {
     std::string dancer;
-    getName(dancer);
+    getNameBeforeParameter(dancer);
     std::string parameter;
-    std::cin >> parameter;
+    extractParameter(parameter);
     std::string dictionary[] = {"both", "left", "right"};
     // Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
     switch (action(dictionary, parameter)) {
@@ -108,9 +129,9 @@ void add(HashTable& chainDance, unsigned countOfDancers) {
 
 void grab(HashTable& chainDance) {
     std::string dancer;
-    std::cin >> dancer;
+    getNameBeforeParameter(dancer);
     std::string parameter;
-    std::cin >> parameter;
+    extractParameter(parameter);
     std::string dictionary[] = {"both", "left", "right"};
     // Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
     switch (action(dictionary, parameter)) {

@@ -44,7 +44,7 @@ public:
     void insertDancer(const std::string&);
     const Dancer& getDancer(const std::string&) const;
     Dancer& getDancer(const std::string&);
-    void removeDancer(const std::string&);
+    void removeFromList(const std::string&);
     void print(const std::string&) const;
     void addFromFile(const std::string&, const std::string&, const std::string&, unsigned);
     
@@ -56,6 +56,6 @@ public:
     void grabOrRelease(const std::string&, unsigned, bool);
     void info(const std::string&) const;
     void add(const std::string&, const std::string&, const std::string&, unsigned);
-    void remove(const std::string&, unsigned, std::string&);
+       void remove(const std::string&, unsigned, std::string&);
     void swap(const std::string&, const std::string&);
 };

@@ -59,6 +59,17 @@ bool checkInput() {
     return 1;
 }
 
+// Function getNameQuotations extracts name between quotations mark. It is used in functions add and swap.
+void getNameQuotations(std::string& name) {
+    std::cin.ignore(2); // Ignores the white space between the command and the dancer name and the quotations mark.
+    for (size_t i = 0; i <= MAX_NAME_SIZE; ++i) {
+        char c = std::cin.get();
+        if (c == '"')
+            break;
+        name.push_back(c);
+    }
+}
+
 void getName(std::string& name) {
     char buffer[MAX_NAME_SIZE + 1];
     std::cin.ignore();
@@ -69,7 +80,6 @@ void getName(std::string& name) {
 void getNameBeforeParameter(std::string& name) {
     char buffer[MAX_NAME_SIZE + 1];
     std::cin.ignore();
-//    std::cin.getline(buffer, MAX_NAME_SIZE);
     unsigned short pos = 0; // It is necessary to extract the characters one by one in order to avoid the bracket of the parameter. Variable pos controls the position the next character will be written.
     for (unsigned short i = 0; i < MAX_NAME_SIZE; ++i) {
         char c = std::cin.get();
@@ -120,11 +130,11 @@ void info(HashTable& chainDance) {
 
 void add(HashTable& chainDance, unsigned countOfDancers) {
     std::string dancer;
-    getName(dancer);
+    getNameQuotations(dancer);
     std::string leftNeighbour;
-    getName(leftNeighbour);
+    getNameQuotations(leftNeighbour);
     std::string rightNeighbour;
-    getName(rightNeighbour);
+    getNameQuotations(rightNeighbour);
     chainDance.add(dancer, leftNeighbour, rightNeighbour, countOfDancers);
 }
 

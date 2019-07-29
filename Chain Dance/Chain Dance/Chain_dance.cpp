@@ -89,8 +89,7 @@ const HashTable::Dancer& HashTable::getDancer(const std::string& name) const {
     throw std::logic_error("No person named like that.\n");
 }
 
-void HashTable::removeDancer(const std::string& name) {
-    // Check if element exist?
+void HashTable::removeFromList(const std::string& name) {
      unsigned long index = hashFunction(name, chainDance.size());
     chainDance[index].remove(getDancer(name));
 }
@@ -153,33 +152,32 @@ void HashTable::info(const std::string& name) const {
     std::cout << temp.rightNeighbour << '\n';
 }
 
-void HashTable::add(const std::string& name, const std::string& leftPerson, const std::string& rightPerson, unsigned countOfDancers) {
+void HashTable::add(const std::string& newDancerName, const std::string& leftPerson, const std::string& rightPerson, unsigned countOfDancers) {
     Dancer left = getDancer(leftPerson);
     // Checking if leftPerson and rightPerson are neighbours.
     if (left.rightNeighbour == rightPerson) {
-    // Data temp = Data(name, leftPerson, rightPerson);
-        insertDancer(name);
+        insertDancer(newDancerName);
         // Editing newDancer's data
-        getDancer(name).leftNeighbour = leftPerson;
-        getDancer(name).rightNeighbour = rightPerson;
+        getDancer(newDancerName).leftNeighbour = leftPerson;
+        getDancer(newDancerName).rightNeighbour = rightPerson;
         
         //Editing newDancer's neighbours data
-        getDancer(leftPerson).rightNeighbour = name;
+        getDancer(leftPerson).rightNeighbour = newDancerName;
         getDancer(leftPerson).grabbedRight = true;
-        getDancer(rightPerson).leftNeighbour = name;
+        getDancer(rightPerson).leftNeighbour = newDancerName;
         getDancer(rightPerson).grabbedLeft = true;
         
         countOfDancers++;
     }
     else {
-        std::cout << leftPerson << " and " << rightPerson << " are not neighbours.\n";
+        std::cout << leftPerson << " and " << rightPerson << " are not neighbours\n";
     }
 }
 
 void HashTable::remove(const std::string& name, unsigned countOfDancers, std::string& leader) {
-    Dancer temp = getDancer(name);
-    Dancer left = getDancer(temp.leftNeighbour);
-    Dancer right = getDancer(temp.rightNeighbour);
+    Dancer& temp = getDancer(name);
+    Dancer& left = getDancer(temp.leftNeighbour);
+    Dancer& right = getDancer(temp.rightNeighbour);
     if (temp.grabbedLeft == 0 && temp.grabbedRight == 0 && left.grabbedRight == 0 && right.grabbedRight == 0) {
         // Updating the leader of the dance if necessary.
         if (temp.name == leader) {
@@ -189,6 +187,7 @@ void HashTable::remove(const std::string& name, unsigned countOfDancers, std::st
         left.rightNeighbour = right.name;
         right.leftNeighbour = left.name;
         std::cout << "Free at last!\n";
+        removeFromList(temp.name);
         countOfDancers--;
         if (countOfDancers <= 2) {
             std::cout << "...and the music stops!\n";

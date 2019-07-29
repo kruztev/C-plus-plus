@@ -108,34 +108,19 @@ bool HashTable::Dancer::operator==(const Dancer& nDancer) const {
    return (this->name == nDancer.name) ? true : false;
 }
 
-void HashTable::release(const std::string& name, unsigned parameter) {
-// Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
+void HashTable::grabOrRelease(const std::string& name, unsigned parameter, bool flag) {
+    // Using 0 to grab or release both neighbours, 1 to grab or release the left neighbour and 2 to grab or release the right neighbour.
+    
     switch (parameter) {
         case 0:
-            getDancer(name).grabbedLeft = 0;
-            getDancer(name).grabbedRight = 0;
+            getDancer(name).grabbedLeft = flag;
+            getDancer(name).grabbedRight = flag;
             break;
         case 1:
-            getDancer(name).grabbedLeft = 0;
+            getDancer(name).grabbedLeft = flag;
             break;
         case 2:
-            getDancer(name).grabbedRight = 0;
-            break;
-    }
-}
-
-void HashTable::grab(const std::string& name, unsigned parameter) {
-    // Using 0 to grab both neighbours, 1 to grab the left neighbour and 2 to grab the right neighbour.
-    switch (parameter) {
-        case 0:
-            getDancer(name).grabbedLeft = 1;
-            getDancer(name).grabbedRight = 1;
-            break;
-        case 1:
-            getDancer(name).grabbedLeft = 1;
-            break;
-        case 2:
-            getDancer(name).grabbedRight = 1;
+            getDancer(name).grabbedRight = flag;
             break;
     }
 }

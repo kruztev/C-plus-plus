@@ -53,8 +53,7 @@ private:
     void rehash();
     
 public:
-    void release(const std::string&, unsigned);
-    void grab(const std::string&, unsigned);
+    void grabOrRelease(const std::string&, unsigned, bool);
     void info(const std::string&) const;
     void add(const std::string&, const std::string&, const std::string&, unsigned);
     void remove(const std::string&, unsigned, std::string&);

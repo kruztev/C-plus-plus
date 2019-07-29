@@ -51,7 +51,7 @@ short action(std::string dictionary[], std::string buffer) {
 // Check wether the command requires arguments.
 bool checkInput() {
     if ((char)std::cin.peek() == '\n') {
-        std::cerr << "This command requiers arguments. Try again.\n";
+        std::cerr << "This command requiers arguments\n";
         std::cin.clear();
         std::cin.ignore(UINT32_MAX, '\n');
         return 0;
@@ -61,6 +61,7 @@ bool checkInput() {
 
 void getName(std::string& name) {
     char buffer[MAX_NAME_SIZE + 1];
+    std::cin.ignore();
     std::cin.getline(buffer, MAX_NAME_SIZE);
     name = buffer;
 }
@@ -99,13 +100,13 @@ void release(HashTable& chainDance) {
     // Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
     switch (action(dictionary, parameter)) {
         case 0:
-            chainDance.release(dancer, 0);
+            chainDance.grabOrRelease(dancer, 0, RELEASE);
             break;
         case 1:
-            chainDance.release(dancer, 1);
+            chainDance.grabOrRelease(dancer, 1, RELEASE);
             break;
         case 2:
-            chainDance.release(dancer, 2);
+            chainDance.grabOrRelease(dancer, 2, RELEASE);
             break;
     }
     
@@ -136,13 +137,13 @@ void grab(HashTable& chainDance) {
     // Using 0 to release both neighbours, 1 to release the left neighbour and 2 to release the right neighbour.
     switch (action(dictionary, parameter)) {
         case 0:
-            chainDance.grab(dancer, 0);
+            chainDance.grabOrRelease(dancer, 0, GRAB);
             break;
         case 1:
-            chainDance.grab(dancer, 1);
+            chainDance.grabOrRelease(dancer, 1, GRAB);
             break;
         case 2:
-            chainDance.grab(dancer, 2);
+            chainDance.grabOrRelease(dancer, 2, GRAB);
             break;
     }
 }

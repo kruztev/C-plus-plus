@@ -166,9 +166,9 @@ void remove(HashTable& chainDance, unsigned countOfDancers, std::string& leader)
 
 void swap(HashTable& chainDance) {
     std::string dancer1;
-    getName(dancer1);
+    getNameQuotations(dancer1);
     std::string dancer2;
-    getName(dancer2);
+    getNameQuotations(dancer2);
     chainDance.swap(dancer1, dancer2);
     
 }

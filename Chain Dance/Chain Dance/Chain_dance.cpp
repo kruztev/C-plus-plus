@@ -199,42 +199,42 @@ void HashTable::remove(const std::string& name, unsigned countOfDancers, std::st
 }
 
 void HashTable::swap(const std::string& name1, const std::string& name2) {
-    Dancer person1 = getDancer(name1);
-    Dancer person2 = getDancer(name2);
-    if (person1.rightNeighbour == name2) {
-        Dancer person3Left = getDancer(person1.leftNeighbour);
-        Dancer person4Right = getDancer(person2.rightNeighbour);
-        if (!person1.grabbedLeft && !person2.grabbedRight && !person3Left.grabbedRight && !person4Right.grabbedLeft) {
-            // Update Person1's data
-            Dancer temp1 = person1;
-            person1.leftNeighbour = name2;
-            person1.rightNeighbour = person2.rightNeighbour;
-            person1.grabbedLeft = temp1.grabbedRight;
-            person1.grabbedRight = false;
-            // Update Person2's data
-            Dancer temp2 = person2;
-            person2.rightNeighbour = name1;
-            person2.leftNeighbour = temp1.leftNeighbour;
-            person2.grabbedRight = temp2.grabbedLeft;
-            person2.grabbedLeft = false;
+    Dancer& dancer1 = getDancer(name1);
+    Dancer& dancer2 = getDancer(name2);
+    if (dancer1.rightNeighbour == name2) {
+        Dancer& dancer1Left = getDancer(dancer1.leftNeighbour);
+        Dancer& dancer2Right = getDancer(dancer2.rightNeighbour);
+        if (!dancer1.grabbedLeft && !dancer2.grabbedRight && !dancer1Left.grabbedRight && !dancer2Right.grabbedLeft) {
+            // Update dancer1's data
+            dancer1.leftNeighbour = name2;
+            dancer1.rightNeighbour = dancer2Right.name;
+            dancer1.grabbedLeft = dancer1.grabbedRight;
+            dancer1.grabbedRight = false;
+            dancer2Right.leftNeighbour = dancer1.name;
+            // Update dancer2's data
+            dancer2.rightNeighbour = name1;
+            dancer2.leftNeighbour = dancer1Left.name;
+            dancer2.grabbedRight = dancer2.grabbedLeft;
+            dancer2.grabbedLeft = false;
+            dancer1Left.rightNeighbour = dancer2.name;
         }
     }
-    else if (person1.leftNeighbour == name2) {
-        Dancer person3Left = getDancer(person2.leftNeighbour);
-        Dancer person4Right = getDancer(person1.rightNeighbour);
-        if (!person1.grabbedRight && !person2.grabbedLeft && !person4Right.grabbedLeft && !person3Left.grabbedRight) {
-            // Update Person1's data
-            Dancer temp1 = person1;
-            person1.leftNeighbour = person2.leftNeighbour;
-            person1.rightNeighbour = name2;
-            person1.grabbedLeft = false;
-            person1.grabbedRight = temp1.grabbedLeft;
-            // Update Person2's data
-            Dancer temp2 = person2;
-            person2.leftNeighbour = person1.name;
-            person2.rightNeighbour = temp1.rightNeighbour;
-            person2.grabbedRight = false;
-            person2.grabbedLeft = temp2.grabbedRight;
+    else if (dancer1.leftNeighbour == name2) {
+        Dancer& dancer2Left = getDancer(dancer2.leftNeighbour);
+        Dancer& dancer1Right = getDancer(dancer1.rightNeighbour);
+        if (!dancer1.grabbedRight && !dancer2.grabbedLeft && !dancer1Right.grabbedLeft && !dancer2Left.grabbedRight) {
+            // Update dancer's data
+            dancer1.rightNeighbour = name2;
+            dancer1.leftNeighbour = dancer2Left.name;
+            dancer1.grabbedRight = dancer1.grabbedLeft;
+            dancer1.grabbedLeft = false;
+            dancer2Left.rightNeighbour = dancer1.name;
+            // Update dancer2's data
+            dancer2.leftNeighbour = dancer1.name;
+            dancer2.rightNeighbour = dancer1Right.name;
+            dancer2.grabbedLeft = dancer2.grabbedRight;
+            dancer2.grabbedRight = false;
+            dancer1Right.leftNeighbour = dancer2.name;
         }
     }
 }

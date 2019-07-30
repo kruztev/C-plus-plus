@@ -59,7 +59,7 @@ bool checkInput() {
     return 1;
 }
 
-// Function getNameQuotations extracts name between quotations mark. It is used in functions add and swap.
+// Function getNameQuotations extracts name between quotations marks. It is used in functions add and swap.
 void getNameQuotations(std::string& name) {
     std::cin.ignore(2); // Ignores the white space between the command and the dancer name and the quotations mark.
     for (size_t i = 0; i <= MAX_NAME_SIZE; ++i) {

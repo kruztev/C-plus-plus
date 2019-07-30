@@ -56,6 +56,6 @@ public:
     void grabOrRelease(const std::string&, unsigned, bool);
     void info(const std::string&) const;
     void add(const std::string&, const std::string&, const std::string&, unsigned);
-       void remove(const std::string&, unsigned, std::string&);
+       void remove(const std::string&, unsigned&, std::string&, bool&);
     void swap(const std::string&, const std::string&);
 };

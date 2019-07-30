@@ -158,10 +158,10 @@ void grab(HashTable& chainDance) {
     }
 }
 
-void remove(HashTable& chainDance, unsigned countOfDancers, std::string& leader) {
+void remove(HashTable& chainDance, unsigned& countOfDancers, std::string& leader, bool& enoughDancers) {
     std::string dancer;
     getName(dancer);
-    chainDance.remove(dancer, countOfDancers, leader);
+    chainDance.remove(dancer, countOfDancers, leader, enoughDancers);
 }
 
 void swap(HashTable& chainDance) {
@@ -200,6 +200,7 @@ void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned
     chainDance.addFromFile(bufferCurrent, bufferNext, "\0", countOfDancers);
     strcpy(bufferPrevious, leader.c_str());
     strcpy(bufferCurrent, bufferNext);
+    ++countOfDancers;
     
     while(!stream.eof()) {
         //stream.getline(bufferCurrent, MAX_NAME_SIZE);
@@ -207,17 +208,19 @@ void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned
         chainDance.addFromFile(bufferCurrent, bufferNext, bufferPrevious, countOfDancers);
         strcpy(bufferPrevious, bufferCurrent);
         strcpy(bufferCurrent, bufferNext);
+        ++countOfDancers;
     }
     chainDance.addFromFile(bufferNext, leader, bufferPrevious, countOfDancers);
     chainDance.getDancer(leader).rightNeighbour = bufferNext;
+    ++countOfDancers;
     
     stream.close();
 }
 
 void handleCommands(HashTable& chainDance, std::string& leader, unsigned& countOfDancers) {
     std::string dictionary[] = {"release", "grab", "info", "add", "remove", "swap", "print", "quit"};
-    
-    while (true) {
+    bool enoughDancers = true;
+    while (enoughDancers) {
         std::string commandBuffer;
         std::cin >> commandBuffer;
         switch (action(dictionary, commandBuffer)) {
@@ -236,7 +239,7 @@ void handleCommands(HashTable& chainDance, std::string& leader, unsigned& countO
                 add(chainDance, countOfDancers);
                 break;
             case 4:
-                remove(chainDance, countOfDancers, leader);
+                remove(chainDance, countOfDancers, leader, enoughDancers);
                 break;
             case 5:
                 swap(chainDance);
@@ -251,6 +254,8 @@ void handleCommands(HashTable& chainDance, std::string& leader, unsigned& countO
 }
 
 int main(int argc, const char* argv[]) {
+    std::cout << "Commands <add> and <swap> require the names of the participants to be written in quotation marks.\n";
+    std::cout << "For example: swap \"goliamata bira\" \"babata\"\n";
     
     HashTable chainDance;
     unsigned countOfDancers = 0;

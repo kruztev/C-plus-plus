@@ -44,7 +44,7 @@ public:
     void insertDancer(const std::string& name);
     const Dancer& getDancer(const std::string& name) const;
     Dancer& getDancer(const std::string& name);
-    void removeFromList(const std::string& name);
+    void removeFromList(const std::string& name, unsigned& countOfDancers);
     void print(const std::string&) const;
     void addFromFile(const std::string&name, const std::string& leftPerson, const std::string& rightPerson, unsigned& countOfDancers);
     
@@ -57,5 +57,5 @@ public:
     void info(const std::string& name) const;
     void add(const std::string& newDancerName, const std::string& leftDancer, const std::string& rightDancer, unsigned& countOfDancers);
        void remove(const std::string& name, unsigned& countOfDancers, std::string& leader, bool& enoughDancers);
-    void swap(const std::string& dancer1Name, const std::string& dancer2Name);
+    void swap(const std::string& dancer1Name, const std::string& dancer2Name, std::string& leader);
 };

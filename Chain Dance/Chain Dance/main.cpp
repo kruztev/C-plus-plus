@@ -164,12 +164,12 @@ void remove(HashTable& chainDance, unsigned& countOfDancers, std::string& leader
     chainDance.remove(dancer, countOfDancers, leader, enoughDancers);
 }
 
-void swap(HashTable& chainDance) {
+void swap(HashTable& chainDance, std::string& leader) {
     std::string dancer1;
     getNameQuotations(dancer1);
     std::string dancer2;
     getNameQuotations(dancer2);
-    chainDance.swap(dancer1, dancer2);
+    chainDance.swap(dancer1, dancer2, leader);
     
 }
 
@@ -197,7 +197,7 @@ void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned
     char bufferNext[MAX_NAME_SIZE+1];
     stream.getline(bufferNext, MAX_NAME_SIZE);
     
-    chainDance.addFromFile(bufferCurrent, bufferNext, "\0", countOfDancers); // As the leader is added first, he has no right neighbour, so his right neighbour is "\0".
+    chainDance.addFromFile(bufferCurrent, bufferNext, "\0", countOfDancers); // As the leader is added first, he has no right neighbour, so "\0" is written.
     strcpy(bufferPrevious, leader.c_str());
     strcpy(bufferCurrent, bufferNext);
     
@@ -207,8 +207,9 @@ void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned
         strcpy(bufferPrevious, bufferCurrent);
         strcpy(bufferCurrent, bufferNext);
     }
-    chainDance.addFromFile(bufferNext, leader, bufferPrevious, countOfDancers);
-    chainDance.getDancer(leader).rightNeighbour = bufferNext;
+    // Edit the neighbours of the first and the last participant.
+    chainDance.getDancer(bufferPrevious).leftNeighbour = leader;
+    chainDance.getDancer(leader).rightNeighbour = bufferPrevious;
     
     stream.close();
 }
@@ -238,7 +239,7 @@ void handleCommands(HashTable& chainDance, std::string& leader, unsigned& countO
                 remove(chainDance, countOfDancers, leader, enoughDancers);
                 break;
             case 5:
-                swap(chainDance);
+                swap(chainDance, leader);
                 break;
             case 6:
                 chainDance.print(leader);

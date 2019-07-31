@@ -128,7 +128,7 @@ void info(HashTable& chainDance) {
     chainDance.info(dancer);
 }
 
-void add(HashTable& chainDance, unsigned countOfDancers) {
+void add(HashTable& chainDance, unsigned& countOfDancers) {
     std::string dancer;
     getNameQuotations(dancer);
     std::string leftNeighbour;
@@ -173,13 +173,8 @@ void swap(HashTable& chainDance, std::string& leader) {
     
 }
 
-void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned& countOfDancers) {
-    std::ifstream stream("dancers.txt", std::ios::in);
-    //stream.open(argv[1], std::ios::in);
-    if (!stream) {
-        std::cerr << "Cannot open file for reading.\n";
-        return;
-    }
+void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned& countOfDancers, std::ifstream& stream) {
+//    std::ifstream stream("dancers.txt");
     
     char buffer[MAX_NAME_SIZE + 1];
     stream.getline(buffer, MAX_NAME_SIZE);
@@ -207,9 +202,10 @@ void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned
         strcpy(bufferPrevious, bufferCurrent);
         strcpy(bufferCurrent, bufferNext);
     }
+    chainDance.addFromFile(bufferCurrent, "\0", bufferPrevious, countOfDancers); // There is no participant after the last, so "\0" is written.
     // Edit the neighbours of the first and the last participant.
-    chainDance.getDancer(bufferPrevious).leftNeighbour = leader;
-    chainDance.getDancer(leader).rightNeighbour = bufferPrevious;
+    chainDance.getDancer(bufferCurrent).leftNeighbour = leader;
+    chainDance.getDancer(leader).rightNeighbour = bufferCurrent;
     
     stream.close();
 }
@@ -254,10 +250,16 @@ int main(int argc, const char* argv[]) {
     std::cout << "Commands <add> and <swap> require the names of the participants to be written in quotation marks.\n";
     std::cout << "For example: swap \"goliamata bira\" \"babata\"\n";
     
+    std::ifstream stream((argv[1]));
+    if (!stream) {
+        std::cerr << "Cannot open file for reading\n";
+        return 1;
+    }
+    
     HashTable chainDance;
     unsigned countOfDancers = 0;
     std::string leader;
-    loadChainDanceFromFile(chainDance, leader, countOfDancers);
+    loadChainDanceFromFile(chainDance, leader, countOfDancers, stream);
     handleCommands(chainDance, leader, countOfDancers);
     
     return 0;

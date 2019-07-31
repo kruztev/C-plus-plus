@@ -1,6 +1,9 @@
 //
 //  Alexander Krustev 45314
 //
+//  Code ran and tested on Xcode 10.3
+//  Clang 10.0.1
+//
 //  main.cpp
 //  Chain Dance
 //
@@ -12,6 +15,7 @@
 
 const unsigned short MAX_NAME_SIZE = 30;
 const unsigned short LENGTH_OF_LONGEST_PARAMETER = 5;
+const unsigned short FIRST_ARGUMENT = 1;
 
 enum Commands {
     INVALID_COMMAND = -1,
@@ -170,7 +174,6 @@ void swap(HashTable& chainDance, std::string& leader) {
     std::string dancer2;
     getNameQuotations(dancer2);
     chainDance.swap(dancer1, dancer2, leader);
-    
 }
 
 void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned& countOfDancers, std::ifstream& stream) {
@@ -250,7 +253,7 @@ int main(int argc, const char* argv[]) {
     std::cout << "Commands <add> and <swap> require the names of the participants to be written in quotation marks.\n";
     std::cout << "For example: swap \"goliamata bira\" \"babata\"\n";
     
-    std::ifstream stream((argv[1]));
+    std::ifstream stream((argv[FIRST_ARGUMENT]));
     if (!stream) {
         std::cerr << "Cannot open file for reading\n";
         return 1;

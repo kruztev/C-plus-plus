@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
             endingLineNumber = "128"
-            landmarkName = "info(HashTable&amp; chainDance)"
-            landmarkType = "9">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -127,8 +127,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
             endingLineNumber = "107"
-            landmarkName = "release(HashTable&amp; chainDance)"
-            landmarkType = "9">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -143,8 +143,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
             endingLineNumber = "97"
-            landmarkName = "extractParameter(std::string&amp; parameter)"
-            landmarkType = "9">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -159,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "142"
             endingLineNumber = "142"
-            landmarkName = "grab(HashTable&amp; chainDance)"
+            landmarkName = "add(HashTable&amp; chainDance, unsigned&amp; countOfDancers)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -191,7 +191,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
             endingLineNumber = "132"
-            landmarkName = "add(HashTable&amp; chainDance, unsigned&amp; countOfDancers)"
+            landmarkName = "info(HashTable&amp; chainDance)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -207,7 +207,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "getNameQuotations(std::string&amp; name)"
+            landmarkName = "checkInput()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -271,7 +271,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "162"
             endingLineNumber = "162"
-            landmarkName = "remove(HashTable&amp; chainDance, unsigned&amp; countOfDancers, std::string&amp; leader, bool&amp; enoughDancers)"
+            landmarkName = "grab(HashTable&amp; chainDance)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -287,7 +287,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
             endingLineNumber = "168"
-            landmarkName = "swap(HashTable&amp; chainDance, std::string&amp; leader)"
+            landmarkName = "remove(HashTable&amp; chainDance, unsigned&amp; countOfDancers, std::string&amp; leader, bool&amp; enoughDancers)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

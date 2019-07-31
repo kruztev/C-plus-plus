@@ -41,21 +41,21 @@ public:
     HashTable();
     
 public:
-    void insertDancer(const std::string&);
-    const Dancer& getDancer(const std::string&) const;
-    Dancer& getDancer(const std::string&);
-    void removeFromList(const std::string&);
+    void insertDancer(const std::string& name);
+    const Dancer& getDancer(const std::string& name) const;
+    Dancer& getDancer(const std::string& name);
+    void removeFromList(const std::string& name);
     void print(const std::string&) const;
-    void addFromFile(const std::string&, const std::string&, const std::string&, unsigned);
+    void addFromFile(const std::string&name, const std::string& leftPerson, const std::string& rightPerson, unsigned& countOfDancers);
     
 private:
-    unsigned long hashFunction (const std::string&, unsigned long) const;
+    unsigned long hashFunction (const std::string& key, unsigned long size) const;
     void rehash();
     
 public:
-    void grabOrRelease(const std::string&, unsigned, bool);
-    void info(const std::string&) const;
-    void add(const std::string&, const std::string&, const std::string&, unsigned);
-       void remove(const std::string&, unsigned&, std::string&, bool&);
-    void swap(const std::string&, const std::string&);
+    void grabOrRelease(const std::string& name, unsigned parameter, bool flag);
+    void info(const std::string& name) const;
+    void add(const std::string& newDancerName, const std::string& leftDancer, const std::string& rightDancer, unsigned& countOfDancers);
+       void remove(const std::string& name, unsigned& countOfDancers, std::string& leader, bool& enoughDancers);
+    void swap(const std::string& dancer1Name, const std::string& dancer2Name);
 };

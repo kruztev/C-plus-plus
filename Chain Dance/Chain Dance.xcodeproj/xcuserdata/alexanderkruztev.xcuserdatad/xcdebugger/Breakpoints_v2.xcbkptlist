@@ -239,7 +239,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
             endingLineNumber = "156"
-            landmarkName = "HashTable::add(const std::string&amp; newDancerName, const std::string&amp; leftDancer, const std::string&amp; rightDancer, unsigned countOfDancers)"
+            landmarkName = "HashTable::add(const std::string&amp; newDancerName, const std::string&amp; leftDancer, const std::string&amp; rightDancer, unsigned&amp; countOfDancers)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -271,7 +271,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "180"
             endingLineNumber = "180"
-            landmarkName = "HashTable::remove(const std::string&amp; name, unsigned&amp; countOfDancers, std::string&amp; leader)"
+            landmarkName = "HashTable::remove(const std::string&amp; name, unsigned&amp; countOfDancers, std::string&amp; leader, bool&amp; enoughDancers)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -319,7 +319,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "205"
             endingLineNumber = "205"
-            landmarkName = "HashTable::swap(const std::string&amp; name1, const std::string&amp; name2)"
+            landmarkName = "HashTable::swap(const std::string&amp; dancer1Name, const std::string&amp; dancer2Name)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -152,7 +152,7 @@ void HashTable::info(const std::string& name) const {
     std::cout << temp.rightNeighbour << '\n';
 }
 
-void HashTable::add(const std::string& newDancerName, const std::string& leftDancer, const std::string& rightDancer, unsigned countOfDancers) {
+void HashTable::add(const std::string& newDancerName, const std::string& leftDancer, const std::string& rightDancer, unsigned& countOfDancers) {
     Dancer& dancer1 = getDancer(leftDancer);
     Dancer& dancer2 = getDancer(rightDancer);
     // Checking if leftPerson and rightPerson are neighbours.
@@ -169,7 +169,7 @@ void HashTable::add(const std::string& newDancerName, const std::string& leftDan
         dancer2.leftNeighbour = newDancerName;
         dancer2.grabbedLeft = true;
         
-        countOfDancers++;
+        ++countOfDancers;
     }
     else {
         std::cout << leftDancer << " and " << rightDancer << " are not neighbours\n";
@@ -190,7 +190,7 @@ void HashTable::remove(const std::string& name, unsigned& countOfDancers, std::s
         right.leftNeighbour = left.name;
         std::cout << "Free at last!\n";
         removeFromList(temp.name);
-        countOfDancers--;
+        --countOfDancers;
         if (countOfDancers <= 2) {
             std::cout << "...and the music stops!\n";
             enoughDancers = false;
@@ -201,33 +201,33 @@ void HashTable::remove(const std::string& name, unsigned& countOfDancers, std::s
     std::cout << "This won't be so easy!\n";
 }
 
-void HashTable::swap(const std::string& name1, const std::string& name2) {
-    Dancer& dancer1 = getDancer(name1);
-    Dancer& dancer2 = getDancer(name2);
-    if (dancer1.rightNeighbour == name2) {
+void HashTable::swap(const std::string& dancer1Name, const std::string& dancer2Name) {
+    Dancer& dancer1 = getDancer(dancer1Name);
+    Dancer& dancer2 = getDancer(dancer2Name);
+    if (dancer1.rightNeighbour == dancer2Name) {
         Dancer& dancer1Left = getDancer(dancer1.leftNeighbour);
         Dancer& dancer2Right = getDancer(dancer2.rightNeighbour);
         if (!dancer1.grabbedLeft && !dancer2.grabbedRight && !dancer1Left.grabbedRight && !dancer2Right.grabbedLeft) {
             // Update dancer1's data
-            dancer1.leftNeighbour = name2;
+            dancer1.leftNeighbour = dancer2Name;
             dancer1.rightNeighbour = dancer2Right.name;
             dancer1.grabbedLeft = dancer1.grabbedRight;
             dancer1.grabbedRight = false;
             dancer2Right.leftNeighbour = dancer1.name;
             // Update dancer2's data
-            dancer2.rightNeighbour = name1;
+            dancer2.rightNeighbour = dancer1Name;
             dancer2.leftNeighbour = dancer1Left.name;
             dancer2.grabbedRight = dancer2.grabbedLeft;
             dancer2.grabbedLeft = false;
             dancer1Left.rightNeighbour = dancer2.name;
         }
     }
-    else if (dancer1.leftNeighbour == name2) {
+    else if (dancer1.leftNeighbour == dancer2Name) {
         Dancer& dancer2Left = getDancer(dancer2.leftNeighbour);
         Dancer& dancer1Right = getDancer(dancer1.rightNeighbour);
         if (!dancer1.grabbedRight && !dancer2.grabbedLeft && !dancer1Right.grabbedLeft && !dancer2Left.grabbedRight) {
             // Update dancer's data
-            dancer1.rightNeighbour = name2;
+            dancer1.rightNeighbour = dancer2Name;
             dancer1.leftNeighbour = dancer2Left.name;
             dancer1.grabbedRight = dancer1.grabbedLeft;
             dancer1.grabbedLeft = false;
@@ -242,11 +242,11 @@ void HashTable::swap(const std::string& name1, const std::string& name2) {
     }
 }
 
-void HashTable::addFromFile(const std::string& name, const std::string& leftPerson, const std::string& rightPerson, unsigned countOfDancers) {
+void HashTable::addFromFile(const std::string& name, const std::string& leftPerson, const std::string& rightPerson, unsigned& countOfDancers) {
     insertDancer(name);
     // Editing newDancer's data
     getDancer(name).leftNeighbour = leftPerson;
     getDancer(name).rightNeighbour = rightPerson;
     
-    countOfDancers++;
+    ++countOfDancers;
 }

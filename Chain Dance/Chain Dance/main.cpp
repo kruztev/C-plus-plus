@@ -197,22 +197,18 @@ void loadChainDanceFromFile(HashTable& chainDance, std::string& leader, unsigned
     char bufferNext[MAX_NAME_SIZE+1];
     stream.getline(bufferNext, MAX_NAME_SIZE);
     
-    chainDance.addFromFile(bufferCurrent, bufferNext, "\0", countOfDancers);
+    chainDance.addFromFile(bufferCurrent, bufferNext, "\0", countOfDancers); // As the leader is added first, he has no right neighbour, so his right neighbour is "\0".
     strcpy(bufferPrevious, leader.c_str());
     strcpy(bufferCurrent, bufferNext);
-    ++countOfDancers;
     
     while(!stream.eof()) {
-        //stream.getline(bufferCurrent, MAX_NAME_SIZE);
         stream.getline(bufferNext, MAX_NAME_SIZE);
         chainDance.addFromFile(bufferCurrent, bufferNext, bufferPrevious, countOfDancers);
         strcpy(bufferPrevious, bufferCurrent);
         strcpy(bufferCurrent, bufferNext);
-        ++countOfDancers;
     }
     chainDance.addFromFile(bufferNext, leader, bufferPrevious, countOfDancers);
     chainDance.getDancer(leader).rightNeighbour = bufferNext;
-    ++countOfDancers;
     
     stream.close();
 }

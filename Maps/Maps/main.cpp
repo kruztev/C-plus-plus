@@ -31,8 +31,6 @@ void addZones(std::ifstream& stream, graph& holder) {
         
         stream.getline(line, BUFFER_SIZE);
         
-        //        if(stream.eof()) // A check of the end of file flag.
-        //            break;
         if (strlen(line) == 0) // A check whether all the zones are read from the file.
             break;
         size_t i = 0;

@@ -9,78 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Maps/Keys.cpp"
-            timestampString = "568403539.618338"
+            filePath = "Maps/main.cpp"
+            timestampString = "568761988.3451639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "Keychain::addKeys(std::ifstream&amp; stream)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Maps/ZoneHolder.cpp"
-            timestampString = "568679919.055759"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "ZoneHolder::addZones(std::ifstream&amp; stream)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Maps/ZoneHolder.cpp"
-            timestampString = "568679919.055842"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "ZoneHolder::addZones(std::ifstream&amp; stream)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Maps/Keychain.cpp"
-            timestampString = "568679919.055912"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "Keychain::addKeysToZones(std::ifstream&amp; stream)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Maps/Keychain.cpp"
-            timestampString = "568679919.055974"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "Keychain::addKeysToZones(std::ifstream&amp; stream)"
-            landmarkType = "7">
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "BFStraversal(const std::string startingZone, const std::unordered_map&lt;std::string,std::vector&lt;std::pair&lt;std::string,std::string&gt;&gt;&gt;&amp; holder, const std::unordered_map&lt;std::string, std::string&gt;&amp; keychain, std::unordered_set&lt;std::string&gt;&amp; foundKeys, std::unordered_set&lt;std::string&gt;&amp; visitedZones)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,12 +26,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Maps/main.cpp"
-            timestampString = "568761988.3451639"
+            timestampString = "586330135.47208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "BFStraversal(const std::string startingZone, const std::unordered_map&lt;std::string,std::vector&lt;std::pair&lt;std::string,std::string&gt;&gt;&gt;&amp; holder, const std::unordered_map&lt;std::string, std::string&gt;&amp; keychain, std::unordered_set&lt;std::string&gt;&amp; foundKeys, std::unordered_set&lt;std::string&gt;&amp; visitedZones)"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "generateDOTfile(const std::unordered_set&lt;std::string&gt;&amp; visitedZones, const std::unordered_map&lt;std::string,std::vector&lt;std::pair&lt;std::string,std::string&gt;&gt;&gt;&amp; holder, const std::unordered_map&lt;std::string, std::string&gt;&amp; keychain)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Maps/main.cpp"
+            timestampString = "586330141.796941"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "notVisitedAdjacent(std::ofstream&amp; outStream, const std::unordered_map&lt;std::string, std::string&gt;&amp; keychain, const std::unordered_map&lt;std::string,std::vector&lt;std::pair&lt;std::string,std::string&gt;&gt;&gt;::const_iterator&amp; it_holder, const std::unordered_set&lt;std::string&gt;&amp; visitedZones)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Maps/main.cpp"
+            timestampString = "586330154.7397031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "checkForKey(const std::string&amp; zoneName, std::unordered_set&lt;std::string&gt;&amp; foundKeys, const std::unordered_map&lt;std::string, std::string&gt;&amp; keychain)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Maps/main.cpp"
+            timestampString = "586330157.894994"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "isVisited(const std::unordered_set&lt;std::string&gt;&amp; visitedZones, const std::string&amp; currentZone)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Maps/main.cpp"
+            timestampString = "586330162.2551039"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "addKeysToZones(std::ifstream&amp; stream, std::unordered_map&lt;std::string, std::string&gt;&amp; keychain)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Maps/main.cpp"
+            timestampString = "586330166.898746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "addZones(std::ifstream&amp; stream,std::unordered_map&lt;std::string,std::vector&lt;std::pair &lt;std::string,std::string&gt;&gt;&gt;&amp; holder)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

@@ -73,7 +73,7 @@ void addZones(std::ifstream& stream, graph& holder) {
 // Reading information about key location.
 void addKeysToZones(std::ifstream& stream, std::unordered_map<std::string, std::string>& keychain) {
     char line[BUFFER_SIZE]; // The file will be read line by line.
-    stream.getline(line, BUFFER_SIZE); // Reading line "[zones]".
+    stream.getline(line, BUFFER_SIZE); // Reading line "[keys]".
     while (stream.good()) {
         std::string key;
         std::string zone;

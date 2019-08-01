@@ -15,8 +15,11 @@
 
 const size_t BUFFER_SIZE = 256;
 
-// Reading the graph from the input file.
-void addZones(std::ifstream& stream,std::unordered_map<std::string,std::vector<std::pair <std::string,std::string>>>& holder) {
+// A data structure where the graph will be stored.
+typedef std::unordered_map<std::string, std::vector<std::pair<std::string, std::string>>> graph;
+
+// Creating the graph from the input file.
+void addZones(std::ifstream& stream, graph& holder) {
     char line[BUFFER_SIZE]; // The file will be read line by line.
     stream.getline(line, BUFFER_SIZE); // Reading the first line of the file ("[zones]").
     
@@ -118,7 +121,7 @@ bool isVisited(const std::unordered_set<std::string>& visitedZones, const std::s
 }
 
 void BFStraversal(const std::string startingZone,
-                  const std::unordered_map<std::string,std::vector<std::pair<std::string,std::string>>>& holder,
+                  const graph& holder,
                   const std::unordered_map<std::string, std::string>& keychain,
                   std::unordered_set<std::string>& foundKeys,
                   std::unordered_set<std::string>& visitedZones) {
@@ -160,7 +163,7 @@ void BFStraversal(const std::string startingZone,
 
 void notVisitedAdjacent(std::ofstream& outStream,
                         const std::unordered_map<std::string, std::string>& keychain,
-                        const std::unordered_map<std::string,std::vector<std::pair<std::string,std::string>>>::const_iterator& it_holder,
+                        const graph::const_iterator& it_holder,
                         const std::unordered_set<std::string>& visitedZones) {
     // Check if the zone is visited. In this way duplicating the zone in the output file is avoided.
     if (visitedZones.find(it_holder->first) == visitedZones.end()) {
@@ -195,7 +198,7 @@ void notVisitedAdjacent(std::ofstream& outStream,
 
 
 void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
-                     const std::unordered_map<std::string,std::vector<std::pair<std::string,std::string>>>& holder,
+                     const graph& holder,
                      const std::unordered_map<std::string, std::string>& keychain) {
     std::ofstream outStream;
     outStream.open("graph.dot", std::ios::out);
@@ -205,7 +208,7 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
     }
     
     outStream << "digraph {\n";
-    std::unordered_map<std::string,std::vector<std::pair<std::string,std::string>>>::const_iterator it_holder = holder.begin();
+    graph::const_iterator it_holder = holder.begin();
     std::unordered_set<std::string>::const_iterator it_visitedZones;
     std::unordered_map<std::string, std::string>::const_iterator it_keychain;
     
@@ -269,7 +272,7 @@ int main() {
         std::cerr << "Cannot open file\n";
         return 1;
     }
-    std::unordered_map<std::string, std::vector<std::pair<std::string, std::string>>> holder; // A data structure where the graph will be stored.
+    graph holder;
     std::unordered_map<std::string, std::string> keychain; // A data structure which maps every zone to a key. The key can be taken from the zone.
 
     std::unordered_set<std::string> foundKeys; // A data structure where found keys will be saved.

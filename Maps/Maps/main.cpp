@@ -179,6 +179,9 @@ void notVisitedAdjacent(std::ofstream& outStream,
    
     // For all unvisited adjacent zones.
     for (auto adjacentZones : it_holder->second) {
+        // Vertices who don't have adjacent ones should be skipped.
+        if (adjacentZones.first == "")
+            continue;
         outStream << adjacentZones.first << "[label=\"" << adjacentZones.first;
         if (visitedZones.find(adjacentZones.first) == visitedZones.end()) {
             if (keychain.find(adjacentZones.first) != keychain.end()) {
@@ -236,6 +239,9 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
             }
             // For all adjacent zones.
             for (auto adjacentZones : it_holder->second) {
+                // Vertices who don't have adjacent ones should be skipped.
+                if (adjacentZones.first == "")
+                    continue;
                 // Check if the zone is not visited.
                 if (visitedZones.find(adjacentZones.first) == visitedZones.end()) {
                     notVisitedAdjacent(outStream, keychain, it_holder, visitedZones);

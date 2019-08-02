@@ -4,6 +4,7 @@
 //
 // Alexander Krustev FN: 45314
 // Code ran and tested on Xcode 10.1
+// Clang 10.0.1
 //
 
 #include <iostream>
@@ -226,7 +227,7 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
     std::unordered_map<std::string, std::string>::const_iterator it_keychain;
     
     // Checking all zones.
-    while(it_holder != holder.end()) {
+    while (it_holder != holder.end()) {
         // Check if the zone is. visited
         if (visitedZones.find(it_holder->first) != visitedZones.end()) {
             outStream << it_holder->first << "[label=\"" << it_holder->first;

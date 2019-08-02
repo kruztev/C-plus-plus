@@ -153,6 +153,9 @@ void BFStraversal(const std::string startingZone,
                     }
                      // Marks as visited and pushes to the queue.
                         visitedZones.insert(stringPair.first);
+                    // Vertices who don't have adjancent ones should not be pushed to the queue.
+                    if (stringPair.first == "")
+                        continue;
                         BFSqueue.push(stringPair.first);
                 }
             }
@@ -177,13 +180,22 @@ void notVisitedAdjacent(std::ofstream& outStream,
     // For all unvisited adjacent zones.
     for (auto adjacentZones : it_holder->second) {
         outStream << adjacentZones.first << "[label=\"" << adjacentZones.first;
-        if (keychain.find(adjacentZones.first) != keychain.end()) {
-            outStream << "\\l" << keychain.find(adjacentZones.first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
+        if (visitedZones.find(adjacentZones.first) == visitedZones.end()) {
+            if (keychain.find(adjacentZones.first) != keychain.end()) {
+                outStream << "\\l" << keychain.find(adjacentZones.first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
+            }
+            else {
+                outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
+            }
         }
         else {
-            outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
+            if (keychain.find(adjacentZones.first) != keychain.end()) {
+                outStream << "\\l" << keychain.find(adjacentZones.first)->second << "\"];\n";
+            }
+            else {
+                outStream << "\"];\n";
+            }
         }
-        
         outStream << it_holder->first << " -> " << adjacentZones.first;
         if (adjacentZones.second != "") {
             outStream << " [label=\"" << adjacentZones.second;
@@ -255,6 +267,18 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
     outStream.close();
 }
 
+// Add the vertices which don't have adjacent vertices but they themselves are adjacent vertices.
+void addMissedVertices(graph& holder) {
+    for (auto it_holder = holder.begin(); it_holder != holder.end(); ++it_holder) {
+        for (auto adjacentZones : it_holder->second) {
+            if (holder.find(adjacentZones.first) == holder.end()) {
+                std::pair<std::string, std::string> pair = std::make_pair("","");
+                holder[adjacentZones.first].push_back(pair);
+            }
+        }
+    }
+}
+
 int main() {
     
     //std::string filePath; // Input 1
@@ -278,6 +302,7 @@ int main() {
     
     addZones(stream, holder); // Reading the graph from the input file (Input 1).
     addKeysToZones(stream, keychain); // Reading information about key location.
+    addMissedVertices(holder); // Add the vertices which don't have adjacent vertices but they themselves are adjacent vertices.
 
     
     BFStraversal(startingZone, holder, keychain, foundKeys, visitedZones); // Traversing the graph and finding the keys.

@@ -35,8 +35,6 @@ void addZones(std::ifstream& stream, graph& holder) {
         if (strlen(line) == 0) // A check whether all the zones are read from the file.
             break;
         size_t i = 0;
-        if (line[0] == '\n') // Skipping the '\n' character.
-            i++;
         
         for (; line[i] != '-'; ++i)
             zoneName.push_back(line[i]);
@@ -61,9 +59,7 @@ void addZones(std::ifstream& stream, graph& holder) {
             keyOfAdjacent = "";
         }
         
-        
-        std::pair<std::string, std::string> pair = std::make_pair(adjacentName, keyOfAdjacent);
-        holder[zoneName].push_back(pair);
+        holder[zoneName].push_back({adjacentName, keyOfAdjacent});
     }
     
     
@@ -98,7 +94,7 @@ void addKeysToZones(std::ifstream& stream, std::unordered_map<std::string, std::
 }
 
 // A check whether a key is located in the zone "zoneName".
-bool checkForKey(const std::string& zoneName,
+bool hasKey(const std::string& zoneName,
                   std::unordered_set<std::string>& foundKeys,
                  const std::unordered_map<std::string, std::string>& keychain) {
     auto t = keychain.find(zoneName);
@@ -112,10 +108,7 @@ bool checkForKey(const std::string& zoneName,
 // Check if currentZone is visited.
 bool isVisited(const std::unordered_set<std::string>& visitedZones, const std::string& currentZone) {
 
-    auto it = visitedZones.find(currentZone);
-    if (it != visitedZones.end())
-        return true;
-    return false;
+    return visitedZones.find(currentZone) != visitedZones.end();
     
 }
 
@@ -140,7 +133,7 @@ void BFStraversal(const std::string startingZone,
                     continue;
                 // Check whether the adjacent zone is visited.
                 if (!isVisited(visitedZones, stringPair.first)) {
-                    if (checkForKey(stringPair.first, foundKeys, keychain)) {
+                    if (hasKey(stringPair.first, foundKeys, keychain)) {
                         BFStraversal(stringPair.first, holder, keychain, foundKeys, visitedZones);
                     }
                     // Check whether the adjacent zone requires a key.
@@ -292,7 +285,7 @@ int main() {
     //std::getline(std::cin, filePath);
     
     
-    std::string startingZone = "village"; // Input 2
+    std::string startingZone = "temple_entrance"; // Input 2
     //std::cin >> startingZone;
     
     std::ifstream stream;

@@ -94,12 +94,11 @@ void addKeysToZones(std::ifstream& stream, std::unordered_map<std::string, std::
 }
 
 // A check whether a key is located in the zone "zoneName".
-bool hasKey(const std::string& zoneName,
-                  std::unordered_set<std::string>& foundKeys,
-                 const std::unordered_map<std::string, std::string>& keychain) {
-    auto t = keychain.find(zoneName);
-    if (t != keychain.end()) {
-            foundKeys.insert(t->second); // Add new key to foundKeys set.
+bool checkForKeyAndCollect(const std::string& zoneName, const std::unordered_map<std::string, std::string>& keyLocation,
+                           std::string& newKey) {
+    auto t = keyLocation.find(zoneName);
+    if (t != keyLocation.end()) {
+            newKey = t->second; // Collect the new key.
             return 1;
     }
     return 0;
@@ -114,7 +113,7 @@ bool isVisited(const std::unordered_set<std::string>& visitedZones, const std::s
 
 void BFStraversal(const std::string startingZone,
                   const graph& holder,
-                  const std::unordered_map<std::string, std::string>& keychain,
+                  const std::unordered_map<std::string, std::string>& keyLocation,
                   std::unordered_set<std::string>& foundKeys,
                   std::unordered_set<std::string>& visitedZones) {
     std::queue<std::string> BFSqueue;
@@ -124,47 +123,43 @@ void BFStraversal(const std::string startingZone,
         std::string currentZone = BFSqueue.front();
         BFSqueue.pop();
         
-        
         auto it = holder.find(currentZone);
-
+        if (it == holder.end())
+            throw std::invalid_argument("Nonexistent zone");
         for (auto stringPair : it->second) {
-                // If stringPair.second = "", it means it doesn't require a key.
-                if (stringPair.second != "" && foundKeys.find(stringPair.second) == foundKeys.end())
-                    continue;
-                // Check whether the adjacent zone is visited.
-                if (!isVisited(visitedZones, stringPair.first)) {
-                    if (hasKey(stringPair.first, foundKeys, keychain)) {
-                        BFStraversal(stringPair.first, holder, keychain, foundKeys, visitedZones);
+            // Check whether the adjacent zone requires a key. If stringPair.second is "", it means it doesn't require a key.
+            if (stringPair.second != "" && foundKeys.find(stringPair.second) == foundKeys.end())
+                continue;
+            // Check whether the adjacent zone is visited.
+            if (!isVisited(visitedZones, stringPair.first)) {
+                std::string newKey;
+                if (checkForKeyAndCollect(stringPair.first, keyLocation, newKey)) {
+                    if (foundKeys.find(newKey) == foundKeys.end()) {
+                        foundKeys.insert(newKey);
+                        visitedZones.clear();
+                        BFStraversal(stringPair.first, holder, keyLocation, foundKeys, visitedZones);
                     }
-                    // Check whether the adjacent zone requires a key.
-                    if (stringPair.second != "") {
-                        std::unordered_set<std::string>::iterator j = foundKeys.find(stringPair.second);
-                        // The case when the the key is not found. The zone is not marked as visited but is pushed to the queue because it should be visited again.
-                        if (j == foundKeys.end()) {
-                            BFSqueue.push(stringPair.first);
-                            continue;
-                        }
-                    }
-                     // Marks as visited and pushes to the queue.
-                        visitedZones.insert(stringPair.first);
-                    // Vertices who don't have adjancent ones should not be pushed to the queue.
-                    if (stringPair.first == "")
-                        continue;
-                        BFSqueue.push(stringPair.first);
                 }
+                // Vertices who don't have adjancent ones should not be pushed to the queue.
+                if (stringPair.first == "")
+                    continue;
+                // Marks as visited and pushes to the queue.
+                visitedZones.insert(stringPair.first);
+                BFSqueue.push(stringPair.first);
             }
+        }
     }
 }
 
 void notVisitedAdjacent(std::ofstream& outStream,
-                        const std::unordered_map<std::string, std::string>& keychain,
+                        const std::unordered_map<std::string, std::string>& keyLocation,
                         const graph::const_iterator& it_holder,
                         const std::unordered_set<std::string>& visitedZones) {
     // Check if the zone is visited. In this way duplicating the zone in the output file is avoided.
     if (visitedZones.find(it_holder->first) == visitedZones.end()) {
         outStream << it_holder->first << "[label=\"" << it_holder->first;
-        if (keychain.find(it_holder->first) != keychain.end()) {
-            outStream << "\\l" << keychain.find(it_holder->first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
+        if (keyLocation.find(it_holder->first) != keyLocation.end()) {
+            outStream << "\\l" << keyLocation.find(it_holder->first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
         }
         else {
             outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
@@ -178,16 +173,16 @@ void notVisitedAdjacent(std::ofstream& outStream,
             continue;
         outStream << adjacentZones.first << "[label=\"" << adjacentZones.first;
         if (visitedZones.find(adjacentZones.first) == visitedZones.end()) {
-            if (keychain.find(adjacentZones.first) != keychain.end()) {
-                outStream << "\\l" << keychain.find(adjacentZones.first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
+            if (keyLocation.find(adjacentZones.first) != keyLocation.end()) {
+                outStream << "\\l" << keyLocation.find(adjacentZones.first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
             }
             else {
                 outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
             }
         }
         else {
-            if (keychain.find(adjacentZones.first) != keychain.end()) {
-                outStream << "\\l" << keychain.find(adjacentZones.first)->second << "\"];\n";
+            if (keyLocation.find(adjacentZones.first) != keyLocation.end()) {
+                outStream << "\\l" << keyLocation.find(adjacentZones.first)->second << "\"];\n";
             }
             else {
                 outStream << "\"];\n";
@@ -206,7 +201,7 @@ void notVisitedAdjacent(std::ofstream& outStream,
 
 void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
                      const graph& holder,
-                     const std::unordered_map<std::string, std::string>& keychain) {
+                     const std::unordered_map<std::string, std::string>& keyLocation) {
     std::ofstream outStream;
     outStream.open("graph.dot", std::ios::out);
     if (!outStream) {
@@ -217,7 +212,7 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
     outStream << "digraph {\n";
     graph::const_iterator it_holder = holder.begin();
     std::unordered_set<std::string>::const_iterator it_visitedZones;
-    std::unordered_map<std::string, std::string>::const_iterator it_keychain;
+    std::unordered_map<std::string, std::string>::const_iterator it_keyLocation;
     
     // Checking all zones.
     while (it_holder != holder.end()) {
@@ -225,8 +220,8 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
         if (visitedZones.find(it_holder->first) != visitedZones.end()) {
             outStream << it_holder->first << "[label=\"" << it_holder->first;
             // Check if the zone has key.
-            if (keychain.find(it_holder->first) != keychain.end()) {
-                outStream << "\\l" << keychain.find(it_holder->first)->second << "\"];\n";
+            if (keyLocation.find(it_holder->first) != keyLocation.end()) {
+                outStream << "\\l" << keyLocation.find(it_holder->first)->second << "\"];\n";
             }
             else {
                 outStream << "\"];\n";
@@ -238,7 +233,7 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
                     continue;
                 // Check if the zone is not visited.
                 if (visitedZones.find(adjacentZones.first) == visitedZones.end()) {
-                    notVisitedAdjacent(outStream, keychain, it_holder, visitedZones);
+                    notVisitedAdjacent(outStream, keyLocation, it_holder, visitedZones);
                     break;
                 }
                 else {
@@ -251,7 +246,7 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
             }
         }
         else {
-            notVisitedAdjacent(outStream, keychain, it_holder, visitedZones);
+            notVisitedAdjacent(outStream, keyLocation, it_holder, visitedZones);
         }
         
         outStream << "\n\n"; // For readability purposes there are two new line characters.
@@ -285,7 +280,7 @@ int main() {
     //std::getline(std::cin, filePath);
     
     
-    std::string startingZone = "temple_entrance"; // Input 2
+    std::string startingZone = "suhata reka"; // Input 2
     //std::cin >> startingZone;
     
     std::ifstream stream;
@@ -295,21 +290,25 @@ int main() {
         return 1;
     }
     graph holder;
-    std::unordered_map<std::string, std::string> keychain; // A data structure which maps every zone to a key. The key can be taken from the zone.
+    std::unordered_map<std::string, std::string> keyLocation; // A data structure which maps every zone to a key. The key can be taken from the zone.
 
     std::unordered_set<std::string> foundKeys; // A data structure where found keys will be saved.
     std::unordered_set<std::string> visitedZones; // A data structure where visited zones will be saved.
     
     addZones(stream, holder); // Reading the graph from the input file (Input 1).
-    addKeysToZones(stream, keychain); // Reading information about key location.
+    addKeysToZones(stream, keyLocation); // Reading information about key location.
     addMissedVertices(holder); // Add the vertices which don't have adjacent vertices but they themselves are adjacent vertices.
-
     
-    BFStraversal(startingZone, holder, keychain, foundKeys, visitedZones); // Traversing the graph and finding the keys.
+    try {
+        BFStraversal(startingZone, holder, keyLocation, foundKeys, visitedZones); // Traversing the graph and finding the keys.
+    } catch (const std::invalid_argument& inv_arg) {
+        std::cerr << "Invalid argument exception caught: " << inv_arg.what() << "\n";
+        return 1;
+    }
     
     stream.close();
     
-   generateDOTfile(visitedZones, holder, keychain); // Generating output .dot file.
+   generateDOTfile(visitedZones, holder, keyLocation); // Generating output .dot file.
     
     return 0;
 }

@@ -137,7 +137,7 @@ void BFStraversal(const std::string startingZone,
                     if (foundKeys.find(newKey) == foundKeys.end()) {
                         foundKeys.insert(newKey);
                         visitedZones.clear();
-                        BFStraversal(stringPair.first, holder, keyLocation, foundKeys, visitedZones);
+                        BFStraversal(startingZone, holder, keyLocation, foundKeys, visitedZones);
                     }
                 }
                 // Vertices who don't have adjancent ones should not be pushed to the queue.
@@ -280,7 +280,7 @@ int main() {
     //std::getline(std::cin, filePath);
     
     
-    std::string startingZone = "suhata reka"; // Input 2
+    std::string startingZone = "village"; // Input 2
     //std::cin >> startingZone;
     
     std::ifstream stream;

@@ -118,10 +118,27 @@ bool hasAdjacentZone (const graph& holder, const std::string& zoneName) {
     return it_adjacentZones->first != "";
 }
 
+// Find all zones that require a given key and insert them in a set. Then compare this set with visited set. If there is a zone in the set, that is not in the visited set - return false.
+bool checkAllZonesForKeyAndCompareWithVizited(const graph& holder, const std::string& key, const std::unordered_set<std::string>& visitedZones) {
+    std::unordered_set<std::string> zonesThatRequireThisKey;
+    for (auto it_holder : holder) {
+        for (auto adjacentZones : it_holder.second) {
+            if (adjacentZones.second == key)
+                zonesThatRequireThisKey.insert(adjacentZones.first);
+        }
+    }
+    
+    for (auto it : zonesThatRequireThisKey) {
+        if (visitedZones.find(it) == visitedZones.end())
+            return false;
+    }
+    return true;
+}
+
 void BFStraversal(const std::string startingZone,
                   const graph& holder,
                   const std::unordered_map<std::string, std::string>& keyLocation,
-                  std::unordered_map<std::string, bool>& foundKeys,
+                  std::unordered_set<std::string>& foundKeys,
                   std::unordered_set<std::string>& visitedZones) {
     std::queue<std::string> BFSqueue;
     
@@ -135,30 +152,23 @@ void BFStraversal(const std::string startingZone,
             throw std::invalid_argument("Nonexistent zone");
         for (auto stringPair : it->second) {
             // Check whether the adjacent zone requires a key. If stringPair.second is "", it means it doesn't require a key.
-            if (stringPair.second != "") {
-                // Check whether the key is used and mark it.
-                if (foundKeys.find(stringPair.second) == foundKeys.end()) {
+            if (stringPair.second != "" && foundKeys.find(stringPair.second) == foundKeys.end())
                     continue;
-                }
-                else {
-                    foundKeys[stringPair.second] = true;
-                }
-            }
             // Check whether the adjacent zone is visited.
             if (!isVisited(visitedZones, stringPair.first)) {
                 std::string newKey;
                 if (checkForKeyAndCollect(stringPair.first, keyLocation, newKey)) {
                     if (hasAdjacentZone(holder, stringPair.first)) {
                         if (foundKeys.find(newKey) == foundKeys.end()) {
-                            foundKeys[newKey] = false;
+                            foundKeys.insert(newKey);
                             // Initialize a new set for visited vertices to start with it a new traversal from the vertex with the key.
                             std::unordered_set<std::string> newVisitedZones;
                             // Start a new traversal.
                             BFStraversal(stringPair.first, holder, keyLocation, foundKeys, newVisitedZones);
                             // Add unvisited before vertices to the main set of visited vertices.
                             mergeVisitedZones(visitedZones, newVisitedZones);
-                            // If the key hasn't been used, it should be erased.
-                            if (foundKeys[newKey] == false)
+                            // If there is a zone that requires this key, but hasn't been visited, the key should be erased.
+                            if (checkAllZonesForKeyAndCompareWithVizited(holder, newKey, newVisitedZones) == false)
                                 foundKeys.erase(newKey);
                         }
                     }
@@ -265,7 +275,7 @@ int main() {
     graph holder;
     std::unordered_map<std::string, std::string> keyLocation; // A data structure which maps every zone to a key. The key can be taken from the zone.
 
-    std::unordered_map<std::string, bool> foundKeys; // A data structure where found keys will be saved. There is a bool value for each key which indicates if it is used.
+    std::unordered_set<std::string> foundKeys; // A data structure where found keys will be saved. There is a bool value for each key which indicates if it is used.
     std::unordered_set<std::string> visitedZones; // A data structure where visited zones will be saved.
     
     addZones(stream, holder); // Reading the graph from the input file (Input 1).

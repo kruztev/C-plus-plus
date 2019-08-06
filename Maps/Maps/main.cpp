@@ -61,8 +61,6 @@ void addZones(std::ifstream& stream, graph& holder) {
         
         holder[zoneName].push_back({adjacentName, keyOfAdjacent});
     }
-    
-    
 }
 
 // Reading information about key location.
@@ -89,8 +87,6 @@ void addKeysToZones(std::ifstream& stream, std::unordered_map<std::string, std::
         
         keychain[zone] = key;
     }
-    
-    
 }
 
 // A check whether a key is located in the zone "zoneName".
@@ -106,9 +102,20 @@ bool checkForKeyAndCollect(const std::string& zoneName, const std::unordered_map
 
 // Check if currentZone is visited.
 bool isVisited(const std::unordered_set<std::string>& visitedZones, const std::string& currentZone) {
-
     return visitedZones.find(currentZone) != visitedZones.end();
+}
+
+void mergeVisitedZones(std::unordered_set<std::string>& visitedZones, std::unordered_set<std::string>& newVisitedZones) {
     
+    for (auto it_newVisitedZones : newVisitedZones) {
+        if (visitedZones.find(it_newVisitedZones) == visitedZones.end())
+            visitedZones.insert(it_newVisitedZones);
+    }
+}
+
+bool hasAdjacentZone (const graph& holder, const std::string& zoneName) {
+    auto it_adjacentZones = holder.find(zoneName)->second.begin();
+    return it_adjacentZones->first != "";
 }
 
 void BFStraversal(const std::string startingZone,
@@ -134,70 +141,29 @@ void BFStraversal(const std::string startingZone,
             if (!isVisited(visitedZones, stringPair.first)) {
                 std::string newKey;
                 if (checkForKeyAndCollect(stringPair.first, keyLocation, newKey)) {
-                    if (foundKeys.find(newKey) == foundKeys.end()) {
-                        foundKeys.insert(newKey);
-                        visitedZones.clear();
-                        BFStraversal(startingZone, holder, keyLocation, foundKeys, visitedZones);
+                    if (hasAdjacentZone(holder, stringPair.first)) {
+                        if (foundKeys.find(newKey) == foundKeys.end()) {
+                            foundKeys.insert(newKey);
+                            // Initialize a new set for visited vertices to start with it a new traversal from the vertex with the key.
+                            std::unordered_set<std::string> newVisitedZones;
+                            // Start a new traversal.
+                            BFStraversal(stringPair.first, holder, keyLocation, foundKeys, newVisitedZones);
+                            // Add unvisited before vertices to the main set of visited vertices.
+                            mergeVisitedZones(visitedZones, newVisitedZones);
+                        }
                     }
                 }
-                // Vertices who don't have adjancent ones should not be pushed to the queue.
+                // Vertices which don't have adjancent ones should not be pushed to the queue.
                 if (stringPair.first == "")
                     continue;
-                // Marks as visited and pushes to the queue.
-                visitedZones.insert(stringPair.first);
+                // Push the adjacent vertex to the queue.
                 BFSqueue.push(stringPair.first);
             }
         }
+        // After adding the adjacent vertices to the queue, the current vertex should be marked as visted.
+        visitedZones.insert(currentZone);
     }
 }
-
-void notVisitedAdjacent(std::ofstream& outStream,
-                        const std::unordered_map<std::string, std::string>& keyLocation,
-                        const graph::const_iterator& it_holder,
-                        const std::unordered_set<std::string>& visitedZones) {
-    // Check if the zone is visited. In this way duplicating the zone in the output file is avoided.
-    if (visitedZones.find(it_holder->first) == visitedZones.end()) {
-        outStream << it_holder->first << "[label=\"" << it_holder->first;
-        if (keyLocation.find(it_holder->first) != keyLocation.end()) {
-            outStream << "\\l" << keyLocation.find(it_holder->first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
-        }
-        else {
-            outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
-        }
-    }
-   
-    // For all unvisited adjacent zones.
-    for (auto adjacentZones : it_holder->second) {
-        // Vertices who don't have adjacent ones should be skipped.
-        if (adjacentZones.first == "")
-            continue;
-        outStream << adjacentZones.first << "[label=\"" << adjacentZones.first;
-        if (visitedZones.find(adjacentZones.first) == visitedZones.end()) {
-            if (keyLocation.find(adjacentZones.first) != keyLocation.end()) {
-                outStream << "\\l" << keyLocation.find(adjacentZones.first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
-            }
-            else {
-                outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
-            }
-        }
-        else {
-            if (keyLocation.find(adjacentZones.first) != keyLocation.end()) {
-                outStream << "\\l" << keyLocation.find(adjacentZones.first)->second << "\"];\n";
-            }
-            else {
-                outStream << "\"];\n";
-            }
-        }
-        outStream << it_holder->first << " -> " << adjacentZones.first;
-        if (adjacentZones.second != "") {
-            outStream << " [label=\"" << adjacentZones.second;
-            outStream << "\"]";
-        }
-        outStream << ";\n";
-    }
-    outStream << "\n\n"; // For readability purposes there are two new line characters.
-}
-
 
 void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
                      const graph& holder,
@@ -211,31 +177,33 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
     
     outStream << "digraph {\n";
     graph::const_iterator it_holder = holder.begin();
-    std::unordered_set<std::string>::const_iterator it_visitedZones;
-    std::unordered_map<std::string, std::string>::const_iterator it_keyLocation;
     
-    // Checking all zones.
+    // Check all zones.
     while (it_holder != holder.end()) {
-        // Check if the zone is. visited
+        // Check if the zone is visited.
         if (visitedZones.find(it_holder->first) != visitedZones.end()) {
+            // Check if the zone has key.
+            if (keyLocation.find(it_holder->first) != keyLocation.end()) {
+                outStream << it_holder->first << "[label=\"" << it_holder->first;
+                outStream << "\\l" << keyLocation.find(it_holder->first)->second << "\"];\n";
+            }
+        }
+        // Check if the zone is unvisited.
+        if (visitedZones.find(it_holder->first) == visitedZones.end()) {
             outStream << it_holder->first << "[label=\"" << it_holder->first;
             // Check if the zone has key.
             if (keyLocation.find(it_holder->first) != keyLocation.end()) {
-                outStream << "\\l" << keyLocation.find(it_holder->first)->second << "\"];\n";
+                outStream << "\\l" << keyLocation.find(it_holder->first)->second << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
             }
             else {
-                outStream << "\"];\n";
+                outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
             }
-            // For all adjacent zones.
+        }
+            // Check and write out all adjacent zones.
             for (auto adjacentZones : it_holder->second) {
-                // Vertices who don't have adjacent ones should be skipped.
+                // Vertices which don't have adjacent ones should be skipped.
                 if (adjacentZones.first == "")
                     continue;
-                // Check if the zone is not visited.
-                if (visitedZones.find(adjacentZones.first) == visitedZones.end()) {
-                    notVisitedAdjacent(outStream, keyLocation, it_holder, visitedZones);
-                    break;
-                }
                 else {
                     outStream << it_holder->first << " -> " << adjacentZones.first;
                     if (adjacentZones.second != "") {
@@ -244,20 +212,14 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
                     outStream << ";\n";
                 }
             }
-        }
-        else {
-            notVisitedAdjacent(outStream, keyLocation, it_holder, visitedZones);
-        }
-        
-        outStream << "\n\n"; // For readability purposes there are two new line characters.
+        outStream << "\n";
         it_holder++;
-    }
-    
-    
+        }
+
     outStream << '}';
     
     if (!outStream.good()) {
-        std::cerr << "Error during writing occured\n";
+        std::cerr << "Error during writing to file\n";
     }
     outStream.close();
 }

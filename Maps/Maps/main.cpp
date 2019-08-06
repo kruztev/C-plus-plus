@@ -229,8 +229,9 @@ void addMissedVertices(graph& holder) {
     for (auto it_holder = holder.begin(); it_holder != holder.end(); ++it_holder) {
         for (auto adjacentZones : it_holder->second) {
             if (holder.find(adjacentZones.first) == holder.end()) {
-                std::pair<std::string, std::string> pair = std::make_pair("","");
-                holder[adjacentZones.first].push_back(pair);
+                if (adjacentZones.first == "")
+                    continue;
+                holder[adjacentZones.first].push_back({"",""});
             }
         }
     }

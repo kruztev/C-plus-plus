@@ -20,6 +20,77 @@ const size_t BUFFER_SIZE = 256;
 typedef std::unordered_map<std::string, std::vector<std::pair<std::string, std::string>>> graph;
 
 // Creating the graph from the input file.
+void addZones(std::ifstream& stream, graph& holder);
+
+// Reading information about key location.
+void addKeysToZones(std::ifstream& stream, std::unordered_map<std::string, std::string>& keychain);
+
+// A check whether a key is located in a given zone (zoneName).
+bool checkForKeyAndCollect(const std::string& zoneName, const std::unordered_map<std::string, std::string>& keyLocation,
+                           std::string& newKey);
+
+// Check if currentZone is visited.
+bool isVisited(const std::unordered_set<std::string>& visitedZones, const std::string& currentZone);
+
+void mergeVisitedZones(std::unordered_set<std::string>& visitedZones, std::unordered_set<std::string>& newVisitedZones);
+
+bool hasAdjacentZone (const graph& holder, const std::string& zoneName);
+
+// Find all zones that require a given key and check if they are visited.
+bool checkAllZonesForKeyAndCompareWithVizited(const graph& holder, const std::string& key, const std::unordered_set<std::string>& visitedZones);
+
+void BFStraversal(const std::string startingZone,
+                  const graph& holder,
+                  const std::unordered_map<std::string, std::string>& keyLocation,
+                  std::unordered_set<std::string>& foundKeys,
+                  std::unordered_set<std::string>& visitedZones);
+
+
+void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
+                     const graph& holder,
+                     const std::unordered_map<std::string, std::string>& keyLocation);
+
+// Add the vertices which don't have adjacent vertices but they themselves are adjacent vertices.
+void addMissedVertices(graph& holder);
+
+int main() {
+    
+    std::string filePath; // Input 1
+    std::getline(std::cin, filePath);
+    
+    std::string startingZone; // Input 2
+    std::getline(std::cin, startingZone);
+    
+    std::ifstream stream(filePath);
+    if (!stream) {
+        std::cerr << "Cannot open file\n";
+        return 1;
+    }
+    graph holder;
+    std::unordered_map<std::string, std::string> keyLocation; // A data structure which maps every zone to a key. The key can be taken from the zone.
+
+    std::unordered_set<std::string> foundKeys; // A set where found keys will be saved.
+    std::unordered_set<std::string> visitedZones; // A set where visited zones will be saved.
+    
+    addZones(stream, holder); // Reading the graph from the input file (Input 1).
+    addKeysToZones(stream, keyLocation); // Reading information about key location.
+    addMissedVertices(holder); // Add the vertices which don't have adjacent vertices but they themselves are adjacent vertices.
+    
+    try {
+        BFStraversal(startingZone, holder, keyLocation, foundKeys, visitedZones); // Traversing the graph and finding the keys.
+    } catch (const std::invalid_argument& inv_arg) {
+        std::cerr << "Invalid argument exception caught: " << inv_arg.what() << "\n";
+        stream.close();
+        return 1;
+    }
+    
+    stream.close();
+    
+   generateDOTfile(visitedZones, holder, keyLocation); // Generating .dot file.
+    
+    return 0;
+}
+
 void addZones(std::ifstream& stream, graph& holder) {
     char line[BUFFER_SIZE]; // The file will be read line by line.
     stream.getline(line, BUFFER_SIZE); // Reading the first line of the file ("[zones]").
@@ -63,7 +134,6 @@ void addZones(std::ifstream& stream, graph& holder) {
     }
 }
 
-// Reading information about key location.
 void addKeysToZones(std::ifstream& stream, std::unordered_map<std::string, std::string>& keychain) {
     char line[BUFFER_SIZE]; // The file will be read line by line.
     stream.getline(line, BUFFER_SIZE); // Reading line "[keys]".
@@ -89,20 +159,14 @@ void addKeysToZones(std::ifstream& stream, std::unordered_map<std::string, std::
     }
 }
 
-// A check whether a key is located in a given zone (zoneName).
 bool checkForKeyAndCollect(const std::string& zoneName, const std::unordered_map<std::string, std::string>& keyLocation,
                            std::string& newKey) {
     auto t = keyLocation.find(zoneName);
     if (t != keyLocation.end()) {
-            newKey = t->second; // Collect the new key.
-            return 1;
+        newKey = t->second; // Collect the new key.
+        return 1;
     }
     return 0;
-}
-
-// Check if currentZone is visited.
-bool isVisited(const std::unordered_set<std::string>& visitedZones, const std::string& currentZone) {
-    return visitedZones.find(currentZone) != visitedZones.end();
 }
 
 void mergeVisitedZones(std::unordered_set<std::string>& visitedZones, std::unordered_set<std::string>& newVisitedZones) {
@@ -112,12 +176,15 @@ void mergeVisitedZones(std::unordered_set<std::string>& visitedZones, std::unord
     }
 }
 
+bool isVisited(const std::unordered_set<std::string>& visitedZones, const std::string& currentZone) {
+    return visitedZones.find(currentZone) != visitedZones.end();
+}
+
 bool hasAdjacentZone (const graph& holder, const std::string& zoneName) {
     auto it_adjacentZones = holder.find(zoneName)->second.begin();
     return it_adjacentZones->first != "";
 }
 
-// Find all zones that require a given key and check if they are visited.
 bool checkAllZonesForKeyAndCompareWithVizited(const graph& holder, const std::string& key, const std::unordered_set<std::string>& visitedZones) {
     for (auto it_holder : holder) {
         for (auto adjacentZones : it_holder.second) {
@@ -148,7 +215,7 @@ void BFStraversal(const std::string startingZone,
         for (auto stringPair : it->second) {
             // Check whether the adjacent zone requires a key. If stringPair.second is "", it means it doesn't require a key.
             if (stringPair.second != "" && foundKeys.find(stringPair.second) == foundKeys.end())
-                    continue;
+                continue;
             // Check whether the adjacent zone is visited.
             if (!isVisited(visitedZones, stringPair.first)) {
                 std::string newKey;
@@ -179,6 +246,18 @@ void BFStraversal(const std::string startingZone,
         }
         // After adding the adjacent vertices to the queue, the current vertex should be marked as visted.
         visitedZones.insert(currentZone);
+    }
+}
+
+void addMissedVertices(graph& holder) {
+    for (auto it_holder = holder.begin(); it_holder != holder.end(); ++it_holder) {
+        for (auto adjacentZones : it_holder->second) {
+            if (holder.find(adjacentZones.first) == holder.end()) {
+                if (adjacentZones.first == "")
+                    continue;
+                holder[adjacentZones.first].push_back({"",""});
+            }
+        }
     }
 }
 
@@ -216,79 +295,27 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
                 outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
             }
         }
-            // Check and write all adjacent zones.
-            for (auto adjacentZones : it_holder->second) {
-                // Vertices which don't have adjacent ones should be skipped.
-                if (adjacentZones.first == "")
-                    continue;
-                else {
-                    outStream << it_holder->first << " -> " << adjacentZones.first;
-                    if (adjacentZones.second != "") {
-                        outStream << " [label=\"" << adjacentZones.second << "\"]";
-                    }
-                    outStream << ";\n";
+        // Check and write all adjacent zones.
+        for (auto adjacentZones : it_holder->second) {
+            // Vertices which don't have adjacent ones should be skipped.
+            if (adjacentZones.first == "")
+                continue;
+            else {
+                outStream << it_holder->first << " -> " << adjacentZones.first;
+                if (adjacentZones.second != "") {
+                    outStream << " [label=\"" << adjacentZones.second << "\"]";
                 }
+                outStream << ";\n";
             }
+        }
         outStream << "\n";
         it_holder++;
-        }
-
+    }
+    
     outStream << '}';
     
     if (!outStream.good()) {
         std::cerr << "Error during writing to file\n";
     }
     outStream.close();
-}
-
-// Add the vertices which don't have adjacent vertices but they themselves are adjacent vertices.
-void addMissedVertices(graph& holder) {
-    for (auto it_holder = holder.begin(); it_holder != holder.end(); ++it_holder) {
-        for (auto adjacentZones : it_holder->second) {
-            if (holder.find(adjacentZones.first) == holder.end()) {
-                if (adjacentZones.first == "")
-                    continue;
-                holder[adjacentZones.first].push_back({"",""});
-            }
-        }
-    }
-}
-
-int main() {
-    
-    //std::string filePath; // Input 1
-    //std::getline(std::cin, filePath);
-    
-    
-    std::string startingZone = "village"; // Input 2
-    //std::cin >> startingZone;
-    
-    std::ifstream stream;
-    stream.open("maps.txt", std::ios::in);
-    if (!stream) {
-        std::cerr << "Cannot open file\n";
-        return 1;
-    }
-    graph holder;
-    std::unordered_map<std::string, std::string> keyLocation; // A data structure which maps every zone to a key. The key can be taken from the zone.
-
-    std::unordered_set<std::string> foundKeys; // A data structure where found keys will be saved. There is a bool value for each key which indicates if it is used.
-    std::unordered_set<std::string> visitedZones; // A data structure where visited zones will be saved.
-    
-    addZones(stream, holder); // Reading the graph from the input file (Input 1).
-    addKeysToZones(stream, keyLocation); // Reading information about key location.
-    addMissedVertices(holder); // Add the vertices which don't have adjacent vertices but they themselves are adjacent vertices.
-    
-    try {
-        BFStraversal(startingZone, holder, keyLocation, foundKeys, visitedZones); // Traversing the graph and finding the keys.
-    } catch (const std::invalid_argument& inv_arg) {
-        std::cerr << "Invalid argument exception caught: " << inv_arg.what() << "\n";
-        return 1;
-    }
-    
-    stream.close();
-    
-   generateDOTfile(visitedZones, holder, keyLocation); // Generating output .dot file.
-    
-    return 0;
 }

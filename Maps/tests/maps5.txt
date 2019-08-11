@@ -1,0 +1,9 @@
+[zones]
+village -> basement;
+village -> harbor;
+harbor -> dock [iron key];
+basement -> dungeon;
+dungeon -> cave [iron key];
+
+[keys]
+iron key -> basement;

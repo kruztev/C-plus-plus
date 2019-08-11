@@ -1,0 +1,17 @@
+[zones]
+village -> dock [iron key];
+village -> basement;
+basement -> village;
+dock -> village;
+dock -> jungle;
+jungle -> temple_entrance;
+temple_entrance -> temple_1a [skull key];
+temple_entrance -> temple_2 [serpent key];
+temple_1a -> temple_1b;
+desert -> oasis;
+
+[keys]
+iron key -> basement;
+iron key -> desert;
+skull key -> temple_2;
+serpent key -> temple_1b;

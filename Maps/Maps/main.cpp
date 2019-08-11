@@ -89,7 +89,7 @@ void addKeysToZones(std::ifstream& stream, std::unordered_map<std::string, std::
     }
 }
 
-// A check whether a key is located in the zone "zoneName".
+// A check whether a key is located in a given zone (zoneName).
 bool checkForKeyAndCollect(const std::string& zoneName, const std::unordered_map<std::string, std::string>& keyLocation,
                            std::string& newKey) {
     auto t = keyLocation.find(zoneName);
@@ -106,7 +106,6 @@ bool isVisited(const std::unordered_set<std::string>& visitedZones, const std::s
 }
 
 void mergeVisitedZones(std::unordered_set<std::string>& visitedZones, std::unordered_set<std::string>& newVisitedZones) {
-    
     for (auto it_newVisitedZones : newVisitedZones) {
         if (visitedZones.find(it_newVisitedZones) == visitedZones.end())
             visitedZones.insert(it_newVisitedZones);
@@ -118,19 +117,15 @@ bool hasAdjacentZone (const graph& holder, const std::string& zoneName) {
     return it_adjacentZones->first != "";
 }
 
-// Find all zones that require a given key and insert them in a set. Then compare this set with visited set. If there is a zone in the set, that is not in the visited set - return false.
+// Find all zones that require a given key and check if they are visited.
 bool checkAllZonesForKeyAndCompareWithVizited(const graph& holder, const std::string& key, const std::unordered_set<std::string>& visitedZones) {
-    std::unordered_set<std::string> zonesThatRequireThisKey;
     for (auto it_holder : holder) {
         for (auto adjacentZones : it_holder.second) {
             if (adjacentZones.second == key)
-                zonesThatRequireThisKey.insert(adjacentZones.first);
+                // If the zone requires this key, but is not visited, return false.
+                if (visitedZones.find(adjacentZones.first) == visitedZones.end())
+                    return false;
         }
-    }
-    
-    for (auto it : zonesThatRequireThisKey) {
-        if (visitedZones.find(it) == visitedZones.end())
-            return false;
     }
     return true;
 }
@@ -157,7 +152,9 @@ void BFStraversal(const std::string startingZone,
             // Check whether the adjacent zone is visited.
             if (!isVisited(visitedZones, stringPair.first)) {
                 std::string newKey;
+                // Check the zone for a key.
                 if (checkForKeyAndCollect(stringPair.first, keyLocation, newKey)) {
+                    // If the current zone doesn't have adjacent zone, the key should not be collected, because there is no way back and the key becomes unusable.
                     if (hasAdjacentZone(holder, stringPair.first)) {
                         if (foundKeys.find(newKey) == foundKeys.end()) {
                             foundKeys.insert(newKey);
@@ -219,7 +216,7 @@ void generateDOTfile(const std::unordered_set<std::string>& visitedZones,
                 outStream << "\",color=red,style=filled,fillcolor=\"#ffefef\"];\n";
             }
         }
-            // Check and write out all adjacent zones.
+            // Check and write all adjacent zones.
             for (auto adjacentZones : it_holder->second) {
                 // Vertices which don't have adjacent ones should be skipped.
                 if (adjacentZones.first == "")

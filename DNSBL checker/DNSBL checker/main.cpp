@@ -96,7 +96,7 @@ void readReturnedCodes (const std::string& fourth_octet, const char* ip) {
 }
 
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
     if (argc < 2) {
         std::cerr << "No arguments\n";

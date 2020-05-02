@@ -115,7 +115,7 @@ int main(int argc, const char* argv[])
         
         tmp = gethostbyname(hostname.c_str()); // Make a DNS query
         if (!tmp) {
-            std::cout << "The IP address: " << argv[ipArg] << " is NOT found in the Spamhaus blacklists.\n";
+            std::cerr << "The IP address: " << argv[ipArg] << " is NOT found in the Spamhaus blacklists.\n";
             continue;
         }
         

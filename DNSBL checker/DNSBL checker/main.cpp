@@ -9,8 +9,8 @@
 
 #include <iostream>
 #include <string.h>
-#include <netdb.h>
-#include <arpa/inet.h>
+#include <netdb.h> // gethostbyname()
+#include <arpa/inet.h> // inet_ntoa()
 
 const std::string SPAM_HOUSE_STR = ".zen.spamhaus.org";
 

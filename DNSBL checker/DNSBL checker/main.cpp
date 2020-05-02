@@ -16,37 +16,37 @@ const std::string SPAM_HOUSE_STR = ".zen.spamhaus.org";
 
 // Reverse the IP address
 std::string convertIp(const std::string &ip) {
-    std::string first_octet;
-    std::string second_octet;
-    std::string third_octet;
-    std::string fourth_octet;
+    std::string firstOctet;
+    std::string secondOctet;
+    std::string thirdOctet;
+    std::string fourthOctet;
     
     size_t i = 0;
     for (; ip[i] != '.'; ++i) {
-        first_octet.push_back(ip[i]);
+        firstOctet.push_back(ip[i]);
     }
     i++; // Skipping the '.'
     for (; ip[i] != '.'; ++i) {
-        second_octet.push_back(ip[i]);
+        secondOctet.push_back(ip[i]);
     }
     i++; // Skipping the '.'
     for (; ip[i] != '.'; ++i) {
-        third_octet.push_back(ip[i]);
+        thirdOctet.push_back(ip[i]);
     }
     i++; // Skipping the '.'
     for (; ip[i] != '\0'; ++i) {
-        fourth_octet.push_back(ip[i]);
+        fourthOctet.push_back(ip[i]);
     }
     
     std::string newIp = "";
     
-    newIp += fourth_octet;
+    newIp += fourthOctet;
     newIp += ".";
-    newIp += third_octet;
+    newIp += thirdOctet;
     newIp += ".";
-    newIp += second_octet;
+    newIp += secondOctet;
     newIp += ".";
-    newIp += first_octet;
+    newIp += firstOctet;
     
     return newIp;
 }
@@ -54,24 +54,25 @@ std::string convertIp(const std::string &ip) {
 // Extract the fourth octet of the returned IP address
 const std::string parseReturnedIp (const char* ip) {
     
-    std::string fourth_octet = "";
+    std::string fourthOctet = "";
     
     short cnt = 0; // Count of '.' in the ip address
     for (short i = 0; ip[i] != '\0'; ++i) {
         if (cnt == 3) {
-            fourth_octet.push_back(ip[i]);
+            // If cnt is 3, the counter has reached the fourth octet of the address
+            fourthOctet.push_back(ip[i]);
             continue;
         }
         if (ip[i] == '.') {
             cnt++;
         }
     }
-    return fourth_octet;
+    return fourthOctet;
 }
 
-void readReturnedCodes (const std::string& fourth_octet, const char* ip) {
+void readReturnedCodes (const std::string& fourthOctet, const char* ip) {
         
-    int val = std::stoi(fourth_octet); // Convert the fourth octet to a value
+    int val = std::stoi(fourthOctet); // Convert the fourth octet to a value
     switch (val) {
         case 2:
             std::cout << "The IP address: " << ip << " is found in the following Spamhaus public IP zone: '127.0.0.2 - SBL - Spamhaus SBL Data'\n";
@@ -102,30 +103,29 @@ int main(int argc, const char* argv[])
         std::cerr << "No arguments\n";
         return 1;
     }
-    //std::cout << argv[1];
     
-    struct hostent *tmp = nullptr; // tmp is used for the DNS response
+    struct hostent *tmp = nullptr; // tmp is used to read the info in the DNS response
     char* returnedAddr = nullptr; // In returnedAddr is saved the returned address from the DNS query
     std::string hostname = ""; // hostname is the reversed IP concatenated with .zen.spamhause.org
-    std::string fourth_octet = ""; // In fourth_octet is saved the fourth octet of the DNS response address
+    std::string fourthOctet = ""; // In fourthOctet is saved the fourth octet of the DNS response address
     
-    for (size_t ip_arg = 1; ip_arg < argc; ++ip_arg) {
-        hostname = convertIp(argv[ip_arg]); // Reverse the IP address
+    for (size_t ipArg = 1; ipArg < argc; ++ipArg) {
+        hostname = convertIp(argv[ipArg]); // Reverse the IP address
         hostname += SPAM_HOUSE_STR; // Create a hostname for the DNS query
         
         tmp = gethostbyname(hostname.c_str()); // Make a DNS query
         if (!tmp) {
-            std::cout << "The IP address: " << argv[ip_arg] << " is NOT found in the Spamhaus blacklists.\n";
+            std::cout << "The IP address: " << argv[ipArg] << " is NOT found in the Spamhaus blacklists.\n";
             continue;
         }
         
         // Iterate through the array of IPs returned as a response from the DNS query
-        for (int struct_addr = 0; tmp->h_addr_list[struct_addr] != NULL; ++struct_addr) {
+        for (int structAddr = 0; tmp->h_addr_list[structAddr] != NULL; ++structAddr) {
             
-           struct in_addr* in_addr_ptr = (struct in_addr *) tmp->h_addr_list[struct_addr];
-            returnedAddr = inet_ntoa(*in_addr_ptr); // Convert the stored address to char*
-            fourth_octet = parseReturnedIp(returnedAddr); // Get the fourth octet from the response of the DNS query
-            readReturnedCodes(fourth_octet, argv[ip_arg]); // Determine the zone of the IP
+           struct in_addr* inAddrPtr = (struct in_addr *) tmp->h_addr_list[structAddr];
+            returnedAddr = inet_ntoa(*inAddrPtr); // Convert the stored address to char*
+            fourthOctet = parseReturnedIp(returnedAddr); // Get the fourth octet from the response of the DNS query
+            readReturnedCodes(fourthOctet, argv[ipArg]); // Determine the zone of the IP
         }
     }
     
